@@ -1,10 +1,22 @@
 describe("searchTerm",function(){
 
-  // beforeEach(function() {
-  //   httpMocker = angular.module('httpMocker', ['DoesItSuck','ngMockE2E']);
-  //   httpMocker
-  //
-  //   });
+  beforeEach(function() {
+    browser.addMockModule('httpMocker', function() {
+      angular.module('httpMocker', ['ngMockE2E'])
+      .run(function($httpBackend) {
+        $httpBackend.whenPOST(
+            'localhost:3000/twitter/create')
+            .respond(
+              {
+                search_term: 'Nokia',
+                positive: 4,
+                neutral: 1,
+                negative: 50
+                            }
+            )
+      })
+    })
+  });
 
   var userSearch = function(){
     browser.get("http://localhost:8000");
