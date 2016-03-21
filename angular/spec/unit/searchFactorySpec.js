@@ -22,13 +22,13 @@ describe('factory: searchFactory', function() {
        httpBackend = $httpBackend
        var url = 'localhost:3000/twitter/create';
        httpBackend
-         .when("POST", url)
+         .expectPOST(url,'Nokia')
          .respond(result);
      }));
 
      it('sends out the searchterm', function(){
-       var searchTerm = 'Nokia'
-       factory.search(searchTerm)
+       var searchTerm = 'Nokia';
+       factory.search(searchTerm);
        httpBackend.flush();
        expect(factory.searchResult).toEqual(result);
      });

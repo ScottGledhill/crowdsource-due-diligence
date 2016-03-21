@@ -11,7 +11,6 @@ doesItSuck.factory('searchFactory', ['$http', function($http) {
         'Accept': 'application/json'
       }};
     $http.post(queryUrl, searchTerm, headers).then(function(response){
-      console.log(response.data.positive)
       self.searchResult = response.data;
     });
   };

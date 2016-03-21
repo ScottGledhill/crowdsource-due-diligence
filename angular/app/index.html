@@ -20,16 +20,16 @@
     <h1>Twitter search </h1>
     <section id="search-bar" >
     <form>
-      <input type="text" ng-model="searchCtrl.searchTerm" placeholder="Enter search term">
-      <input type="submit" id="search" value="Does it suck?" ng-click="searchCtrl.searchFactory.search(searchCtrl.searchTerm); searchCtrl.toggleResultStatus()">
+      <input type="text" ng-model="searchTerm" placeholder="Enter search term">
+      <input type="submit" id="search" value="Does it suck?" ng-click="searchCtrl.searchFactory.search(searchTerm); searchCtrl.toggleResultStatus()">
     </form>
     </section>
     <section id="search-results" ng-show="searchCtrl.isResultReady()">
-      <h3>{{searchCtrl.searchTerm}}</h3>
+      <h3>{{searchTerm}}</h3>
       <ul>
-        <li>Positive:<span id='positiveResult'>{{searchCtrl.searchFactory.searchResult.positive}}</span> </li>
-        <li>Neutral: </li>
-        <li>Negative: </li>
+        <li>Positive:<span id='positive-result'>{{searchCtrl.searchFactory.searchResult.positive}}</span> </li>
+        <li>Neutral: <span id='neutral-result'>{{searchCtrl.searchFactory.searchResult.neutral}}</span> </li>
+        <li>Negative: <span id='negative-result'>{{searchCtrl.searchFactory.searchResult.negative}}</span> </li>
       </ul>
     </section>
   </body>
