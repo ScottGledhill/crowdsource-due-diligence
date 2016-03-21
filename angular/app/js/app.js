@@ -1,1 +1,1 @@
-var dueDiligenceApp = angular.module('dueDiligenceApp', ['ngResource']);
+var doesItSuck = angular.module('DoesItSuck', ['ngResource']);
