@@ -1,6 +1,7 @@
-doesItSuck.controller('searchController', function(){
+doesItSuck.controller('searchController',['searchFactory', function(searchFactory){
   var self = this;
   self.searchTerm = "";
+  self.searchFactory = new searchFactory();
 
   self.resultReady = false;
 
@@ -12,4 +13,4 @@ doesItSuck.controller('searchController', function(){
     self.resultReady = !self.resultReady;
   };
 
-})
+}])

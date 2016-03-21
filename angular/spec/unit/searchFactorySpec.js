@@ -8,7 +8,7 @@ describe('factory: searchFactory', function() {
      factory = new searchFactory();
    }));
 
-   describe('calling Rails API to search for a Twitter data', function(){
+   describe('calling Rails API to give search term', function(){
 
      var result = {
                      search_term: 'Nokia',
@@ -26,15 +26,20 @@ describe('factory: searchFactory', function() {
          .respond(result);
      }));
 
-     it('displays search results', function(){
-       console.log(factory);
+     it('sends out the searchterm', function(){
        var searchTerm = 'Nokia'
        factory.search(searchTerm)
-       .then(function(response) {
-         expect(response.data).toEqual(result);
-       });
        httpBackend.flush();
+       expect(factory.searchResult).toEqual(result);
      });
+
+     it("stores the responses in an object",function(){
+       var searchTerm = 'Nokia'
+       factory.search(searchTerm)
+       httpBackend.flush();
+       expect(factory.searchResult.positive).toEqual(result.positive)
+     });
+
    });
 
 });
