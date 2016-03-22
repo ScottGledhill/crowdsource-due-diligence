@@ -14,6 +14,3 @@ doesItSuck.factory('searchFactory', ['$http', function($http) {
 
   return searchFactory;
 }]);
-
-// this.exampleMethod = fuctnio
-// searchFactory.prototype.exampleMethod = function
