@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'search', type: :request do
+feature 'Search', type: :request do
   scenario 'submitting a search term' do
     search_term = {search_term: 'Nokia'}
     search_result = {

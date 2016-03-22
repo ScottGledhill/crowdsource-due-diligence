@@ -22,6 +22,19 @@ RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+
+  config.before(:each) do
+    # stub_request(:post, "https://%E2%80%98W6fvTujRB44WZBUPhMUvCY6bp%0Aexport%20TWITTER_SECRE%3D%E2%80%985pQCjAP2O9BB5Quy3ohqOanhL79kxK2BLCsUAGBtwSii3OZxQJ:@api.twitter.com/oauth2/token").
+    # with(:body => "grant_type=client_credentials",
+    #      :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/x-www-form-urlencoded; charset=UTF-8', 'User-Agent'=>'TwitterRubyGem/5.16.0'}).
+    # to_return(:status => 200, :body => "", :headers => {})
+
+    stub_request(:get, "https://api.twitter.com/1.1/search/tweets.json?count=100&q=Nokia&result_type=recent").
+         with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Bearer #<Twitter::Token:0x007fdf2b2f4538>', 'User-Agent'=>'TwitterRubyGem/5.16.0'}).
+         to_return(:status => 200, :body => "", :headers => {})
+  end
+
+
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
