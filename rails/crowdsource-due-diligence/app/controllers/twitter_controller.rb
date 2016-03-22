@@ -1,7 +1,8 @@
 class TwitterController < ApplicationController
 
   def index
-    @api = RestClient.get('https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4')
-    @apijson = JSON.parse(@api)
+      @results = twitter_client.search("makers acadedmy", result_type: "recent").take(100).collect do |tweet|
+      "#{tweet.user.screen_name}: #{tweet.text}"
+    end
   end
 end

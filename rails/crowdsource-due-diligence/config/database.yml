@@ -25,10 +25,12 @@ development:
   <<: *default
   database: crowdsource_due_diligence_development
 
+
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
+
   #username: crowdsource_due_diligence
 
   # The password associated with the postgres role (username).
@@ -57,7 +59,11 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+<<<<<<< HEAD
   database: crowdsource_due_diligence_test
+=======
+  database: crowd_source_due_diligence_test
+>>>>>>> ec835a5778619f6908fc769ab98da744b16da9fd
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +86,12 @@ test:
 #
 production:
   <<: *default
+<<<<<<< HEAD
   database: crowdsource_due_diligence_production
   username: crowdsource_due_diligence
   password: <%= ENV['crowdsource_due_diligence_DATABASE_PASSWORD'] %>
+=======
+  database: crowd_source_due_diligence_production
+  username: crowd_source_due_diligence
+  password: <%= ENV['CROWD_SOURCE_DUE_DILIGENCE_DATABASE_PASSWORD'] %>
+>>>>>>> ec835a5778619f6908fc769ab98da744b16da9fd
