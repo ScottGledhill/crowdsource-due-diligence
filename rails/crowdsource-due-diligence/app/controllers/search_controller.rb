@@ -10,15 +10,15 @@ class SearchController < ApplicationController
 
   def create
     search_term = params["search_term"]
-    # search_result_twitter = twitter_search(search_term)
-    search_result_twitter = get_fake_tweets
+    search_result_twitter = twitter_search(search_term)
+    # search_result_twitter = get_fake_tweets
     results = analyse_tweets(search_result_twitter,search_term)
     results[:search_term] = search_term
     render json: results.to_json
   end
 
   def twitter_search(search_term)
-    @results = twitter_client.search(search_term, result_type: "recent").take(100).collect do |tweet|
+    @results = twitter_client.search(search_term, lang: "en", result_type: "popular").take(100).collect do |tweet|
       {username: tweet.user.screen_name, content: tweet.text}
     end
     results
