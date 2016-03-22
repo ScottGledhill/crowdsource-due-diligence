@@ -1,16 +1,21 @@
 doesItSuck.controller('searchController',['searchFactory', function(searchFactory){
   var self = this;
-  self.searchTerm = "";
-  self.searchFactory = new searchFactory();
-
+  self.searches = [];
   self.resultReady = false;
+
+
+  self.makeSearch = function(searchTerm){
+    self.searchFactory = new searchFactory(searchTerm);
+    self.searches.push(self.searchFactory);
+    self.setResultStatus();
+  };
 
   self.isResultReady = function(){
     return self.resultReady;
   };
 
-  self.toggleResultStatus = function() {
-    self.resultReady = !self.resultReady;
+  self.setResultStatus = function() {
+    self.resultReady = true;
   };
 
 }])

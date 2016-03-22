@@ -9,15 +9,15 @@ describe('searchController', function() {
    }));
 
 
-  describe('#toggleResultStatus', function() {
+  describe('#setResultStatus', function() {
+
+    it('starts with not showing the page', function() {
+      expect(ctrl.isResultReady()).toEqual(false);
+    });
 
     it('changes resultReady boolean', function() {
       ctrl.toggleResultStatus();
       expect(ctrl.isResultReady()).toEqual(true);
-    });
-
-    it('starts with not showing the page', function() {
-      expect(ctrl.isResultReady()).toEqual(false);
     });
 
   });

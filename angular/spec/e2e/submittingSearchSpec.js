@@ -5,7 +5,7 @@ describe("searchTerm",function(){
       angular.module('httpMocker', ['ngMockE2E'])
       .run(function($httpBackend) {
         $httpBackend.whenPOST(
-            'localhost:3000/twitter/create', 'MacBook')
+            'localhost:3000/searches', 'MacBook')
             .respond(
               {
                 search_term: 'MacBook',
@@ -27,7 +27,7 @@ describe("searchTerm",function(){
 
   it("a user can search for a keyword and submit",function(){
     userSearch();
-    var searchTitle = element(by.css('h3'));
+    var searchTitle = element(by.css('.search-term'));
     expect(searchTitle.getText()).toEqual('MacBook');
   });
 
@@ -40,11 +40,7 @@ describe("searchTerm",function(){
 
   it('returns the sentiment results', function(){
     userSearch();
-    var positiveResult = element(by.css('#positive-result'));
-    expect(positiveResult.getText()).toEqual('4');
-    expect(element(by.css('#neutral-result')).getText()).toEqual('1')
-    expect(element(by.css('#negative-result')).getText()).toEqual('50')
-
+    expect(element.all(by.css('.negative-result')).first().getText()).toEqual('50')
   });
 
 
