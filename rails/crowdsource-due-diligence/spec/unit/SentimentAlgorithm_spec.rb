@@ -3,17 +3,17 @@ require 'rails_helper'
 describe SentimentAlgorithm do
 
   let(:tweets) {[
-                    'love my new iphone! <3',
-                    'The Apple iPhone is a cultural totem',
-                    'lolz got another iphone',
-                    'why are iphones so expensive?!',
-                    'iPhones are soooo cool!',
-                    'I like pizza',
-                    'Sometimes I kiss my pillow',
-                    'This iPhone is a piece of crap',
-                    'Barney is a dinosaur',
-                    'I wish my iphone screen wasn\'t broken.. again',
-                    'iphone is awesome'
+                    {content: 'love my new iphone! <3'},
+                    {content:'The Apple iPhone is a cultural totem'},
+                    {content:'lolz got another iphone'},
+                    {content:'why are iphones so expensive?!'},
+                    {content:'iPhones are soooo cool!'},
+                    {content:'I like pizza'},
+                    {content:'Sometimes I kiss my pillow'},
+                    {content:'This iPhone is a piece of crap'},
+                    {content:'Barney is a dinosaur'},
+                    {content:'I wish my iphone screen wasn\'t broken.. again'},
+                    {content: 'iphone is awesome'}
                   ]}
 
   let(:search_term) {'iPhone'}
