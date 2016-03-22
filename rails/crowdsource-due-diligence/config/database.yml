@@ -81,12 +81,6 @@ test:
 #
 production:
   <<: *default
-<<<<<<< HEAD
   database: crowdsource_due_diligence_production
   username: crowdsource_due_diligence
   password: <%= ENV['crowdsource_due_diligence_DATABASE_PASSWORD'] %>
-=======
-  database: crowd_source_due_diligence_production
-  username: crowd_source_due_diligence
-  password: <%= ENV['CROWD_SOURCE_DUE_DILIGENCE_DATABASE_PASSWORD'] %>
->>>>>>> ec835a5778619f6908fc769ab98da744b16da9fd
