@@ -1,0 +1,24 @@
+{
+  "name": "Crowdsourcing-advice",
+  "homepage": "https://github.com/2blastoff/Whos-round-is-it-anyway",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "angular": "^1.5.0",
+    "angular-resource": "^1.5.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5.0",
+    "angular-route": "^1.5.0"
+  }
+}
