@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "npm install",
     "postinstall": "bower install",
-    "start": "http-server ./app -a 0.0.0.0 -p 8000",
+    "start": "node app/index.js",
     "test": "karma start spec/karma.conf.js",
     "test-single-run": "node node_modules/karma/bin/karma start spec/karma.conf.js  --single-run",
     "preupdate-webdriver": "npm install",
@@ -16,6 +16,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rufusraghunath/crowdsource-due-diligence"
+  },
+  "dependencies": {
+    "express": "~4.9.8",
+    "bower": "1.7.7"
   },
   "author": "",
   "license": "ISC",
@@ -33,5 +37,8 @@
     "phantomjs": "^2.1.3",
     "phantomjs-prebuilt": "^2.1.5",
     "protractor": "^3.1.1"
+  },
+  "engines": {
+    "node": "5.8.0"
   }
 }
