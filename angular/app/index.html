@@ -1,1 +1,36 @@
-Hello world
+<!doctype html>
+<html lang="en" ng-app="DoesItSuck">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Does It Suck?</title>
+    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/searchController.js"></script>
+    <script src="js/controllers/searchFactory.js"></script>
+
+
+  </head>
+
+  <body ng-controller="searchController as searchCtrl">
+    <h1>Twitter search </h1>
+    <section id="search-bar" >
+    <form>
+      <input type="text" ng-model="searchTerm" placeholder="Enter search term">
+      <input type="submit" id="search" value="Does it suck?" ng-click="searchCtrl.makeSearch(searchTerm); searchTerm = ''">
+    </form>
+    </section>
+    <section id="search-results" ng-show="searchCtrl.isResultReady()">
+      <ul ng-repeat='search in searchCtrl.searches'>
+        <li>Search Term: <span class='search-term'>{{search.search_term}}</span> </li>
+        <li>Positive: <span class='positive-result'>{{search.positive}}</span> </li>
+        <li>Neutral: <span class='neutral-result'>{{search.neutral}}</span> </li>
+        <li>Negative: <span class='negative-result'>{{search.negative}}</span> </li>
+      </ul>
+    </section>
+  </body>
+</html>
