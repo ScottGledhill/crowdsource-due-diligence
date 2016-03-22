@@ -1,6 +1,5 @@
 doesItSuck.factory('searchFactory', ['$http', function($http) {
   var searchFactory = function (searchTerm) {
-    this.initialize = function(){
     var self = this;
     var queryUrl = 'http://localhost:3000/search';
     var headers = { headers: {
@@ -12,9 +11,6 @@ doesItSuck.factory('searchFactory', ['$http', function($http) {
       angular.extend(self,response.data);
     });
   };
-
-  this.initialize();
-};
 
   return searchFactory;
 }]);
