@@ -5,6 +5,8 @@ group :test do
   gem 'capybara'
 end
 
+gem 'rack-cors'
+
 gem 'figaro'
 
 gem 'rest-client'
