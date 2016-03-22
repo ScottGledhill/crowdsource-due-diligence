@@ -11,6 +11,7 @@ feature 'Search', type: :request do
                   }
 
     headers = {'CONTENT TYPE' => 'application/json'}
+
     post "/search/", search_term, headers
     response_body = JSON.parse(response.body)
 
