@@ -16,7 +16,7 @@ describe('searchController', function() {
     });
 
     it('changes resultReady boolean', function() {
-      ctrl.toggleResultStatus();
+      ctrl.setResultStatus();
       expect(ctrl.isResultReady()).toEqual(true);
     });
 

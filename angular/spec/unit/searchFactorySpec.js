@@ -20,9 +20,9 @@ describe('factory: searchFactory', function() {
      var httpBackend;
      beforeEach(inject(function($httpBackend){
        httpBackend = $httpBackend
-       var url = 'localhost:3000/searches';
+       var url = 'http://localhost:3000/search';
        httpBackend
-         .expectPOST(url,'Nokia')
+         .expectPOST(url,{search_term: 'Nokia'})
          .respond(result);
      }));
 

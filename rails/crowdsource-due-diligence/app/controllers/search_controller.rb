@@ -16,4 +16,5 @@ class SearchController < ApplicationController
 
     render json: @search_result.to_json
   end
+
 end
