@@ -15,7 +15,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module IsItShit
+module CrowdSourceDueDiligence
   class Application < Rails::Application
     module YourApp
       class Application < Rails::Application
