@@ -1,2 +1,3 @@
 /angular/node_modules/*
 /angular/app/bower_components/*
+/rails/crowdsource-due-diligence/config/application.yml
