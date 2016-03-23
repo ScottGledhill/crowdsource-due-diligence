@@ -37,9 +37,13 @@ So I can see my search results in context,
 I want to see changes in sentiment over time.
 ```
 
-
 TECHNOLOGIES USED:
 
 - Ruby on Rails
 - AngularJS
 - PostgreSQL
+
+
+ACKNOWLEDGEMENTS:
+
+Thanks to Bing Liu and Minquing Hu for compiling comprehensive libraries of positive and negative valence words in their <a href='https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html#lexicon'>Opinion Lexicon</a>. This was used in processing social media input (e.g. tweets) for sentiment.
