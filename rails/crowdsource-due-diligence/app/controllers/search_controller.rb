@@ -24,7 +24,7 @@ class SearchController < ApplicationController
   end
 
   def dated_twitter_search(search_term)
-      twitter_client.search(search_term, lang: "en", result_type: "popular", since: date_from, until: date_till ).take(1).collect do |tweet|
+    twitter_client.search(search_term, lang: "en", result_type: "popular", since: date_from, until: date_till ).take(1).collect do |tweet|
       {username: tweet.user.screen_name, content: tweet.text, date: tweet.created_at }
     end
   end
