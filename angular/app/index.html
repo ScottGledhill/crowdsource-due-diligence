@@ -4,7 +4,13 @@
   <head>
     <meta charset="utf-8">
     <title>Does It Suck?</title>
-    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+    <link type='text/css' rel='stylesheet' href='/css/style.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
@@ -12,26 +18,46 @@
     <script src="js/app.js"></script>
     <script src="js/controllers/searchController.js"></script>
     <script src="js/controllers/searchFactory.js"></script>
-
-
   </head>
 
   <body ng-controller="searchController as searchCtrl">
+    <div class='row container-fluid'>
+    <div class='col-md-2'></div>
+    <div class='col-md-8 text-center'>
+
     <h1>Does it Suck?</h1>
-    <h3>You want to buy something, but are not quite sure? Not quite committed to voting for that politician? Make informed choiced by finding out whether they suck!</h3>
+    <h4>Not quite sure whether to by that product? Unsure about voting for that politician? Make informed choices by finding out whether they suck!</h4>
+    <hr />
     <section id="search-bar" >
     <form>
       <input type="text" ng-model="searchTerm" placeholder="Enter search term">
-      <input type="submit" id="search" value="Analyse" ng-click="searchCtrl.makeSearch(searchTerm); searchTerm = ''">
+      <input type="submit" id="search" value="Well, DOES it suck?" ng-click="searchCtrl.makeSearch(searchTerm); searchTerm = ''">
     </form>
     </section>
-    <section id="search-results" ng-show="searchCtrl.isResultReady()">
-      <ul ng-repeat='search in searchCtrl.searches'>
-        <li>Search term: <span class='search-term'>{{search.search_term}}</span> </li>
-        <li>Positive: <span class='positive-result'>{{search.positive}}</span> </li>
-        <li>Neutral: <span class='neutral-result'>{{search.neutral}}</span> </li>
-        <li>Negative: <span class='negative-result'>{{search.negative}}</span> </li>
+    <section class="search-results" ng-show="searchCtrl.isResultReady()">
+      <ul class='result-item' ng-repeat='search in searchCtrl.searches | reverse'>
+        <li><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
+        <li><b>Sucks:</b> <span class='negative-result'>{{search.negative}}</span> </li>
+        <li><b>Doesn't suck:</b> <span class='positive-result'>{{search.positive}}</span> </li>
+        <li><b>Don't care:</b> <span class='neutral-result'>{{search.neutral}}</span> </li>
       </ul>
     </section>
+  </div><!-- end middle col -->
+  <div class='col-md-2'></div>
+
+  <div id='hidden'></div>
+  <div class="navbar navbar-default navbar-fixed-bottom" class="container-fluid" style="text-align:center;">
+    <div style="margin:auto;">
+      <div style="display:inline-block;padding:10px;">
+        Made by
+        <a href='https://github.com/rufusraghunath'>Rufus Raghunath</a>,
+        <a href='https://github.com/eilw'>Eirick Wiig</a>,
+        <a href='https://github.com/ScottGledhill'>Scott Gledhill</a> &amp;
+        <a href='https://github.com/JonnyPickard'>Jonny Pickard</a>
+        at <a href='http://makersacademy.com'>Makers Academy</a>
+      </div>
+    </div>
+  </div>
+  </div><!-- end row -->
   </body>
 </html>
