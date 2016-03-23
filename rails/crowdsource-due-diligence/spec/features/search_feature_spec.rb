@@ -10,8 +10,8 @@ feature 'Search', type: :request do
     expect(response_body["search_term"]).to eq search_term[:search_term]
   end
 
-  scenario 'submitting search between times' do
-    search_params = {search_term: 'Nokia', date_from: 2014-03-20, date_to: 2014-03-22}
+  scenario 'searches twitter for a specific date interval' do
+    search_params = {"search_term": 'Nokia', "date_from": '2014-03-20', "date_till": '2014-03-22'}
     headers = {'CONTENT TYPE' => 'application/json'}
     post "/search/", search_params, headers
     response_body = JSON.parse(response.body)
