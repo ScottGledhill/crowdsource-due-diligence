@@ -5,7 +5,7 @@ describe("searchTerm",function(){
       angular.module('httpMocker', ['ngMockE2E'])
       .run(function($httpBackend) {
         $httpBackend.whenPOST(
-            'localhost:3000/searches', 'MacBook')
+            'http://localhost:3000/search', {search_term: 'MacBook'})
             .respond(
               {
                 search_term: 'MacBook',

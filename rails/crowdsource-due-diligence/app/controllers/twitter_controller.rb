@@ -5,4 +5,5 @@ class TwitterController < ApplicationController
       "#{tweet.user.screen_name}: #{tweet.text}"
     end
   end
+
 end
