@@ -7,7 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 
-require_relative '../lib/SentimentAlgorithm.rb'
+require_relative '../lib/sentiment_algorithm.rb'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

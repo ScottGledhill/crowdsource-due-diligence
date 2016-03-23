@@ -1,10 +1,8 @@
-require_relative 'PositiveLibrary'
-require_relative 'NegativeLibrary'
+require_relative 'SentimentLibrary'
 
 class SentimentAlgorithm
 
-  include PositiveLibrary
-  include NegativeLibrary
+  include SentimentLibrary
 
   attr_reader :tweets, :search_term
 
