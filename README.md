@@ -5,6 +5,8 @@
 
 Makers Academy final project, made collaboratively by Rufus Raghunath, Eirik Wiig, Scott Gledhill, and Jonny Pickard.
 
+View it on Heroku at https://does-it-suck.herokuapp.com/.
+
 Work in progress.
 
 USER STORIES:
