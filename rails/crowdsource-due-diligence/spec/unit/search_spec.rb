@@ -1,12 +1,18 @@
 require 'rails_helper'
+require 'Search'
 
 describe Search do
-  # describe '#search_selector' do
-  #   it 'extracts the types of params sent' do
-  #     params = {"search_term": 'Nokia', "date_from": '2014-03-22', "date_to": '2014-03-24'}
-  #     self.search_selector(params)
-  #
-  #   end
+  subject(:search) {described_class.new(twitterclient)}
 
+  let(:tweet) { double('tweet', :collect=> [])}
+  let(:response){double('response', :take => tweet)}
+  let(:client) {double('client', :search => response)}
+  let(:twitterclient) {double('twitter_client', :take => response)}
 
+  describe "Twitter Search"
+    it 'responds to twitter client search' do
+      allow(twitterclient).to receive(:client){client}
+      expect(twitterclient).to receive(:client)
+      search.twitter_search('test')
+    end
   end

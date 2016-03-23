@@ -17,7 +17,7 @@ describe SentimentAlgorithm do
                   ]}
 
   let(:search_term) {'iPhone'}
-  let(:sentiment_hash) {{ positive: 4, neutral: 2, negative: 3 }}
+  let(:sentiment_hash) {{ positive: 4, neutral: 2, negative: 3, search_term: search_term }}
 
   subject(:algorithm) { described_class.new(tweets, search_term) }
 
