@@ -30,7 +30,7 @@ class SentimentAlgorithm
   end
 
   def compute_twitter_sentiment
-    results = { positive: 0, neutral: 0, negative: 0 }
+    results = { positive: 0, neutral: 0, negative: 0, search_term: search_term}
     tweets.each do |tweet|
       if match(tweet[:content])
         results[:positive] += 1 if tweet_is_positive(tweet[:content])

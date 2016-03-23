@@ -18,4 +18,4 @@ doesItSuck.controller('searchController',['searchFactory', function(searchFactor
     self.resultReady = true;
   };
 
-}])
+}]);

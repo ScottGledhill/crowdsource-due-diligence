@@ -17,16 +17,17 @@
   </head>
 
   <body ng-controller="searchController as searchCtrl">
-    <h1>Twitter search </h1>
+    <h1>Does it Suck?</h1>
+    <h3>You want to buy something, but are not quite sure? Not quite committed to voting for that politician? Make informed choiced by finding out whether they suck!</h3>
     <section id="search-bar" >
     <form>
       <input type="text" ng-model="searchTerm" placeholder="Enter search term">
-      <input type="submit" id="search" value="Does it suck?" ng-click="searchCtrl.makeSearch(searchTerm); searchTerm = ''">
+      <input type="submit" id="search" value="Analyse" ng-click="searchCtrl.makeSearch(searchTerm); searchTerm = ''">
     </form>
     </section>
     <section id="search-results" ng-show="searchCtrl.isResultReady()">
       <ul ng-repeat='search in searchCtrl.searches'>
-        <li>Search Term: <span class='search-term'>{{search.search_term}}</span> </li>
+        <li>Search term: <span class='search-term'>{{search.search_term}}</span> </li>
         <li>Positive: <span class='positive-result'>{{search.positive}}</span> </li>
         <li>Neutral: <span class='neutral-result'>{{search.neutral}}</span> </li>
         <li>Negative: <span class='negative-result'>{{search.negative}}</span> </li>
