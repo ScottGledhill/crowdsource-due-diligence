@@ -1,5 +1,5 @@
-require_relative 'PositiveLibrary'
-require_relative 'NegativeLibrary'
+require_relative 'positive_library'
+require_relative 'negative_library'
 
 class SentimentAlgorithm
 
