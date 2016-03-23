@@ -18,10 +18,15 @@ class SearchController < ApplicationController
   end
 
   def twitter_search(search_term)
-    @results = twitter_client.search(search_term, lang: "en", result_type: "popular").take(100).collect do |tweet|
+    twitter_client.search(search_term, lang: "en", result_type: "popular").take(100).collect do |tweet|
       {username: tweet.user.screen_name, content: tweet.text}
     end
-    results
+  end
+
+  def dated_twitter_search(search_term)
+      twitter_client.search(search_term, lang: "en", result_type: "popular", since: date_from, until: date_till ).take(1).collect do |tweet|
+      {username: tweet.user.screen_name, content: tweet.text, date: tweet.created_at }
+    end
   end
 
   def analyse_tweets(tweets, search_term)
