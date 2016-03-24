@@ -17,7 +17,7 @@ class SearchController < ApplicationController
   end
 
   def twitter_search(search_term)
-    twitter_results = twitter_client.search(search_term, lang: "en", result_type: "recent").take(100).collect do |tweet|
+    twitter_results = twitter_client.search(search_term, lang: "en").take(100).collect do |tweet|
       {username: tweet.user.screen_name, content: tweet.text}
     end
     twitter_results
