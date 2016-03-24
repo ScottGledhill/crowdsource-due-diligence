@@ -23,6 +23,8 @@
     <script src="js/reverseFilter.js"></script>
     <script src="js/controllers/searchController.js"></script>
     <script src="js/controllers/searchFactory.js"></script>
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
   </head>
 
   <body ng-controller="searchController as searchCtrl">
@@ -41,8 +43,9 @@
     </form>
     </section>
     <section class="search-results" ng-show="searchCtrl.isResultReady()">
-      <ul class='result-item' ng-repeat='search in searchCtrl.searches | reverse'>
-        <div class='results-color' ng-class='searchCtrl.calcBgCol(search)'>
+      <span class='result-item'>
+      <ul ng-repeat='search in searchCtrl.searches | reverse'>
+        <div class='results-color' ng-class='searchCtrl.calcBgCol(search)' ng-show="search.loaded" >
         <li ><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
         <li class='suck-evaluation'>{{searchCtrl.evaluateSearch(search);}}</li>
         <li>
@@ -52,6 +55,7 @@
         </li>
         </div>
       </ul>
+      </span>
     </section>
     </div><!-- end middle col -->
     <div class='col-md-2'></div>

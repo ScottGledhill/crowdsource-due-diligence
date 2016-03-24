@@ -26,8 +26,6 @@ hr {
 .result-item {
   overflow: hidden;
   padding-left: 0;
-  border: 1px solid grey;
-  border-radius: 3px;
   width: 80%;
   margin: 5px auto;
 }
@@ -51,6 +49,8 @@ hr {
 }
 
 .results-color {
+  border: 1px solid grey;
+  border-radius: 3px;
   padding-top: 10px;
   padding-bottom: 10px;
 }

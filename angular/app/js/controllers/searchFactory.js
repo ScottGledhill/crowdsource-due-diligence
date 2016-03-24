@@ -8,6 +8,7 @@ doesItSuck.factory('searchFactory', ['$http', function($http) {
       }};
     var searchParams = {search_term: searchTerm};
     $http.post(queryUrl, searchParams, headers).then(function(response){
+      response.data.loaded = true;
       angular.extend(self,response.data);
     });
   };
