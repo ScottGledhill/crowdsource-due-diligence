@@ -5,6 +5,10 @@ body {
   padding: 0;
 }
 
+#content-wrapper {
+  padding-bottom: 80px;
+}
+
 h1 {
   font-family: 'Amatic SC', serif;
   font-size: 3em;
@@ -19,21 +23,50 @@ hr {
   width: 10%;
 }
 
-#hidden {
-  width: 100%;
-  height: 1px;
-  margin-bottom: 80px;
-}
-
 .result-item {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  overflow: hidden;
+  padding-left: 0;
   border: 1px solid grey;
   border-radius: 3px;
   width: 80%;
   margin: 5px auto;
 }
 
+.result-item img {
+  height: 15px;
+  width: 15px;
+}
+
+.search-results {
+  overflow: scroll;
+}
+
 .search-results li {
   list-style: none;
+}
+
+.suck-evaluation {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.results-color {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.red {
+  background-color: rgba(255,102,102,0.7);
+}
+
+.green {
+  background-color: rgba(102,255,102,0.6);
+}
+
+.yellow {
+  background-color: rgba(255,255,102,0.6);
+}
+
+.emoji {
+  border-radius: 100%;
 }

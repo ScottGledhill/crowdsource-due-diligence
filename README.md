@@ -47,3 +47,5 @@ TECHNOLOGIES USED:
 ACKNOWLEDGEMENTS:
 
 Thanks to Bing Liu and Minquing Hu for compiling comprehensive libraries of positive and negative valence words in their <a href='https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html#lexicon'>Opinion Lexicon</a>. This was used in processing social media input (e.g. tweets) for sentiment.
+
+Emoticon images from https://www.wpclipart.com/smiley/smiley_outlines/smiley_outline_set/.
