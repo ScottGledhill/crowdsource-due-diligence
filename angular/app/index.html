@@ -43,7 +43,7 @@
     </form>
     </section>
     <section class="search-results">
-      <ul ng-repeat='search in searchCtrl.searches | reverse'>
+      <ul class='repeat-list' ng-repeat='search in searchCtrl.searches | reverse'>
         <div class='result-item' ng-class='searchCtrl.calcBgCol(search)' ng-show="search.loaded" >
         <li ><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
         <li class='suck-evaluation'>{{searchCtrl.evaluateSearch(search);}}</li>

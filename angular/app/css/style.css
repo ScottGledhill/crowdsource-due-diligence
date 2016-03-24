@@ -32,6 +32,10 @@ hr {
   font-weight: bold;
 }
 
+.repeat-list {
+  padding-left: 0;
+}
+
 .result-item {
   border: 1px solid grey;
   border-radius: 3px;
