@@ -9,9 +9,10 @@ class SearchController < ApplicationController
   end
 
   def create
-    twitter = TwitterClient.new
-    search = Search.new(twitter)
+    search = Search.new(TwitterClient.new)
     search_result_twitter = search.twitter_search(params)
+    resultanalysis = ResultAnalysis.new(SentimentAlgorithm.new)
+
     # search_result_twitter = get_fake_tweets
     results = ResultAnalysis.analyse_tweets(search_result_twitter, search_term)
     render json: results.to_json
