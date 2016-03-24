@@ -23,6 +23,8 @@
     <script src="js/reverseFilter.js"></script>
     <script src="js/controllers/searchController.js"></script>
     <script src="js/controllers/searchFactory.js"></script>
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
   </head>
 
   <body ng-controller="searchController as searchCtrl">
@@ -40,9 +42,9 @@
       <input type="submit" id="search" value="Well, DOES it suck?" ng-click="searchCtrl.makeSearch(searchTerm); searchTerm = ''">
     </form>
     </section>
-    <section class="search-results" ng-show="searchCtrl.isResultReady()">
-      <ul class='result-item' ng-repeat='search in searchCtrl.searches | reverse'>
-        <div class='results-color' ng-class='searchCtrl.calcBgCol(search)'>
+    <section class="search-results">
+      <ul class='repeat-list' ng-repeat='search in searchCtrl.searches | reverse'>
+        <div class='result-item' ng-class='searchCtrl.calcBgCol(search)' ng-show="search.loaded" >
         <li ><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
         <li class='suck-evaluation'>{{searchCtrl.evaluateSearch(search);}}</li>
         <li>
@@ -50,7 +52,7 @@
           <img class='emoji' src='images/sad.png' />{{search.negative}}
           <img class='emoji' src='images/neutral.png' />{{search.neutral}}
         </li>
-        </div>
+      </div><!-- end results item -->
       </ul>
     </section>
     </div><!-- end middle col -->
