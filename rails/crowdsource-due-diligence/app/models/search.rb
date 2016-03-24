@@ -6,6 +6,4 @@ class Search
   def twitter_search(params)
     @twitter_client.search(params)
   end
-
-
 end
