@@ -1,3 +1,4 @@
+require_relative '../../lib/sentiment_algorithm'
 
 
 class SearchController < ApplicationController
@@ -14,7 +15,7 @@ class SearchController < ApplicationController
     resultanalysis = ResultAnalysis.new(SentimentAlgorithm.new)
 
     # search_result_twitter = get_fake_tweets
-    results = ResultAnalysis.analyse_tweets(search_result_twitter, search_term)
+    results = resultanalysis.analyse_tweets(search_result_twitter, params[:"search_term"])
     render json: results.to_json
   end
 

@@ -1,5 +1,3 @@
-require_relative '../../lib/sentiment_algorithm.rb'
-
 class ResultAnalysis
 
   def initialize(sentiment_algorithm)

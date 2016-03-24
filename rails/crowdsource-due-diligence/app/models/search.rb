@@ -1,4 +1,3 @@
-
 class Search
   def initialize(twitterclient)
     @twitter_client = twitterclient

@@ -15,8 +15,6 @@ class TwitterClient
   end
 
   def extract_tweet_data(tweets)
-    tweets.collect do |tweet|
-      {username: tweet.user.screen_name, content: tweet.text, date: tweet.created_at }
-    end
+    tweets.collect{|tweet| {username: tweet.user.screen_name, content: tweet.text, date: tweet.created_at }
   end
 end
