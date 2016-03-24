@@ -4,10 +4,12 @@ feature 'Search', type: :request do
   xscenario 'submitting a search term' do
     search_term = {search_term: 'Nokia'}
     headers = {'CONTENT TYPE' => 'application/json'}
-    post "/search/", search_term, headers
-    response_body = JSON.parse(response.body)
 
-    expect(response_body["search_term"]).to eq search_term[:search_term]
+    VCR.use_cassette("twitter_stub") do
+      post "/search/", search_term, headers
+      response_body = JSON.parse(response.body)
+      expect(response_body["search_term"]).to eq search_result[:search_term]
+    end
   end
 
   xscenario 'submitting search between times' do
