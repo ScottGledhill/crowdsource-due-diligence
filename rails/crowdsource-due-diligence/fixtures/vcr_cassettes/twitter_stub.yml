@@ -12,10 +12,7 @@ http_interactions:
       User-Agent:
       - TwitterRubyGem/5.16.0
       Authorization:
-      - OAuth oauth_consumer_key="W6fvTujRB44WZBUPhMUvCY6bp", oauth_nonce="b17e2d5ccbe682dfb193661d20c3e32e",
-        oauth_signature="L%2BYKviYdNZ79kI%2BUc64TJIURCmw%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1458836445", oauth_token="305686082-On2wrdPpkyR1yrcjLexdSwjvX5WGw2odILDkJ1GU",
-        oauth_version="1.0"
+
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -957,6 +954,6 @@ http_interactions:
         for iPhone\u003c\/a\u003e","in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":188910919,"id_str":"188910919","name":"alondra","screen_name":"londerswonderss","location":"Los
         Angeles, CA","description":"","url":null,"entities":{"description":{"urls":[]}},"protected":false,"followers_count":8085,"friends_count":613,"listed_count":68,"created_at":"Thu
         Sep 09 22:07:38 +0000 2010","favourites_count":35048,"utc_offset":-25200,"time_zone":"Arizona","geo_enabled":true,"verified":false,"statuses_count":178877,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"642D8B","profile_background_image_url":"http:\/\/pbs.twimg.com\/profile_background_images\/509872268248236032\/GH1wA4Fa.jpeg","profile_background_image_url_https":"https:\/\/pbs.twimg.com\/profile_background_images\/509872268248236032\/GH1wA4Fa.jpeg","profile_background_tile":true,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/713021918241116161\/VeKOYTuw_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/713021918241116161\/VeKOYTuw_normal.jpg","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/188910919\/1458834028","profile_link_color":"FF0000","profile_sidebar_border_color":"FFFFFF","profile_sidebar_fill_color":"7AC3EE","profile_text_color":"3D1957","profile_use_background_image":true,"has_extended_profile":false,"default_profile":false,"default_profile_image":false,"following":false,"follow_request_sent":false,"notifications":false},"geo":null,"coordinates":null,"place":null,"contributors":null,"is_quote_status":false,"retweet_count":0,"favorite_count":2,"favorited":false,"retweeted":false,"lang":"en"}],"search_metadata":{"completed_in":0.093,"max_id":713037692259307524,"max_id_str":"713037692259307524","next_results":"?max_id=713029665376473087&q=Nokia&lang=en&count=100&include_entities=1&result_type=recent","query":"Nokia","refresh_url":"?since_id=713037692259307524&q=Nokia&lang=en&result_type=recent&include_entities=1","count":100,"since_id":0,"since_id_str":"0"}}'
-    http_version: 
+    http_version:
   recorded_at: Thu, 24 Mar 2016 16:20:46 GMT
 recorded_with: VCR 3.0.1
