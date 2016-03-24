@@ -41,10 +41,15 @@
     </section>
     <section class="search-results" ng-show="searchCtrl.isResultReady()">
       <ul class='result-item' ng-repeat='search in searchCtrl.searches | reverse'>
-        <li><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
-        <li><b>Sucks:</b> <span class='negative-result'>{{search.negative}}</span> </li>
-        <li><b>Doesn't suck:</b> <span class='positive-result'>{{search.positive}}</span> </li>
-        <li><b>Don't care:</b> <span class='neutral-result'>{{search.neutral}}</span> </li>
+        <div class='results-color' ng-class='searchCtrl.calcBgCol(search)'>
+        <li ><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
+        <li class='suck-evaluation'>{{searchCtrl.evaluateSearch(search);}}</li>
+        <li>
+          <img class='emoji' src='images/happy.png' />{{search.positive}}
+          <img class='emoji' src='images/sad.png' />{{search.negative}}
+          <img class='emoji' src='images/neutral.png' />{{search.neutral}}
+        </li>
+        </div>
       </ul>
     </section>
   </div><!-- end middle col -->

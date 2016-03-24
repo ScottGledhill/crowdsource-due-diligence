@@ -22,18 +22,49 @@ hr {
 #hidden {
   width: 100%;
   height: 1px;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
 }
 
 .result-item {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  overflow: hidden;
+  padding-left: 0;
   border: 1px solid grey;
   border-radius: 3px;
   width: 80%;
   margin: 5px auto;
 }
 
+.result-item img {
+  height: 15px;
+  width: 15px;
+}
+
 .search-results li {
   list-style: none;
+}
+
+.suck-evaluation {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.results-color {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.red {
+  background-color: #ff8080;
+}
+
+.green {
+  background-color: #ccff99;
+}
+
+.yellow {
+  background-color: #ffff99;
+}
+
+.emoji {
+  border-radius: 100%;
 }

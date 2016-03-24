@@ -2,6 +2,7 @@ doesItSuck.controller('searchController',['searchFactory', function(searchFactor
   var self = this;
   self.searches = [];
   self.resultReady = false;
+  self.bg = '{"background-color": "red"}';
 
 
   self.makeSearch = function(searchTerm){
@@ -16,6 +17,27 @@ doesItSuck.controller('searchController',['searchFactory', function(searchFactor
 
   self.setResultStatus = function() {
     self.resultReady = true;
+  };
+
+  self.evaluateSearch = function (search) {
+    if( search.positive > search.negative && search.positive > search.neutral) {
+      return 'DOESN\'T SUCK';
+    } else if( search.negative > search.positive && search.negative > search.neutral) {
+      return 'SUCKS';
+    } else {
+      return 'MEH';
+    }
+  };
+
+  self.calcBgCol = function (search) {
+    switch(self.evaluateSearch(search)) {
+      case 'SUCKS':
+        return 'red';
+      case 'DOESN\'T SUCK':
+        return 'green';
+      case 'MEH':
+        return 'yellow';
+    }
   };
 
 }]);
