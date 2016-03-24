@@ -5,6 +5,10 @@ body {
   padding: 0;
 }
 
+#content-wrapper {
+  padding-bottom: 80px;
+}
+
 h1 {
   font-family: 'Amatic SC', serif;
   font-size: 3em;
@@ -19,12 +23,6 @@ hr {
   width: 10%;
 }
 
-#hidden {
-  width: 100%;
-  height: 1px;
-  margin-bottom: -142px;
-}
-
 .result-item {
   overflow: hidden;
   padding-left: 0;
@@ -37,6 +35,10 @@ hr {
 .result-item img {
   height: 15px;
   width: 15px;
+}
+
+.search-results {
+  overflow: scroll;
 }
 
 .search-results li {
@@ -54,15 +56,15 @@ hr {
 }
 
 .red {
-  background-color: #ff8080;
+  background-color: rgba(255,102,102,0.7);
 }
 
 .green {
-  background-color: #ccff99;
+  background-color: rgba(102,255,102,0.6);
 }
 
 .yellow {
-  background-color: #ffff99;
+  background-color: rgba(255,255,102,0.6);
 }
 
 .emoji {
