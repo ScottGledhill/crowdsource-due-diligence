@@ -36,9 +36,10 @@
     <section id="search-bar" >
     <form>
       <input type="text" ng-model="searchTerm" placeholder="Enter search term">
-      <input type="submit" id="search" value="Well, DOES it suck?" ng-click="searchCtrl.makeSearch(searchTerm); searchTerm = ''">
+      <input type="submit" id="search" value="Well, DOES it suck?" ng-click="searchCtrl.makeSearch({search_term: searchTerm}); searchTerm = ''">
     </form>
     </section>
+    <button id='week-search'>Search over a week</button>
     <section class="search-results" ng-show="searchCtrl.isResultReady()">
       <ul class='result-item' ng-repeat='search in searchCtrl.searches | reverse'>
         <li><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
@@ -47,6 +48,25 @@
         <li><b>Don't care:</b> <span class='neutral-result'>{{search.neutral}}</span> </li>
       </ul>
     </section>
+    <section id='week-search-container'>
+      <form>
+        <input type="text" ng-model="searchTerm2" placeholder="Enter search term">
+        <input type="submit" id="search2" value="Well, DOES it suck?" ng-click="searchCtrl.multiDaySearches(['2016-03-21','2016-03-22','2016-03-23'],{search_term: searchTerm2}); searchTerm = ''">
+      </form>
+      <section class="search-results" ng-show="searchCtrl.isResultReady()">
+        <ul class='result-item' ng-repeat='search in searchCtrl.searches'>
+          <li><b>Date:</b> <span class='search-term'>{{search.date_from}}</span> </li>
+          <li><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
+          <li><b>Sucks:</b> <span class='negative-result'>{{search.negative}}</span> </li>
+          <li><b>Doesn't suck:</b> <span class='positive-result'>{{search.positive}}</span> </li>
+          <li><b>Don't care:</b> <span class='neutral-result'>{{search.neutral}}</span> </li>
+        </ul>
+      </section>
+      </section>
+
+    </section>
+
+
   </div><!-- end middle col -->
   <div class='col-md-2'></div>
 
@@ -56,7 +76,7 @@
       <div style="display:inline-block;padding:10px;">
         Made by
         <a href='https://github.com/rufusraghunath'>Rufus Raghunath</a>,
-        <a href='https://github.com/eilw'>Eirick Wiig</a>,
+        <a href='https://github.com/eilw'>Eirik Wiig</a>,
         <a href='https://github.com/ScottGledhill'>Scott Gledhill</a> &amp;
         <a href='https://github.com/JonnyPickard'>Jonny Pickard</a>
         at <a href='http://makersacademy.com'>Makers Academy</a>

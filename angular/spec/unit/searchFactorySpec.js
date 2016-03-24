@@ -4,8 +4,6 @@ describe('factory: searchFactory', function() {
   var factory, searchTerm, dateFrom, dateTo;;
 
   beforeEach(inject(function(searchFactory){
-    searchTerm = 'Nokia';
-    factory = new searchFactory(searchTerm);
     // dateFrom = '2014-03-22';
     // dateTo = '2014-03-24';
     // var params = {search_term: searchTerm, date_from: dateFrom, date_to: dateTo}
@@ -20,7 +18,9 @@ describe('factory: searchFactory', function() {
                      negative: 50
                    };
      var httpBackend;
-     beforeEach(inject(function($httpBackend){
+     beforeEach(inject(function(searchFactory, $httpBackend){
+       searchTerm = {search_term: 'Nokia'};
+       factory = new searchFactory(searchTerm);
        httpBackend = $httpBackend
        var url = 'http://localhost:3000/search';
        httpBackend
@@ -34,7 +34,9 @@ describe('factory: searchFactory', function() {
      });
    });
 
-   describe('dated search', function(){
+   describe('single dated search', function(){
+     dateFrom = '2014-03-22';
+     dateTo = '2014-03-24';
      var result = {
                    search_term: 'Nokia',
                    date_from: dateFrom,
@@ -44,7 +46,10 @@ describe('factory: searchFactory', function() {
                    negative: 50
                    };
      var httpBackend;
-     beforeEach(inject(function($httpBackend){
+     beforeEach(inject(function(searchFactory, $httpBackend){
+       searchTerm = 'Nokia';
+       var params = {search_term: searchTerm, date_from: dateFrom, date_to: dateTo}
+       factory = new searchFactory(params);
        httpBackend = $httpBackend
        var url = 'http://localhost:3000/search';
        httpBackend
@@ -52,9 +57,9 @@ describe('factory: searchFactory', function() {
          .respond(result);
      }));
 
-     xit('sends out the searchterms with dates', function(){
+     it('can send out a search with a specific date', function(){
        httpBackend.flush();
-       expect(factory2.date_from).toEqual(result.date_from);
+       expect(factory.date_from).toEqual(result.date_from);
      });
    });
 

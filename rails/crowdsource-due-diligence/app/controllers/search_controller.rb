@@ -16,6 +16,7 @@ class SearchController < ApplicationController
 
     # search_result_twitter = get_fake_tweets
     results = resultanalysis.analyse_tweets(search_result_twitter, params[:"search_term"])
+    results[:date_from] = params[:"date_from"]
     render json: results.to_json
   end
 

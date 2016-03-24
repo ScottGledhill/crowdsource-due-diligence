@@ -18,4 +18,12 @@ doesItSuck.controller('searchController',['searchFactory', function(searchFactor
     self.resultReady = true;
   };
 
+  self.multiDaySearches = function(dates,searchTerm){
+    for (var i= 0; i<(dates.length-1) ; i++ ){
+      searchTerm.date_from = dates[i];
+      searchTerm.date_till = dates[i+1];
+      self.makeSearch(searchTerm);
+    }
+  }
+
 }]);

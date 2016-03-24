@@ -7,6 +7,7 @@
     "prestart": "npm install",
     "postinstall": "bower install",
     "start": "node app/index.js",
+    "start-local":  "http-server ./app -a 0.0.0.0 -p 8000",
     "test": "karma start spec/karma.conf.js",
     "test-single-run": "node node_modules/karma/bin/karma start spec/karma.conf.js  --single-run",
     "preupdate-webdriver": "npm install",

@@ -1,0 +1,8 @@
+A user can click to see how the results have changed over the week
+  rewrite factory - so it is more usable with promises
+  add a unit test to test whether it runs the request 7 times
+A user can select which of the days they want to include
+Add ng -routes
+
+
+test to see if it takes out the search term in the view

@@ -28,15 +28,9 @@ describe("searchTerm",function(){
   it("a user can search for a keyword and submit",function(){
     userSearch();
     var searchTitle = element(by.css('.search-term'));
+
     expect(searchTitle.getText()).toEqual('MacBook');
   });
-
-  xit('the search term is taken out after the user clicks submit', function(){
-    userSearch();
-    var searchTerm = element(by.model('searchTerm'));
-    expect(searchTerm.getAttribute('value')).toEqual("");
-  });
-
 
   it('returns the sentiment results', function(){
     userSearch();
