@@ -4,14 +4,8 @@ class SentimentAlgorithm
 
   include SentimentLibrary
 
-  attr_reader :tweets, :search_term
 
-  def initialize tweets, search_term
-    @tweets = tweets
-    @search_term = search_term
-  end
-
-  def match tweet
+  def match tweet, search_term
     tweet.downcase.include?(search_term.downcase)
   end
 
@@ -27,10 +21,10 @@ class SentimentAlgorithm
     !tweet_is_positive(tweet) && !tweet_is_negative(tweet)
   end
 
-  def compute_twitter_sentiment
+  def compute_twitter_sentiment tweets, search_term
     results = { positive: 0, neutral: 0, negative: 0, search_term: search_term}
     tweets.each do |tweet|
-      if match(tweet[:content])
+      if match(tweet[:content], search_term)
         results[:positive] += 1 if tweet_is_positive(tweet[:content])
         results[:negative] += 1 if tweet_is_negative(tweet[:content])
         results[:neutral] += 1 if tweet_is_neutral(tweet[:content])
