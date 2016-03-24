@@ -49,6 +49,14 @@ describe('searchController', function() {
     it('sets col to red if SUCKS', function() {
       expect(ctrl.calcBgCol(searchMockNeg)).toEqual('red');
     });
+
+    it('sets col to yellow if MEH', function() {
+      expect(ctrl.calcBgCol(searchMockNeut)).toEqual('yellow');
+    });
+
+    it('sets col to green', function() {
+      expect(ctrl.calcBgCol(searchMockPos)).toEqual('green');
+    });
   });
 
 });
