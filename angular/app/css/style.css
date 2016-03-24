@@ -23,22 +23,6 @@ hr {
   width: 10%;
 }
 
-.result-item {
-  overflow: hidden;
-  padding-left: 0;
-  width: 80%;
-  margin: 5px auto;
-}
-
-.result-item img {
-  height: 15px;
-  width: 15px;
-}
-
-.search-results {
-  overflow: scroll;
-}
-
 .search-results li {
   list-style: none;
 }
@@ -48,11 +32,20 @@ hr {
   font-weight: bold;
 }
 
-.results-color {
+.result-item {
   border: 1px solid grey;
   border-radius: 3px;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 0;
+  overflow: hidden;
+  width: 80%;
+  margin: 5px auto;
+}
+
+.result-item img {
+  height: 15px;
+  width: 15px;
 }
 
 .red {
