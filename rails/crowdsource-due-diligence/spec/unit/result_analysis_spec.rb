@@ -9,7 +9,7 @@ describe ResultAnalysis do
 
   describe '#analyse_tweets' do
     it 'sends a request to the sentiment_algorithm' do
-      expect(algorithm).to receive(:compute_sentiment)
+      expect(algorithm).to receive(:compute_total_sentiment)
       analysis.analyse_tweets(tweets, search_term)
     end
   end

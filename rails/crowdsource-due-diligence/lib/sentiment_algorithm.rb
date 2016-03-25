@@ -29,9 +29,8 @@ class SentimentAlgorithm
     lib.include?(word)
   end
 
-  def get_sentiment valence, msg
+  def enumerate_message_sentiment valence, msg
   # TBD if negation should result in opposite valence
-    msg = words(msg)
     libs = get_libs(valence)
     matches = []
     libs[:lookup].each {|word| matches << word if msg.include?(word)}
@@ -41,24 +40,30 @@ class SentimentAlgorithm
                       negated?(msg[ind-1]),
                       is_tricky?(msg[ind+1], libs[:reject])
                      ]
-        return true unless edge_cases.any? {|edge_case| edge_case == true }
+        @current_message[valence] += 1 unless edge_cases.any? {|edge_case| edge_case == true }
       end
     end
-    false
   end
 
-  def compute_sentiment msgs, search_term
+  def absolute_message_sentiment msg
+    word_array = words(msg)
+    @current_message = {positive: 0, negative: 0}
+    enumerate_message_sentiment(:positive, word_array)
+    enumerate_message_sentiment(:negative, word_array)
+    pos, neg = @current_message[:positive], @current_message[:negative]
+    return :positive if pos > neg
+    return :negative if neg > pos
+    return :neutral if pos == neg
+  end
+
+
+  def compute_total_sentiment messages, search_term
     results = { positive: 0, neutral: 0, negative: 0, search_term: search_term}
-    msgs.each do |msg|
-      # extract separate method for calculating absolute sentiment for each msg
+    messages.each do |msg|
       msg = msg[:content]
       if search_term_match?(msg, search_term)
-        valence = false
-        (results[:positive] += 1) && (valence = true) if get_sentiment(:positive, msg)
-        (results[:negative] += 1) && (valence = true) if get_sentiment(:negative, msg)
-        results[:neutral] += 1 unless valence
-        # use control flow to remove valence once msgs to have only one sentiment
-        # also rename lookup to something more semantic
+        sentiment = absolute_message_sentiment(msg)
+        results[sentiment] += 1
       end
     end
     results

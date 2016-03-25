@@ -4,7 +4,7 @@ describe SentimentAlgorithm do
 
   subject(:algorithm) { described_class.new() }
 
-  describe 'sentiment methods' do
+  describe '#compute_total_sentiment' do
 
     let(:tweets) {[
                       {content: 'love my new iphone! <3'},
@@ -21,34 +21,10 @@ describe SentimentAlgorithm do
                     ]}
 
     let(:search_term) {'iPhone'}
-    let(:sentiment_hash) {{ positive: 4, neutral: 2, negative: 3, search_term: search_term }}
+    let(:sentiment_hash) {{ positive: 2, neutral: 2, negative: 2, search_term: search_term }}
 
-
-    describe '#get_sentiment' do
-
-      context 'positive library' do
-        it 'returns true if positive' do
-          expect(algorithm.get_sentiment('positive', 'I am cool')).to be true
-        end
-        it 'returns false if negative' do
-          expect(algorithm.get_sentiment('positive', 'I am crap')).to be false
-        end
-      end
-
-      context 'negative library' do
-        it 'returns true if negative' do
-          expect(algorithm.get_sentiment('negative', 'I am crap')).to be true
-        end
-        it 'returns false if positive' do
-          expect(algorithm.get_sentiment('negative', 'I am cool')).to be false
-        end
-      end
-    end
-
-    xdescribe '#compute_sentiment' do
-      it 'takes tweets and a search term and returns a sentiment hash' do
-        expect(algorithm.compute_sentiment(tweets, search_term)).to eq sentiment_hash
-      end
+    it 'takes tweets and a search term and returns a sentiment hash' do
+      expect(algorithm.compute_total_sentiment(tweets, search_term)).to eq sentiment_hash
     end
   end
 
@@ -68,7 +44,7 @@ describe SentimentAlgorithm do
       let(:expected_results) {{ positive: 0, neutral: 1, negative: 0, search_term: 'pie'}}
 
       it 'does not increment negative sentiment if negated' do
-        expect(algorithm.compute_sentiment(tweets, search)).to eq expected_results
+        expect(algorithm.compute_total_sentiment(tweets, search)).to eq expected_results
       end
     end
 
@@ -78,7 +54,7 @@ describe SentimentAlgorithm do
       let(:expected_results) {{ positive: 0, neutral: 1, negative: 0, search_term: 'celery'}}
 
       it 'does not increment positive sentiment if negated' do
-        expect(algorithm.compute_sentiment(tweets, search)).to eq expected_results
+        expect(algorithm.compute_total_sentiment(tweets, search)).to eq expected_results
       end
     end
 
@@ -100,7 +76,7 @@ describe SentimentAlgorithm do
       end
 
       it 'returns empty results for partial/non-words' do
-        expect(algorithm.compute_sentiment(tweets, nonsense_search)).to eq expected_results
+        expect(algorithm.compute_total_sentiment(tweets, nonsense_search)).to eq expected_results
       end
     end
 
@@ -112,7 +88,7 @@ describe SentimentAlgorithm do
         let(:expected_results) {{ positive: 1, neutral: 0, negative: 0, search_term: 'pizza'}}
 
         it 'positive valence not offset by negative adverb' do
-          expect(algorithm.compute_sentiment(tweets, search)).to eq expected_results
+          expect(algorithm.compute_total_sentiment(tweets, search)).to eq expected_results
         end
       end
 
@@ -122,11 +98,43 @@ describe SentimentAlgorithm do
         let(:expected_results) {{ positive: 0, neutral: 0, negative: 1, search_term: 'The Room'}}
 
         it 'negative valence not offset by positive adverb' do
-          expect(algorithm.compute_sentiment(tweets, search)).to eq expected_results
+          expect(algorithm.compute_total_sentiment(tweets, search)).to eq expected_results
         end
       end
-
     end
 
+    describe 'double-dipping' do
+
+      describe '#absolute_message_sentiment' do
+        let(:pos_msg) {'I am good, she is bad, overall good'}
+        let(:neg_msg) {'I am good, she is bad, overall bad'}
+        let(:neut_msg) {'I am good, she is bad'}
+
+        it 'finds positive' do
+          expect(algorithm.absolute_message_sentiment(pos_msg)).to eq :positive
+        end
+
+        it 'finds negative' do
+          expect(algorithm.absolute_message_sentiment(neg_msg)).to eq :negative
+        end
+
+        it 'finds neutral' do
+          expect(algorithm.absolute_message_sentiment(neut_msg)).to eq :neutral
+        end
+
+      end
+
+      let(:tweets) {[
+                      {content: 'London is good'},
+                      {content: 'London is bad. Very bad.'},
+                      {content: 'London is fun, but bad'}
+                    ]}
+      let(:search) {'London'}
+      let(:expected_results) {{ positive: 1, neutral: 1, negative: 1, search_term: 'London'}}
+
+      it 'only one sentiment per tweet' do
+        expect(algorithm.compute_total_sentiment(tweets, search)).to eq expected_results
+      end
+    end
   end
 end
