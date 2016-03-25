@@ -5,7 +5,8 @@ EASY FIX:
 
 - <b>double-dipping:</b> a tweet should only have one sentiment (rather than each sentiment word match increasing the pos/neg/neut count)
 - <b>false negatives:</b> double negatives are often used to indicate positive sentiment (e.g. 'not bad').
-- <b>false positives:</b> e.g. 'amazingly terrible'.
+- <b>false positives:</b> e.g. 'not good'
+- <b>tricky adverbs:</b> should only be counted as the second sentiment, e.g. 'amazingly terrible', 'awfully tasty'.
 - <b>non-words:</b> word partials would create false matches if they're part of other words (e.g. 'abe'). Implement a feature that matches the search term only as a standalone word.
 
 

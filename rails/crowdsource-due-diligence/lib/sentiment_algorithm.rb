@@ -4,47 +4,43 @@ class SentimentAlgorithm
 
   include SentimentLibrary
 
-  NEGATORS = ['not', 'isnt', 'aint']
+  NEGATORS = ['not', 'isnt', 'arent', 'aint', 'hardly', 'un']
 
-  def words tweet
-    tweet.gsub!("'", "")
-    tweet.downcase.split(/[_\W]+/)
+  def words msg
+    msg.gsub!("'", "")
+    msg.downcase.split(/[_\W]+/)
   end
 
-  def word_match? tweet, search_term
-    words(tweet).any? { |word| search_term.downcase == word }
+  def word_match? msg, search_term
+    words(msg).any? { |word| search_term.downcase == word }
     # have to account for multiple word searches here
   end
 
-  def positive? tweet
-    positive_library.any? {|word| tweet.include?(word)}
+  def negated? word
+    NEGATORS.include?(word)
   end
 
-  def negative? tweet
-    negative_library.each do |lib_word|
-      if tweet.include?(lib_word)
-        words(tweet).each.with_index do |tweet_word, i|
-          if lib_word == tweet_word
-            return true unless NEGATORS.include?(words(tweet)[i-1])
-          end
-        end
-      end
+  def lookup library, msg
+    msg = words(msg)
+    matches = []
+    library.each {|word| matches << word if msg.include?(word)}
+    msg.each.with_index do |word, ind|
+      return true if matches.include?(word) unless negated?(msg[ind-1])
     end
     false
   end
 
-  def neutral? tweet
-    !positive?(tweet) && !negative?(tweet)
-  end
-
-  def compute_twitter_sentiment tweets, search_term
+  def compute_sentiment msgs, search_term
     results = { positive: 0, neutral: 0, negative: 0, search_term: search_term}
-    tweets.each do |tweet|
-      tweet = tweet[:content]
-      if word_match?(tweet, search_term)
-        results[:positive] += 1 if positive?(tweet)
-        results[:negative] += 1 if negative?(tweet)
-        results[:neutral] += 1 if neutral?(tweet)
+    msgs.each do |msg|
+      msg = msg[:content]
+      if word_match?(msg, search_term)
+        valence = false
+        results[:positive] += 1 && (valence = true) if lookup(positive_library, msg)
+        results[:negative] += 1 && (valence = true) if lookup(negative_library, msg)
+        results[:neutral] += 1 unless valence
+        # use control flow to remove valence once msgs to have only one sentiment
+        # also rename lookup to something more semantic
       end
     end
     results
