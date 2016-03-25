@@ -57,6 +57,14 @@ describe SentimentAlgorithm do
 
   describe 'edge cases' do
 
+    describe 'multiple words' do
+      let(:message) {"A long time ago, in a galaxy far, far away..."}
+      let(:search_term) {"In a galaxy"}
+      it 'is able to match who phrases' do
+        expect(algorithm.search_term_match?(message, search_term)).to be true
+      end
+    end
+
     describe 'false negatives' do
       let(:tweets) {[{content: 'Pie ain\'t bad'}]}
       let(:search) {'pie'}
@@ -84,13 +92,13 @@ describe SentimentAlgorithm do
       let(:chars) {['/', '-', '_', '\\', '&', '@', '!', '?', ' ']}
 
       it 'doesn\'t match results for partial/non-words' do
-        expect(algorithm.word_match?(tweets[0][:content], nonsense_search)).to be false
+        expect(algorithm.search_term_match?(tweets[0][:content], nonsense_search)).to be false
       end
 
       it 'accounts for special characters-combined words' do
         chars.each do |char|
           tweet = "Abe#{char}Lincoln"
-          expect(algorithm.word_match?(tweet, nonsense_search)).to be true
+          expect(algorithm.search_term_match?(tweet, nonsense_search)).to be true
         end
       end
 

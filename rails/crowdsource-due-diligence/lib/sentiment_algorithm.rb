@@ -11,9 +11,13 @@ class SentimentAlgorithm
     msg.downcase.split(/[_\W]+/)
   end
 
-  def word_match? msg, search_term
-    words(msg).any? { |word| search_term.downcase == word }
-    # have to account for multiple word searches here
+  def search_term_match? msg, search_term
+    search_term.downcase!
+    if search_term.split(' ').length > 1
+      msg.include? search_term
+    else
+      words(msg).any? { |word| search_term == word }
+    end
   end
 
   def negated? word
@@ -34,7 +38,7 @@ class SentimentAlgorithm
     results = { positive: 0, neutral: 0, negative: 0, search_term: search_term}
     msgs.each do |msg|
       msg = msg[:content]
-      if word_match?(msg, search_term)
+      if search_term_match?(msg, search_term)
         valence = false
         results[:positive] += 1 && (valence = true) if lookup(positive_library, msg)
         results[:negative] += 1 && (valence = true) if lookup(negative_library, msg)
