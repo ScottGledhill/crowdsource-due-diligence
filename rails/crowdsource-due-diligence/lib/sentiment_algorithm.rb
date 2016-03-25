@@ -8,7 +8,6 @@ class SentimentAlgorithm
 
   def words msg
     msg.gsub("'", "").split(/[_\W]+/)
-    # have to handle words with quotes and other chars
   end
 
   def search_term_match? msg, search_term
@@ -17,7 +16,11 @@ class SentimentAlgorithm
     if search_term.split(' ').length > 1
       msg.include? search_term
     else
-      words(msg).any? { |word| search_term == word }
+      words(msg).any? do |word|
+        search_term == word ||
+        search_term.pluralize == word ||
+        search_term == word.pluralize
+      end
     end
   end
 

@@ -3,7 +3,7 @@
 
 EASY FIX:
 
-- <b>double-dipping:</b> a tweet should only have one sentiment (rather than each sentiment word match increasing the pos/neg/neut count)
+- <b>(SOLVED) double-dipping:</b> a tweet should only have one sentiment (rather than each sentiment word match increasing the pos/neg/neut count)
 - <b>(SOLVED) false negatives:</b> double negatives are often used to indicate positive sentiment (e.g. 'not bad').
 - <b>(SOLVED) false positives:</b> e.g. 'not good'
 - <b>(SOLVED) tricky adverbs:</b> should only be counted as the second sentiment, e.g. 'amazingly terrible', 'awfully tasty'.

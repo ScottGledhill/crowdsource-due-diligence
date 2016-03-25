@@ -21,10 +21,25 @@ describe SentimentAlgorithm do
                     ]}
 
     let(:search_term) {'iPhone'}
-    let(:sentiment_hash) {{ positive: 2, neutral: 2, negative: 2, search_term: search_term }}
+    let(:sentiment_hash) {{ positive: 3, neutral: 2, negative: 3, search_term: search_term }}
 
     it 'takes tweets and a search term and returns a sentiment hash' do
       expect(algorithm.compute_total_sentiment(tweets, search_term)).to eq sentiment_hash
+    end
+  end
+
+  describe '#search_term_match?' do
+    let(:p_msg) {'iphones are expensive'}
+    let(:s_msg) {'iphone is expensive'}
+    let(:s_search_term) {'iPhone'}
+    let(:p_search_term) {'iPhone'}
+
+    it 'is able to match singular search to plural results' do
+      expect(algorithm.search_term_match?(p_msg, s_search_term)).to eq true
+    end
+
+    it 'is able to match plural search to singular result' do
+      expect(algorithm.search_term_match?(s_msg, p_search_term)).to eq true
     end
   end
 
