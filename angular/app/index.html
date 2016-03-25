@@ -47,10 +47,12 @@
         <div class='result-item' ng-class='searchCtrl.calcBgCol(search)' ng-show="search.loaded" >
         <li ><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
         <li class='suck-evaluation'>{{searchCtrl.evaluateSearch(search);}}</li>
-        <li>
           <img class='emoji' src='images/happy.png' />{{search.positive}}
           <img class='emoji' src='images/sad.png' />{{search.negative}}
           <img class='emoji' src='images/neutral.png' />{{search.neutral}}
+          <a class="twitter-share-button"
+          href="https://twitter.com/intent/tweet?text=Hello%20world">
+          Tweet</a>
         </li>
       </div><!-- end results item -->
       </ul>
@@ -68,6 +70,7 @@
         <a href='https://github.com/ScottGledhill'>Scott Gledhill</a> &amp;
         <a href='https://github.com/JonnyPickard'>Jonny Pickard</a>
         at <a href='http://makersacademy.com'>Makers Academy</a>
+        <li>
       </div>
     </div>
   </div>
