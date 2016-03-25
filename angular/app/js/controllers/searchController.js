@@ -11,7 +11,7 @@ doesItSuck.controller('searchController',['searchFactory', function(searchFactor
   };
 
   self.evaluateSearch = function (search) {
-    if( search.positive > 1.33 * search.negative) {
+    if( search.positive > 1.5 * search.negative) {
       return 'DOESN\'T SUCK';
     } else if( search.negative > 1.33 * search.positive) {
       return 'SUCKS';
