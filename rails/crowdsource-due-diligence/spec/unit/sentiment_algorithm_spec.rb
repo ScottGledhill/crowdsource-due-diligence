@@ -4,9 +4,6 @@ describe SentimentAlgorithm do
 
   subject(:algorithm) { described_class.new() }
 
-  let(:pos_lib) {algorithm.positive_library}
-  let(:neg_lib) {algorithm.negative_library}
-
   describe 'sentiment methods' do
 
     let(:tweets) {[
@@ -27,23 +24,23 @@ describe SentimentAlgorithm do
     let(:sentiment_hash) {{ positive: 4, neutral: 2, negative: 3, search_term: search_term }}
 
 
-    xdescribe '#lookup' do
+    describe '#get_sentiment' do
 
       context 'positive library' do
         it 'returns true if positive' do
-          expect(algorithm.lookup(pos_lib, 'I am cool')).to be true
+          expect(algorithm.get_sentiment('positive', 'I am cool')).to be true
         end
         it 'returns false if negative' do
-          expect(algorithm.lookup(pos_lib, 'I am crap')).to be false
+          expect(algorithm.get_sentiment('positive', 'I am crap')).to be false
         end
       end
 
       context 'negative library' do
         it 'returns true if negative' do
-          expect(algorithm.lookup(neg_lib, 'I am crap')).to be true
+          expect(algorithm.get_sentiment('negative', 'I am crap')).to be true
         end
         it 'returns false if positive' do
-          expect(algorithm.lookup(neg_lib, 'I am cool')).to be false
+          expect(algorithm.get_sentiment('negative', 'I am cool')).to be false
         end
       end
     end

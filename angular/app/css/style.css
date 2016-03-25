@@ -37,7 +37,7 @@ hr {
 }
 
 .result-item {
-  border: 1px solid grey;
+  border: 3px solid grey;
   border-radius: 3px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -53,15 +53,18 @@ hr {
 }
 
 .red {
-  background-color: rgba(255,102,102,0.7);
+  background-color: rgba(245,32,32,0.6);
+  border-color: #FF2626;
 }
 
 .green {
-  background-color: rgba(102,255,102,0.6);
+  background-color: rgba(32,255,3,0.5);
+  border-color: #02D606;
 }
 
 .yellow {
-  background-color: rgba(255,255,102,0.6);
+  background-color: rgba(255,247,3,0.5);
+  border-color: #FFC400;
 }
 
 .emoji {
