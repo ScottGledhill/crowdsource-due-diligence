@@ -3,11 +3,13 @@ doesItSuck.config(['$routeProvider',
     $routeProvider.
       when('/', {
         templateUrl:'partials/main-search.html',
-        // controller: 'searchController as searchCtrl'
+        controller: 'searchController',
+        controllerAs: 'searchCtrl'
       }).
       when('/sentiment-trends', {
         templateUrl: 'partials/sentiment-trends.html',
-        // controller: 'searchController as searchCtrl'
+        controller: 'trendsController',
+        controllerAs: 'trendsCtrl'
       }).
       otherwise({
         redirectTo: '/'

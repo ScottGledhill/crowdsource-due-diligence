@@ -1,4 +1,4 @@
-doesItSuck.controller('searchController',['searchFactory', function(searchFactory){
+doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactory', function(searchFactory, sentimentTrendsFactory){
   var self = this;
   self.searches = [];
   self.resultReady = false;
@@ -7,8 +7,9 @@ doesItSuck.controller('searchController',['searchFactory', function(searchFactor
 
 
   self.makeSearch = function(searchTerm){
-    self.searchFactory = new searchFactory(searchTerm);
-    self.searches.unshift(self.searchFactory);
+    searchFactory.getSentimentResults(searchTerm).then(function(response){
+      self.searches.unshift(response.data);
+    });
     self.setResultStatus();
   };
 
@@ -19,6 +20,12 @@ doesItSuck.controller('searchController',['searchFactory', function(searchFactor
   self.setResultStatus = function() {
     self.resultReady = true;
   };
+
+  self.setSearchTerm = function(searchObject) {
+    sentimentTrendsFactory.setSearchTerm(searchObject.search_term)
+  }
+
+
 
 
 
@@ -43,16 +50,12 @@ doesItSuck.controller('searchController',['searchFactory', function(searchFactor
       params.date_till = dates[i+1];
       listParams.push(params)
     }
-    console.log(listParams)
     listParams.forEach(function(params){
-      console.log(params)
       self.makeMultiDaySearch(params);
     })
   }
 
-  self.weekSearch = function(searchObject) {
-    self.multiDaySearches({search_term: searchObject.search_term})
-  }
+
 
   self.getDates = function(dateRange){
     var today = new Date();
