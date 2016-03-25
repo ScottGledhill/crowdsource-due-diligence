@@ -4,22 +4,37 @@ class SentimentAlgorithm
 
   include SentimentLibrary
 
+  NEGATORS = ['not', 'isnt', 'aint']
 
-  def word_match? tweet, search_term
-    words = tweet.downcase.split(/[_\W+]/)
-    words.any? { |word| search_term.downcase == word }
+  def words tweet
+    tweet.gsub!("'", "")
+    tweet.downcase.split(/[_\W]+/)
   end
 
-  def tweet_positive? tweet
+  def word_match? tweet, search_term
+    words(tweet).any? { |word| search_term.downcase == word }
+    # have to account for multiple word searches here
+  end
+
+  def positive? tweet
     positive_library.any? {|word| tweet.include?(word)}
   end
 
-  def tweet_negative? tweet
-    negative_library.any? {|word| tweet.include?(word)}
+  def negative? tweet
+    negative_library.each do |lib_word|
+      if tweet.include?(lib_word)
+        words(tweet).each.with_index do |tweet_word, i|
+          if lib_word == tweet_word
+            return true unless NEGATORS.include?(words(tweet)[i-1])
+          end
+        end
+      end
+    end
+    false
   end
 
-  def tweet_neutral? tweet
-    !tweet_positive?(tweet) && !tweet_negative?(tweet)
+  def neutral? tweet
+    !positive?(tweet) && !negative?(tweet)
   end
 
   def compute_twitter_sentiment tweets, search_term
@@ -27,9 +42,9 @@ class SentimentAlgorithm
     tweets.each do |tweet|
       tweet = tweet[:content]
       if word_match?(tweet, search_term)
-        results[:positive] += 1 if tweet_positive?(tweet)
-        results[:negative] += 1 if tweet_negative?(tweet)
-        results[:neutral] += 1 if tweet_neutral?(tweet)
+        results[:positive] += 1 if positive?(tweet)
+        results[:negative] += 1 if negative?(tweet)
+        results[:neutral] += 1 if neutral?(tweet)
       end
     end
     results
