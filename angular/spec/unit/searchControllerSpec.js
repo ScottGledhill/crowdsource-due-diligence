@@ -34,9 +34,8 @@ var searchFactoryMock;
     });
 
     it('makes 6 searches for the last 7 and stores it in the results', function(){
-      var days = [0,1,2,3,4,5,6];
-      ctrl.multiDaySearches(days, searchTerm);
-      expect(ctrl.searches.length).toEqual(days.length-1);
+      ctrl.multiDaySearches(searchTerm);
+      expect(ctrl.searches.length).toEqual(3);
     });
 
     it('it sets the correct dates for each search', function(){
@@ -46,6 +45,27 @@ var searchFactoryMock;
       expect(searchFactoryMock).toHaveBeenCalledWith(dateCall);
     })
   });
+
+  describe('#weekSearch', function(){
+    it('inserts the current search findings into the weekSearch array', function(){
+      var search = {search_term: 'Nokia'};
+      ctrl.weekSearch(search);
+      expect(ctrl.weekResults).toContain(search);
+    });
+
+    it('starts the multiDaySearches', function(){
+      var search = {search_term: 'Nokia'};
+      ctrl.weekSearch(search);
+      expect(searchFactoryMock).toHaveBeenCalled();
+    });
+  })
+
+  describe('#getDates', function(){
+    it('returns the dates 7 and 6 days ago in the right format', function(){
+      var dateRange = [7, 6, 0];
+      expect(ctrl.getDates(dateRange).length).toEqual(3);
+    });
+  })
 
 
 

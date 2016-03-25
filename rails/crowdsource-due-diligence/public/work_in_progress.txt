@@ -1,10 +1,12 @@
 Finished
 - A seperate search button and field initialises a weekly search
 - The search loops over the dates given and returns the results
-
-Weekly search
 - Put inplace routing for the 'normal' search and the weekly search
 - When clicked weekly search, user can only see the weekly search
+
+Weekly search
+- refactor searchFactory into a service
+- refactor search controller
 - The search by defaults returns back the first day of the week and the last day of the week
 - The user can add extra dates by checking a checkbox
 - There is a checkbox that toggles each one
