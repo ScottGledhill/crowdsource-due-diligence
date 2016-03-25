@@ -106,5 +106,30 @@ describe SentimentAlgorithm do
         expect(algorithm.compute_sentiment(tweets, nonsense_search)).to eq expected_results
       end
     end
+
+    context 'tricky adverbs' do
+
+      describe 'positive valence' do
+        let(:tweets) {[{content: 'Pizza is terribly tasty'}]}
+        let(:search) {'pizza'}
+        let(:expected_results) {{ positive: 1, neutral: 0, negative: 0, search_term: 'pizza'}}
+
+        it 'positive valence not offset by negative adverb' do
+          expect(algorithm.compute_sentiment(tweets, search)).to eq expected_results
+        end
+      end
+
+      describe 'negative valence' do
+        let(:tweets) {[{content: 'The Room is amazingly shit'}]}
+        let(:search) {'The Room'}
+        let(:expected_results) {{ positive: 0, neutral: 0, negative: 1, search_term: 'The Room'}}
+
+        it 'negative valence not offset by positive adverb' do
+          expect(algorithm.compute_sentiment(tweets, search)).to eq expected_results
+        end
+      end
+
+    end
+
   end
 end
