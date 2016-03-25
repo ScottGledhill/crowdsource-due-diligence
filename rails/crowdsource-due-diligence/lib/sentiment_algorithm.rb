@@ -25,13 +25,24 @@ class SentimentAlgorithm
     NEGATORS.include?(word)
   end
 
-  def lookup library, msg
+  def is_tricky? word, lib
+    lib.include?(word)
+  end
+
+  def get_sentiment valence, msg
   # TBD if negation should result in opposite valence
     msg = words(msg)
+    libs = get_libs(valence)
     matches = []
-    library.each {|word| matches << word if msg.include?(word)}
+    libs[:lookup].each {|word| matches << word if msg.include?(word)}
     msg.each.with_index do |word, ind|
-      return true if matches.include?(word) unless negated?(msg[ind-1])
+      if matches.include?(word)
+        edge_cases = [
+                      negated?(msg[ind-1]),
+                      is_tricky?(msg[ind+1], libs[:reject])
+                     ]
+        return true unless edge_cases.any? {|edge_case| edge_case == true }
+      end
     end
     false
   end
@@ -43,8 +54,8 @@ class SentimentAlgorithm
       msg = msg[:content]
       if search_term_match?(msg, search_term)
         valence = false
-        (results[:positive] += 1) && (valence = true) if lookup(positive_library, msg)
-        (results[:negative] += 1) && (valence = true) if lookup(negative_library, msg)
+        (results[:positive] += 1) && (valence = true) if get_sentiment(:positive, msg)
+        (results[:negative] += 1) && (valence = true) if get_sentiment(:negative, msg)
         results[:neutral] += 1 unless valence
         # use control flow to remove valence once msgs to have only one sentiment
         # also rename lookup to something more semantic

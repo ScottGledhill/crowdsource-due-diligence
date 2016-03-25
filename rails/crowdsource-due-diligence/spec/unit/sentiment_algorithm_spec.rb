@@ -27,7 +27,7 @@ describe SentimentAlgorithm do
     let(:sentiment_hash) {{ positive: 4, neutral: 2, negative: 3, search_term: search_term }}
 
 
-    describe '#lookup' do
+    xdescribe '#lookup' do
 
       context 'positive library' do
         it 'returns true if positive' do
