@@ -5,6 +5,6 @@ class ResultAnalysis
   end
 
   def analyse_tweets(tweets,search_term)
-    @sentiment_algorithm.compute_twitter_sentiment(tweets,search_term)
+    @sentiment_algorithm.compute_total_sentiment(tweets,search_term)
   end
 end
