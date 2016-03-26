@@ -9,7 +9,6 @@ doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactor
     searchFactory.query(searchTerm).then(function(response){
       response.data.loaded = true;
       self.searches.unshift(response.data);
-      console.log(self.searches)
     });
 
   };
