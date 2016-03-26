@@ -7,11 +7,11 @@ doesItSuck.factory('sentimentTrendsFactory', ['$http', 'searchFactory', function
   var results = {
     returnResults: returnResults,
     setSearchTerm: setSearchTerm,
-    getRetVal: getRetVal
+    getResults: getResults
   }
   return results;
 
-  function getRetVal(){
+  function getResults(){
     returnResults();
     return retVal;
   };

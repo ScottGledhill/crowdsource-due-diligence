@@ -15,8 +15,9 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
         ctrl = $controller('searchController', {
           $scope: scope,
           searchFactory: searchFactoryMock,
-          sentimentTrendsFactory : sentimentTrendsFactoryMock});
+          sentimentTrendsFactory: sentimentTrendsFactoryMock});
        })
+
       searchTerm = {search_term: 'Test searchTerm'};
  });
 

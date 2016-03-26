@@ -2,15 +2,15 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory', function(sen
   var self = this;
   self.results = [];
 
-  getResults();
-
   function getResults(){
-    var promiseArr = sentimentTrendsFactory.getRetVal();
+    var promiseArr = sentimentTrendsFactory.getResults();
     promiseArr.forEach(function(promise){
       promise.then(function(response){
         self.results.unshift(response.data);
       });
     });
   };
+
+  getResults();
 
 }]);
