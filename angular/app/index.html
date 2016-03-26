@@ -27,28 +27,30 @@
     <script src="js/factories/searchFactory.js"></script>
     <script src="js/factories/sentimentTrendsFactory.js"></script>
     <script src="js/routes.js"></script>
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
 
   </head>
 
   <body>
+  <section id='content-wrapper'>
     <div class='row container-fluid'>
-    <div class='col-md-2'></div>
     <div class='col-md-8 text-center'>
 
     <h1>Does it Suck?</h1>
     <h4>Not quite sure whether to buy that product? Unsure about voting for that politician? Make informed choices by finding out whether they suck!</h4>
     <hr />
-    <div ng-controller="searchController as searchCtrl">
-
 
     <div ng-view></div>
 
 
   </div>
   </div><!-- end middle col -->
-  <div class='col-md-2'></div>
 
-  <div id='hidden'></div>
+
+    <div class='col-md-2'></div>
+  </section><!-- end content wrapper -->
+
   <div class="navbar navbar-default navbar-fixed-bottom" class="container-fluid" style="text-align:center;">
     <div style="margin:auto;">
       <div style="display:inline-block;padding:10px;">
@@ -61,6 +63,5 @@
       </div>
     </div>
   </div>
-  </div><!-- end row -->
   </body>
 </html>

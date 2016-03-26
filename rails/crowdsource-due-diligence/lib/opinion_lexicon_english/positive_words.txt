@@ -1779,6 +1779,7 @@ talents
 tantalize
 tantalizing
 tantalizingly
+tasty
 tempt
 tempting
 temptingly
@@ -2000,6 +2001,7 @@ wowing
 wows
 yay
 youthful
+yummy
 zeal
 zenith
 zest

@@ -5,6 +5,10 @@ body {
   padding: 0;
 }
 
+#content-wrapper {
+  padding-bottom: 80px;
+}
+
 h1 {
   font-family: 'Amatic SC', serif;
   font-size: 3em;
@@ -19,21 +23,50 @@ hr {
   width: 10%;
 }
 
-#hidden {
-  width: 100%;
-  height: 1px;
-  margin-bottom: 80px;
+.search-results li {
+  list-style: none;
+}
+
+.suck-evaluation {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.repeat-list {
+  padding-left: 0;
 }
 
 .result-item {
+  border: 3px solid grey;
+  border-radius: 3px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border: 1px solid grey;
-  border-radius: 3px;
+  padding-left: 0;
+  overflow: hidden;
   width: 80%;
   margin: 5px auto;
 }
 
-.search-results li {
-  list-style: none;
+.result-item img {
+  height: 15px;
+  width: 15px;
+}
+
+.red {
+  background-color: rgba(245,32,32,0.6);
+  border-color: #FF2626;
+}
+
+.green {
+  background-color: rgba(32,255,3,0.5);
+  border-color: #02D606;
+}
+
+.yellow {
+  background-color: rgba(255,247,3,0.5);
+  border-color: #FFC400;
+}
+
+.emoji {
+  border-radius: 100%;
 }

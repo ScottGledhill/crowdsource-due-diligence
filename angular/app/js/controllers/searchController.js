@@ -2,21 +2,36 @@ doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactor
   var self = this;
   self.searches = [];
   self.resultReady = false;
+  self.bg = '{"background-color": "red"}';
 
 
   self.makeSearch = function(searchTerm){
     searchFactory.query(searchTerm).then(function(response){
+      response.data.loaded = true;
       self.searches.unshift(response.data);
     });
-    self.setResultStatus();
+
   };
 
-  self.isResultReady = function(){
-    return self.resultReady;
+  self.evaluateSearch = function (search) {
+    if( search.positive > 1.5 * search.negative) {
+      return 'DOESN\'T SUCK';
+    } else if( search.negative > 1.33 * search.positive) {
+      return 'SUCKS';
+    } else {
+      return 'MEH';
+    }
   };
 
-  self.setResultStatus = function() {
-    self.resultReady = true;
+  self.calcBgCol = function (search) {
+    switch(self.evaluateSearch(search)) {
+      case 'SUCKS':
+        return 'red';
+      case 'DOESN\'T SUCK':
+        return 'green';
+      case 'MEH':
+        return 'yellow';
+    }
   };
 
   self.setSearchTerm = function(searchTerm) {

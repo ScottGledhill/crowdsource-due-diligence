@@ -8,6 +8,4 @@ class Search
     p params
     @twitter_client.search(params)
   end
-
-
 end
