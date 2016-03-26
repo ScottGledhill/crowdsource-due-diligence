@@ -6,6 +6,9 @@ doesItSuck.config(['$routeProvider',
         controller: 'searchController',
         controllerAs: 'searchCtrl'
       }).
+      when('/about', {
+        templateUrl: 'partials/about.html'
+      }).
       when('/sentiment-trends', {
         templateUrl: 'partials/sentiment-trends.html',
         controller: 'trendsController',

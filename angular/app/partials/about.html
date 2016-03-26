@@ -1,0 +1,93 @@
+<section id="about" >
+
+  <a href='#/' id='search'>Back to search</a>
+  <h2>About</h2>
+
+  We are team <em>Does It Suck?</em>, and this is our final project at <a href='http://makersacademy.com'>Makers Academy</a>. Check out the code on <a href='https://github.com/rufusraghunath/crowdsource-due-diligence'>GitHub!</a>
+
+  <section id='images'>
+    <a href='https://github.com/rufusraghunath'>
+      <div class='avatar'>
+        <p>Rufus</p>
+        <img src='/images/rufus.jpeg' />
+      </div>
+    </a>
+    <a href='https://github.com/eilw'>
+      <div class='avatar'>
+        <p>Eirik</p>
+        <img src='/images/eirick.jpeg' />
+      </div>
+    </a>
+    <a href='https://github.com/ScottGledhill'>
+      <div class='avatar'>
+        <p>Scott</p>
+        <img src='/images/scott.jpeg' />
+      </div>
+    </a>
+    <a href='https://github.com/JonnyPickard'>
+      <div class='avatar'>
+        <p>Jonny</p>
+        <img src='/images/jonny.jpeg' />
+      </div>
+    </a>
+  </section>
+
+  <section class='text-justify'>
+
+    <div class='col-md-6'>
+      <h4>Problem statement</h4>
+      <p>
+        It's hard to gage the quality of anything before buying it. A simple tool for crowdsourcing an opinion on whether stuff sucks is in order.
+      </p>
+
+      <h4>Approach</h4>
+
+      <p>
+        The app was pitched, designed and built in a single two-week sprint.
+      </p>
+      <p>
+        We used Test-Driven Development and pair programming throughout the entire process. We had different pairs every day and regularly switched driver/navigator roles.
+      </p>
+      <p>
+        We also made use of Agile concepts. We held regular standups and took an "always finished" approach, deloying to Heroku every day. Our Minimum Viable Product was online after only two days.
+      </p>
+    </div>
+
+    <div class='col-md-6'>
+      <h4>How does it work?</h4>
+      <p>
+        When you submit a search, our app scrapes relevant social media data (Twitter) and passes it through a custom <a href='https://github.com/rufusraghunath/crowdsource-due-diligence/blob/development/rails/crowdsource-due-diligence/lib/sentiment_algorithm.rb'>sentiment algorithm</a>.
+      </p>
+      <p>
+        The algorithm uses a massive library of positive and negative words, compiled by <a href='https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html#lexicon'>Liu and Hu</a>. We addressed important edge cases such as sentiment negation (e.g. "not good") - full list <a href='https://github.com/rufusraghunath/crowdsource-due-diligence/blob/development/edge_cases.md'>here</a>.
+      </p>
+      <h4>Technologies used</h4>
+      <ul>
+        <li>
+          AngularJS via Node.js in the front
+        </li>
+        <li>
+          <a href='https://github.com/jtblin/angular-chart.js'>angular-chart</a> for data viz
+        </li>
+        <li>
+          Ruby on Rails in the back
+        </li>
+        <li>
+          Twitter REST API for scraping social media data
+        </li>
+        <li>
+          Jasmine, Karma, and Protractor for testing
+        </li>
+        <li>
+          Git/GitHub/Waffle for version control
+        </li>
+        <li>
+          Hosted on Heroku
+        </li>
+      </ul>
+      <h4>License</h4>
+      <a href='https://github.com/rufusraghunath/crowdsource-due-diligence/blob/development/LICENSE.md'>MIT</a>
+    </div>
+
+  </section>
+</section>
