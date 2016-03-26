@@ -1,4 +1,4 @@
-doesItSuck.controller('searchController',['searchFactory', function(searchFactory){
+doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactory', function(searchFactory, sentimentTrendsFactory){
   var self = this;
   self.searches = [];
   self.resultReady = false;
@@ -6,8 +6,11 @@ doesItSuck.controller('searchController',['searchFactory', function(searchFactor
 
 
   self.makeSearch = function(searchTerm){
-    self.searchFactory = new searchFactory(searchTerm);
-    self.searches.push(self.searchFactory);
+    searchFactory.query(searchTerm).then(function(response){
+      response.data.loaded = true;
+      self.searches.unshift(response.data);
+    });
+
   };
 
   self.evaluateSearch = function (search) {
@@ -30,5 +33,11 @@ doesItSuck.controller('searchController',['searchFactory', function(searchFactor
         return 'yellow';
     }
   };
+
+  self.setSearchTerm = function(searchTerm) {
+    sentimentTrendsFactory.setSearchTerm(searchTerm);
+  }
+
+
 
 }]);
