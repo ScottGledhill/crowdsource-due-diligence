@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/search/tweets.json?count=100&lang=en&q=Nokia&result_type=recent&since=2014-03-20&until=2014-03-22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - TwitterRubyGem/5.16.0
+      Authorization:
+        #removed for security
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Disposition:
+      - attachment; filename=json.json
+      Content-Length:
+      - '240'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Sat, 26 Mar 2016 13:37:38 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Sat, 26 Mar 2016 13:37:38 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_f
+      Set-Cookie:
+      - guest_id=v1%3A145899945867552325; Domain=.twitter.com; Path=/; Expires=Mon,
+        26-Mar-2018 13:37:38 UTC
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read-write
+      X-Connection-Hash:
+      - 1f829a6816485733a404b777b7ab48c2
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '180'
+      X-Rate-Limit-Remaining:
+      - '176'
+      X-Rate-Limit-Reset:
+      - '1458999587'
+      X-Response-Time:
+      - '125'
+      X-Transaction:
+      - 8b00269ab58bc3a0
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: '{"statuses":[],"search_metadata":{"completed_in":0.004,"max_id":713721576020770816,"max_id_str":"713721576020770816","query":"Nokia+since%3A2014-03-20+until%3A2014-03-22","refresh_url":"?since_id=713721576020770816&q=Nokia%20since%3A2014-03-20%20until%3A2014-03-22&lang=en&result_type=recent&include_entities=1","count":100,"since_id":0,"since_id_str":"0"}}'
+    http_version:
+  recorded_at: Sat, 26 Mar 2016 13:37:38 GMT
+recorded_with: VCR 3.0.1
