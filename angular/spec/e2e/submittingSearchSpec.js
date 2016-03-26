@@ -1,4 +1,6 @@
-describe("searchTerm",function(){
+
+
+xdescribe("searchTerm",function(){
 
   beforeEach(function() {
     browser.addMockModule('httpMocker', function() {
@@ -30,13 +32,6 @@ describe("searchTerm",function(){
     var searchTitle = element(by.css('.search-term'));
     expect(searchTitle.getText()).toEqual('MacBook');
   });
-
-  xit('the search term is taken out after the user clicks submit', function(){
-    userSearch();
-    var searchTerm = element(by.model('searchTerm'));
-    expect(searchTerm.getAttribute('value')).toEqual("");
-  });
-
 
   it('returns the sentiment results', function(){
     userSearch();

@@ -1,0 +1,18 @@
+    <form>
+      <input type="text" ng-model="searchTerm" placeholder="Enter search term">
+      <input type="submit" id="search" value="Well, DOES it suck?" ng-click="searchCtrl.multiDaySearches({search_term: searchTerm}); searchTerm = ''">
+    </form>
+
+    <a href='#/' id='search'>Back to normal search</a>
+
+    <section class="search-results" ng-show="searchCtrl.isResultReady()">
+      <ul class='result-item' ng-repeat='search in searchCtrl.weekResults'>
+        <li><b>Date:</b> <span class='search-term'>{{search.date_from}}</span> </li>
+        <li><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
+        <li><b>Sucks:</b> <span class='negative-result'>{{search.negative}}</span> </li>
+        <li><b>Doesn't suck:</b> <span class='positive-result'>{{search.positive}}</span> </li>
+        <li><b>Don't care:</b> <span class='neutral-result'>{{search.neutral}}</span> </li>
+      </ul>
+    </section>
+
+</div>

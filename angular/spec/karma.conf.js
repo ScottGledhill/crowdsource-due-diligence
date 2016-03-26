@@ -18,6 +18,9 @@ module.exports = function(config) {
       "./app/bower_components/angular/angular.js",
       "./app/bower_components/angular-mocks/angular-mocks.js",
       './app/bower_components/angular-resource/angular-resource.js',
+      './app/bower_components/angular-route/angular-route.js',
+      './app/bower_components/jquery/dist/jquery.js',
+      'http://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js',
       './app/js/**/*.js',
       'spec/unit/*Spec.js'
     ],
