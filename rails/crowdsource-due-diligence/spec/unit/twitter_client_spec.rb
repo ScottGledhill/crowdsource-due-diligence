@@ -8,10 +8,12 @@ describe TwitterClient do
   let(:tweets){double('tweets', collect: tweet)}
 
   describe '#search' do
-    xit 'searches twitter for the params' do
-      params = {"search_term": 'Nokia', "date_from": "2014-03-20", "date_till": "2014-03-22"}
-      stub_request(:get, "https://api.twitter.com/1.1/search/tweets.json?count=100&lang=en&q=Nokia&result_type=recent&since=2014-03-20&until=2014-03-22")
-      expect(twitter_client.search(params)).to be_an_instance_of(Array)
+    it 'searches twitter for the params' do
+      search = VCR.use_cassette("twitter_call") do
+        params = {"search_term": 'Nokia', "date_from": "2014-03-20", "date_till": "2014-03-22"}
+        twitter_client.search(params)
+      end
+      expect(search).to be_an_instance_of(Array)
     end
   end
 
