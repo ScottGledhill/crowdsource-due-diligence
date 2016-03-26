@@ -1,24 +1,12 @@
 describe('searchController', function() {
 
 var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootScope, scope, httpBackend;
-  //
-  // beforeEach(function() {
-  //   // searchFactoryMock = {query: function(){} };
-  //   // sentimentTrendsFactoryMock = {setSearchTerm: function(){} };
-  //   // spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
-  //
-  //    {
-  //     // searchFactory: searchFactoryMock,
-  //     // sentimentTrendsFactory : sentimentTrendsFactoryMock
-  //   });
-  // });
-  // var ;
 
 
   beforeEach(function(){
     module('DoesItSuck');
       inject(function($rootScope, _$q_, $controller, $httpBackend){
-        searchFactoryMock = {query: function(){return {data:'this is a value'}} };
+        searchFactoryMock = {query: function(){} };
         sentimentTrendsFactoryMock = {setSearchTerm: function(){} };
         spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
         scope = $rootScope.$new();
@@ -29,25 +17,13 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
           searchFactory: searchFactoryMock,
           sentimentTrendsFactory : sentimentTrendsFactoryMock});
        })
+      searchTerm = {search_term: 'Test searchTerm'};
  });
 
 
-  describe('#setResultStatus', function() {
-
-    it('starts with not showing the page', function() {
-      expect(ctrl.isResultReady()).toEqual(false);
-    });
-
-    it('changes resultReady boolean', function() {
-      ctrl.setResultStatus();
-      expect(ctrl.isResultReady()).toEqual(true);
-    });
-  });
-
   describe('#setSearchTerm', function(){
     it('sentimentTrendsFactory is called', function(){
-      var search = {search_term: 'Nokia'};
-      ctrl.setSearchTerm(search);
+      ctrl.setSearchTerm(searchTerm);
       expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
     });
   });
@@ -56,23 +32,18 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
     beforeEach(function(){
       var deferred = $q.defer();
       deferred.resolve({data:'some value'})
-      spyOn(searchFactoryMock,'query').and.returnValue(deferred.promise);
+      spyOn(searchFactoryMock,'query').and.returnValue( deferred.promise );
+      httpBackend.whenGET('partials/main-search.html').respond({data: 'Success'});
     })
 
     it('searchFactory is called', function(){
-      var search = {search_term: 'Nokia'};
-      ctrl.makeSearch(search);
+      ctrl.makeSearch(searchTerm);
       expect(searchFactoryMock.query).toHaveBeenCalled();
     });
 
     it('returns the response data', function(){
-      httpBackend.expectGET('partials/main-search.html').respond({data: 'Success'});
-      // spyOn(searchFactoryMock,'query').and.returnValue(deferred.promise);
-      // console.log(deferred.promise)
-      console.log(searchFactoryMock.query('searchterm'))
+      ctrl.makeSearch(searchTerm);
       scope.$apply();
-      var search = {search_term: 'Nokia'};
-      ctrl.makeSearch(search);
       expect(ctrl.searches.length).toEqual(1);
     });
   });
