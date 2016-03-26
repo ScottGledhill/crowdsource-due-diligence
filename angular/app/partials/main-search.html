@@ -1,4 +1,3 @@
-<!-- <div ng-controller="searchController as searchCtrl"> -->
 
 <section id="search-bar" >
 <form>
@@ -13,8 +12,6 @@
     <li><b>Sucks:</b> <span class='negative-result'>{{search.negative}}</span> </li>
     <li><b>Doesn't suck:</b> <span class='positive-result'>{{search.positive}}</span> </li>
     <li><b>Don't care:</b> <span class='neutral-result'>{{search.neutral}}</span> </li>
-    <li><a href="#/sentiment-trends" class='sentiment-trends-link' ng-click='searchCtrl.weekSearch(search)'>See sentiment trends</a></li>
+    <li><a href="#/sentiment-trends" class='sentiment-trends-link' ng-click='searchCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
   </ul>
 </section>
-
-<!-- </div> -->

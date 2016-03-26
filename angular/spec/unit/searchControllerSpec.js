@@ -1,19 +1,35 @@
 describe('searchController', function() {
 
-var searchFactoryMock;
+var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootScope, scope, httpBackend;
+  //
+  // beforeEach(function() {
+  //   // searchFactoryMock = {query: function(){} };
+  //   // sentimentTrendsFactoryMock = {setSearchTerm: function(){} };
+  //   // spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
+  //
+  //    {
+  //     // searchFactory: searchFactoryMock,
+  //     // sentimentTrendsFactory : sentimentTrendsFactoryMock
+  //   });
+  // });
+  // var ;
 
-  beforeEach(function() {
-    searchFactoryMock = jasmine.createSpy('searchFactory');
-    module('DoesItSuck', {
-      searchFactory: searchFactoryMock
-    });
-  });
-  var ctrl, searchTerm;
 
-
-  beforeEach(inject(function($controller){
-     ctrl = $controller('searchController');
-   }));
+  beforeEach(function(){
+    module('DoesItSuck');
+      inject(function($rootScope, _$q_, $controller, $httpBackend){
+        searchFactoryMock = {query: function(){return {data:'this is a value'}} };
+        sentimentTrendsFactoryMock = {setSearchTerm: function(){} };
+        spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
+        scope = $rootScope.$new();
+        $q = _$q_;
+        httpBackend = $httpBackend;
+        ctrl = $controller('searchController', {
+          $scope: scope,
+          searchFactory: searchFactoryMock,
+          sentimentTrendsFactory : sentimentTrendsFactoryMock});
+       })
+ });
 
 
   describe('#setResultStatus', function() {
@@ -28,44 +44,58 @@ var searchFactoryMock;
     });
   });
 
-  describe('multiDaySearches', function(){
-    beforeEach(function(){
-      searchTerm = {search_term: 'Nokia'};
+  describe('#setSearchTerm', function(){
+    it('sentimentTrendsFactory is called', function(){
+      var search = {search_term: 'Nokia'};
+      ctrl.setSearchTerm(search);
+      expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
     });
-
-    it('makes 6 searches for the last 7 and stores it in the results', function(){
-      ctrl.multiDaySearches(searchTerm);
-      expect(ctrl.searches.length).toEqual(3);
-    });
-
-    it('it sets the correct dates for each search', function(){
-      var dates = ['2016-03-20','2016-03-21'];
-      var dateCall = {search_term: 'Nokia', date_from: '2016-03-20', date_till: '2016-03-21' }
-      ctrl.multiDaySearches(dates,searchTerm);
-      expect(searchFactoryMock).toHaveBeenCalledWith(dateCall);
-    })
   });
 
-  describe('#weekSearch', function(){
-    it('inserts the current search findings into the weekSearch array', function(){
+  describe('#makeSearch', function(){
+    beforeEach(function(){
+      var deferred = $q.defer();
+      deferred.resolve({data:'some value'})
+      spyOn(searchFactoryMock,'query').and.returnValue(deferred.promise);
+    })
+
+    it('searchFactory is called', function(){
       var search = {search_term: 'Nokia'};
-      ctrl.weekSearch(search);
-      expect(ctrl.weekResults).toContain(search);
+      ctrl.makeSearch(search);
+      expect(searchFactoryMock.query).toHaveBeenCalled();
     });
 
-    it('starts the multiDaySearches', function(){
+    it('returns the response data', function(){
+      httpBackend.expectGET('partials/main-search.html').respond({data: 'Success'});
+      // spyOn(searchFactoryMock,'query').and.returnValue(deferred.promise);
+      // console.log(deferred.promise)
+      console.log(searchFactoryMock.query('searchterm'))
+      scope.$apply();
       var search = {search_term: 'Nokia'};
-      ctrl.weekSearch(search);
-      expect(searchFactoryMock).toHaveBeenCalled();
+      ctrl.makeSearch(search);
+      expect(ctrl.searches.length).toEqual(1);
     });
-  })
+  });
 
-  describe('#getDates', function(){
-    it('returns the dates 7 and 6 days ago in the right format', function(){
-      var dateRange = [7, 6, 0];
-      expect(ctrl.getDates(dateRange).length).toEqual(3);
-    });
-  })
+
+
+
+
+  // describe('#weekSearch', function(){
+  //   it('inserts the current search findings into the weekSearch array', function(){
+  //     var search = {search_term: 'Nokia'};
+  //     ctrl.weekSearch(search);
+  //     expect(ctrl.weekResults).toContain(search);
+  //   });
+  //
+  //   it('starts the multiDaySearches', function(){
+  //     var search = {search_term: 'Nokia'};
+  //     ctrl.weekSearch(search);
+  //     expect(searchFactoryMock).toHaveBeenCalled();
+  //   });
+  // })
+
+
 
 
 

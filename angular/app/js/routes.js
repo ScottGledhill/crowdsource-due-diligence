@@ -11,6 +11,11 @@ doesItSuck.config(['$routeProvider',
         controller: 'trendsController',
         controllerAs: 'trendsCtrl'
       }).
+      when('/specific-dates', {
+        templateUrl: 'partials/specific-dates.html',
+        controller: 'specificSearchController',
+        controllerAs: 'searchCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });
