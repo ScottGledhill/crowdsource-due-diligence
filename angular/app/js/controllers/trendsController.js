@@ -11,6 +11,6 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory', function(sen
         self.results.unshift(response.data);
       });
     });
-  };
+  }
 
 }]);

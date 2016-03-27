@@ -112,3 +112,9 @@ hr {
 .avatar:hover p {
   visibility: visible;
 }
+
+.chart {
+  width: 70%;
+  height: 20%;
+  margin: 0 auto;
+}

@@ -36,7 +36,7 @@ doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactor
 
   self.setSearchTerm = function(searchTerm) {
     sentimentTrendsFactory.setSearchTerm(searchTerm);
-  }
+  };
 
 
 
