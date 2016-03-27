@@ -1,14 +1,12 @@
-<div class='col-md-2'></div>
-
-  <section id="search-bar" >
+<section id="search-bar" >
   <form>
     <input type="text" ng-model="searchTerm" placeholder="Enter search term">
     <input type="submit" id="search" value="Well, DOES it suck?" ng-click="searchCtrl.makeSearch({search_term: searchTerm}); searchTerm = ''">
   </form>
-  </section>
-  <section class="search-results">
-    <ul class='repeat-list' ng-repeat='search in searchCtrl.searches'>
-      <div class='result-item' ng-class='searchCtrl.calcBgCol(search)' ng-show="search.loaded" >
+</section>
+<section class="search-results">
+  <ul class='repeat-list' ng-repeat='search in searchCtrl.searches'>
+    <div class='result-item' ng-class='searchCtrl.calcBgCol(search)' ng-show="search.loaded" >
       <li ><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
       <li class='suck-evaluation'>{{searchCtrl.evaluateSearch(search);}}</li>
         <img class='emoji' src='images/happy.png' />{{search.positive}}
@@ -18,7 +16,6 @@
        Tweet</a>
       </li>
       <li><a href="#/sentiment-trends" class='sentiment-trends-link' ng-click='searchCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
-
-          </div><!-- end results item -->
-          </ul>
-        </section>
+    </div><!-- end results item -->
+  </ul>
+</section>
