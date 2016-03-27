@@ -21,9 +21,10 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
     return searchPromises;
   };
 
+
   function setSearchTerm(searchInput){
     searchTerm = searchInput;
-  };
+  }
 
   function getSearchTerm(){
     return searchTerm;
@@ -33,22 +34,21 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
     listParams.forEach(function(params){
       searchPromises.unshift(searchFactory.query(params));
       });
-  };
+  }
 
     function makeParams(){
-      var listParams = []
+      var listParams = [];
       var params;
       var dates = datesFactory.getTwitterDates(LASTWEEKDATES);
       for (var i= 0; i<(dates.length); i += 2){
         params = {search_term: getSearchTerm()};
         params.date_from = dates[i];
         params.date_till = dates[i+1];
-        listParams.push(params)
+        listParams.push(params);
       }
       return listParams;
 
     }
-
 
 
 
