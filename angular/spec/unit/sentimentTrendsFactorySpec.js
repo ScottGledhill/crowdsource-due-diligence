@@ -64,6 +64,18 @@ beforeEach(function() {
      });
    });
 
+   describe('#setSearchResult', function(){
+     it('starts out empty', function(){
+       expect(factory.getSearchResult()).toEqual('');
+     });
+
+     it('is set to the searchResult', function(){
+       var searchResult = {contains: 'multiple items'}
+       factory.setSearchResult(searchResult)
+       expect(factory.getSearchResult()).toEqual(searchResult);
+     });
+   });
+
 
      describe('#getRestults', function(){
        it('initates a call to the searchFactory', function(){
@@ -75,16 +87,4 @@ beforeEach(function() {
          expect(factory.getResults()).toEqual(factory.searchPromises)
        });
   });
-
-
-
-
 });
-
-
-// describe('#getDates', function(){
-//   it('returns the dates 7 and 6 days ago in the right format', function(){
-//     var dateRange = [7, 6, 0];
-//     expect(ctrl.getDates(dateRange).length).toEqual(3);
-//   });
-// })

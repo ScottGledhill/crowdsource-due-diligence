@@ -7,13 +7,16 @@ Finished
 - refactor searchFactory into a service
 - refactor search controller
 - add unit tests
-
-Search data
 - The user can click a link to see tweets that are related to the search in a seperate tab
-  - Backend stores the tweets and passes them to angular
-  - The sentiment algorithm, places each tweet in a hash: content, sentiment: positive / negative, and sentiment word (only positive and negative)
   - A user can click one link and be passed to a new view with all the tweets (positive / negative, and with the sentiment words)
 - Each of the tweets have the 'sentiment term' shown before the tweet
+
+Search data
+
+
+- Backend stores the tweets and passes them to angular
+- The sentiment algorithm, places each tweet in a hash: content, sentiment: positive / negative, and sentiment word (only positive and negative)
+
 - The tweets are coloured differentenly based on their sentiment result
 - The user can only see the first ten tweets
 - The tweets move upwards across the page

@@ -15,7 +15,8 @@
         <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=According to does it suck? {{search.search_term}} {{searchCtrl.evaluateSearch(search)}}, visit the site at https://does-it-suck.herokuapp.com/ and see what else sucks!">
        Tweet</a>
       </li>
-      <li><a href="#/sentiment-trends" class='sentiment-trends-link' ng-click='searchCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
+      <li><a href="#/sentiment-trends" class='trends-link' ng-click='searchCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
+        <li><a href="#/data" class='data-link' ng-click='searchCtrl.passResults(search)'>Explore messages</a></li>
     </div><!-- end results item -->
   </ul>
 </section>

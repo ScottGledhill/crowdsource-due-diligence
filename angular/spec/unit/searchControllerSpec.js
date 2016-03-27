@@ -7,8 +7,7 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
     module('DoesItSuck');
       inject(function($rootScope, _$q_, $controller, $httpBackend){
         searchFactoryMock = {query: function(){} };
-        sentimentTrendsFactoryMock = {setSearchTerm: function(){} };
-        spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
+        sentimentTrendsFactoryMock = {setSearchTerm: function(){},setSearchResult: function(){} };
         scope = $rootScope.$new();
         $q = _$q_;
         httpBackend = $httpBackend;
@@ -24,8 +23,18 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
 
   describe('#setSearchTerm', function(){
     it('sentimentTrendsFactory is called', function(){
+      spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
       ctrl.setSearchTerm(searchTerm);
       expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
+    });
+  });
+
+  describe('#passResults', function(){
+    it('sends results of a search result to the sentimentTrendsFactory', function(){
+      var search= {search_term:'SearchTerm', positive: '60', negative: '50',neutral: '50', message:{first: 'Many messages'}};
+      spyOn(sentimentTrendsFactoryMock,'setSearchResult');
+      ctrl.passResults(search);
+      expect(sentimentTrendsFactoryMock.setSearchResult).toHaveBeenCalledWith(search);
     });
   });
 
@@ -49,64 +58,46 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
     });
   });
 
+  describe("presentation methods", function(){
+    var searchMockNeg, searchMockPos, searchMockNeut, searchMockEq;
 
+    beforeEach(function() {
+      searchMockNeg = {positive: 1, negative: 5, neutral: 3};
+      searchMockPos = {positive: 12, negative: 5, neutral: 3};
+      searchMockNeut = {positive: 6, negative: 5, neutral: 10};
+      searchMockEq = {positive: 5, negative: 5, neutral: 5};
+    })
+    describe('#evaluateSearch', function() {
 
-
-
-  // describe('#weekSearch', function(){
-  //   it('inserts the current search findings into the weekSearch array', function(){
-  //     var search = {search_term: 'Nokia'};
-  //     ctrl.weekSearch(search);
-  //     expect(ctrl.weekResults).toContain(search);
-  //   });
-  //
-  //   it('starts the multiDaySearches', function(){
-  //     var search = {search_term: 'Nokia'};
-  //     ctrl.weekSearch(search);
-  //     expect(searchFactoryMock).toHaveBeenCalled();
-  //   });
-  // })
-
-
-
-
-
-
-  describe('#evaluateSearch', function() {
-    var searchMockNeg = {positive: 1, negative: 5, neutral: 3};
-    var searchMockPos = {positive: 12, negative: 5, neutral: 3};
-    var searchMockNeut = {positive: 6, negative: 5, neutral: 10};
-    var searchMockEq = {positive: 5, negative: 5, neutral: 5};
-    it('returns SUCKS if negative is greatest', function() {
-      expect(ctrl.evaluateSearch(searchMockNeg)).toEqual('SUCKS');
+      it('returns SUCKS if negative is greatest', function() {
+        expect(ctrl.evaluateSearch(searchMockNeg)).toEqual('SUCKS');
+      });
+      it('returns DOESN\'T SUCK if positive is greatest', function() {
+        expect(ctrl.evaluateSearch(searchMockPos)).toEqual('DOESN\'T SUCK');
+      });
+      it('returns MEH if neutral is greatest', function() {
+        expect(ctrl.evaluateSearch(searchMockNeut)).toEqual('MEH');
+      });
+      it('returns MEH if all are equal', function() {
+        expect(ctrl.evaluateSearch(searchMockEq)).toEqual('MEH');
+      });
     });
-    it('returns DOESN\'T SUCK if positive is greatest', function() {
-      expect(ctrl.evaluateSearch(searchMockPos)).toEqual('DOESN\'T SUCK');
+
+    describe('calcBgCol', function() {
+      it('sets col to red if SUCKS', function() {
+        expect(ctrl.calcBgCol(searchMockNeg)).toEqual('red');
+      });
+
+      it('sets col to yellow if MEH', function() {
+        expect(ctrl.calcBgCol(searchMockNeut)).toEqual('yellow');
+      });
+
+      it('sets col to green', function() {
+        expect(ctrl.calcBgCol(searchMockPos)).toEqual('green');
+      });
     });
-    it('returns MEH if neutral is greatest', function() {
-      expect(ctrl.evaluateSearch(searchMockNeut)).toEqual('MEH');
-    });
-    it('returns MEH if all are equal', function() {
-      expect(ctrl.evaluateSearch(searchMockEq)).toEqual('MEH');
-    });
+
   });
 
-  describe('calcBgCol', function() {
-    var searchMockNeg = {positive: 1, negative: 5, neutral: 3};
-    var searchMockPos = {positive: 12, negative: 5, neutral: 3};
-    var searchMockNeut = {positive: 6, negative: 5, neutral: 10};
-    var searchMockEq = {positive: 5, negative: 5, neutral: 5};
-    it('sets col to red if SUCKS', function() {
-      expect(ctrl.calcBgCol(searchMockNeg)).toEqual('red');
-    });
-
-    it('sets col to yellow if MEH', function() {
-      expect(ctrl.calcBgCol(searchMockNeut)).toEqual('yellow');
-    });
-
-    it('sets col to green', function() {
-      expect(ctrl.calcBgCol(searchMockPos)).toEqual('green');
-    });
-  });
 
 });
