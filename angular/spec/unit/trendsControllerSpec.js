@@ -37,7 +37,7 @@ var sentimentTrendsFactoryMock, ctrl, $q, rootScope, scope;
 
 
    it('returns the response data', function(){
-     scope.$apply();
+     scope.$digest();
      expect(ctrl.results.length).toEqual(3);
      expect(ctrl.results).toContain('some value')
    });
