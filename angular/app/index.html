@@ -26,6 +26,7 @@
     <script src="js/controllers/specificSearchController.js"></script>
     <script src="js/controllers/trendsController.js"></script>
     <script src="js/factories/searchFactory.js"></script>
+    <script src="js/factories/chartFactory.js"></script>
     <script src="js/factories/sentimentTrendsFactory.js"></script>
     <script src="js/routes.js"></script>
     <!-- angular-loading-bar -->
@@ -49,13 +50,6 @@
     <hr />
 
     <div ng-view></div>
-
-    <section class='chart' ng-controller="chartController as chartCtrl">
-
-      <canvas id="line" class="chart chart-line" chart-data="chartCtrl.data"
-      chart-labels="chartCtrl.labels" chart-legend="true" chart-series="chartCtrl.series" colours="chartCtrl.colors"</canvas>
-
-    </section>
 
     </div><!-- end middle col -->
 

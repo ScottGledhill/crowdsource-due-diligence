@@ -1,32 +1,33 @@
-doesItSuck.controller('trendsController',['sentimentTrendsFactory', function(sentimentTrendsFactory){
+doesItSuck.controller('trendsController',['sentimentTrendsFactory', 'chartFactory',  function(sentimentTrendsFactory, chartFactory){
   // pass in chartFactory
   var self = this;
-  self.results = [];
-  // results will be an array of hashes - each result will have data and a chartFactory
+  self.searchTerm = undefined;
+
+  self.data = [[],[],[]];
+
+  this.colors = ['#02D606', '#FFC400', '#FF2626'];
+  this.series = ['Positive', 'Neutral', 'Negative'];
+  this.labels = ['7 days ago', '4 days ago', 'Yesterday'];
+
 
   getResults();
 
+  function resetData() {
+    self.data = [[],[],[]];
+  }
+
   function getResults(){
+    resetData();
     var promiseArr = sentimentTrendsFactory.getRetVal();
     promiseArr.forEach(function(promise){
       promise.then(function(response){
-        // start new
-        var resultObj = {};
-        resultObj.data = response.data;
-        // need some parsing to put data into angular-chart format
-        // how best to pass parsed data into chartFactory? On initialization?
-        var parsedData = self.parseData(response.data);
-        resultObj.chartFactory = new chartFactory(parsedData);
-        self.results.unshift(resultObj);
-        // end new
-        // old:
-        // self.results.unshift(response.data);
+        if (self.searchTerm === undefined){self.searchTerm = response.data.search_term;}
+        self.data[0].unshift(response.data.positive);
+        self.data[1].unshift(response.data.neutral);
+        self.data[2].unshift(response.data.negative);
+        console.log(self.data);
       });
     });
-
-    self.parsedData = function (data) {
-      // magic
-    };
   }
 
 }]);

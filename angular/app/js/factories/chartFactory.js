@@ -1,4 +1,4 @@
-doesItSuck.factory('chartFactory',[function(){
+doesItSuck.factory('chartFactory', [function(){
 
   chartFactory = function(data) {
     this.data = data;
