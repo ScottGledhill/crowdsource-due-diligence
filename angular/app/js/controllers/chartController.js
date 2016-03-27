@@ -4,6 +4,8 @@ doesItSuck.controller('chartController',[function(){
 
   var self = this;
 
+  self.colors = ['#02D606', '#FFC400', '#FF2626'];
+
   self.labels = ['7 days ago', '4 days ago', 'Yesterday'];
 
   self.series = ['Positive', 'Neutral', 'Negative'];
