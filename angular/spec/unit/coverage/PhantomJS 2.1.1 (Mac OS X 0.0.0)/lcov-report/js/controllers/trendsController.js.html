@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">11.54% </span>
+        <span class="strong">69.23% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/26</span>
+        <span class='fraction'>18/26</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>1/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>4/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.5% </span>
+        <span class="strong">68% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/24</span>
+        <span class='fraction'>17/25</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -85,25 +85,25 @@
 40
 41</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -120,31 +120,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">doesItSuck.controller('trendsController',['sentimentTrendsFactory',  <span class="fstat-no" title="function not covered" >function(sentimentTrendsFactory){</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(sentimentTrendsFactory){
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+  var self = this;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  self.data = [[],[],[]];</span>
+  self.data = [[],[],[]];
+  self.colors = ['#02D606', '#FFC400', '#FF2626'];
+  self.series = ['Positive', 'Neutral', 'Negative'];
+  self.labels = ['7 days ago', '4 days ago', 'Yesterday'];
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function resetData() {</span>
-<span class="cstat-no" title="statement not covered" >    self.data = [[],[],[]];</span>
+  function resetData() {
+    self.data = [[],[],[]];
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  self.colors = ['#02D606', '#FFC400', '#FF2626'];</span>
-<span class="cstat-no" title="statement not covered" >  self.series = ['Positive', 'Neutral', 'Negative'];</span>
-<span class="cstat-no" title="statement not covered" >  self.labels = ['7 days ago', '4 days ago', 'Yesterday'];</span>
-&nbsp;
-<span class="fstat-no" title="function not covered" >  function getResults(){</span>
-<span class="cstat-no" title="statement not covered" >    resetData();</span>
-<span class="cstat-no" title="statement not covered" >    var promiseArr = sentimentTrendsFactory.getResults();</span>
-<span class="cstat-no" title="statement not covered" >    var resultArr = [];</span>
-<span class="cstat-no" title="statement not covered" >    promiseArr.forEach(<span class="fstat-no" title="function not covered" >function(response){</span></span>
-<span class="cstat-no" title="statement not covered" >      if (self.searchTerm === undefined){<span class="cstat-no" title="statement not covered" >self.searchTerm = response.searchTerm;}</span></span>
-<span class="cstat-no" title="statement not covered" >      var promise = response.result;</span>
-<span class="cstat-no" title="statement not covered" >      promise.then(<span class="fstat-no" title="function not covered" >function(response){<span class="cstat-no" title="statement not covered" ></span>resultArr.unshift(response.data);}</span>)</span>
+  function getResults(){
+    resetData();
+    var promiseArr = sentimentTrendsFactory.getResults();
+    var resultArr = [];
+    promiseArr.forEach(function(response){
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (self.searchTerm === undefined){self.searchTerm = response.searchTerm;}
+      var promise = response.result;
+      promise.then(<span class="fstat-no" title="function not covered" >function(response){</span>
+<span class="cstat-no" title="statement not covered" >        resultArr.unshift(response.data);}</span>)
       .finally(<span class="fstat-no" title="function not covered" >function() {</span>
 <span class="cstat-no" title="statement not covered" >        if( resultArr.length === 3 ) {</span>
 <span class="cstat-no" title="statement not covered" >          resultArr.sort(<span class="fstat-no" title="function not covered" >function(a,b) {</span></span>
@@ -160,7 +160,7 @@
     });
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  getResults();</span>
+  getResults();
 &nbsp;
 }]);
 &nbsp;</pre></td></tr>
@@ -169,7 +169,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 28 2016 15:02:08 GMT+0100 (BST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 28 2016 16:24:48 GMT+0100 (BST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

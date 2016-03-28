@@ -22,6 +22,8 @@ module.exports = function(config) {
       './app/bower_components/angular-route/angular-route.js',
       './app/bower_components/angular-local-storage/dist/angular-local-storage.js',
       './app/bower_components/jquery/dist/jquery.js',
+      './app/bower_components/Chart.js/Chart.min.js',
+      './app/bower_components/angular-chart.js/dist/angular-chart.min.js',
       'http://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js',
       './app/js/**/*.js',
       'spec/unit/*Spec.js'

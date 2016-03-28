@@ -1,12 +1,11 @@
 
-doesItSuck.controller('searchController',['$route','searchFactory','sentimentTrendsFactory', 'localStorageService', function($route, searchFactory, sentimentTrendsFactory, localStorageService){
+doesItSuck.controller('searchController',['$scope', '$route','searchFactory','sentimentTrendsFactory', 'localStorageService', function($scope, $route, searchFactory, sentimentTrendsFactory, localStorageService){
   var self = this;
   self.searches = [];
   self.resultReady = false;
   self.bg = '{"background-color": "red"}';
 
   var STORAGE_KEY = 'resultHistory';
-
 
   self.getHistory = function(resultHistory){
     var lskeys = localStorageService.keys()
@@ -30,11 +29,6 @@ doesItSuck.controller('searchController',['$route','searchFactory','sentimentTre
     sentimentTrendsFactory.setSearchTerm(searchTerm);
   };
 
-  self.changeController = function(searchTerm){
-    self.setSearchTerm(searchTerm);
-    self.setHistory(STORAGE_KEY,self.searches);
-  }
-
   self.passResults = function(searchResult){
     sentimentTrendsFactory.setSearchResult(searchResult);
   };
@@ -53,6 +47,13 @@ doesItSuck.controller('searchController',['$route','searchFactory','sentimentTre
     var evaluated = self.evaluateSearch(search);
     return COLORCHOICE[evaluated];
   };
+
+  $scope.$on('$routeChangeStart', function(event,next,prev){
+    self.setHistory(STORAGE_KEY,self.searches);
+  });
+
+
+
 
   var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
   var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};

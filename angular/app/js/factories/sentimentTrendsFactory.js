@@ -59,7 +59,7 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
 
   function callFactory(listParams){
     listParams.forEach(function(params){
-      result = {};
+      var result = {};
       result.searchTerm = params.search_term;
       result.result = searchFactory.query(params);
       searchPromises.unshift(result);
@@ -68,7 +68,7 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
 
     function makeParams(){
       var listParams = [];
-      var params;
+      var params = '';
       var dates = datesFactory.getTwitterDates(LASTWEEKDATES);
       for (var i= 0; i<(dates.length); i += 2){
         params = {search_term: getSearchTerm()};

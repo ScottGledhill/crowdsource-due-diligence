@@ -58,10 +58,6 @@ beforeEach(function() {
        expect(factory.searchPromises.length).toEqual(0);
      });
 
-     it('contains a promise for each request', function(){
-       factory.getResults();
-       expect(factory.searchPromises).toContain(searchPromise);
-     });
    });
 
    //include once we have integrated with backend
@@ -78,14 +74,15 @@ beforeEach(function() {
    });
 
 
-     describe('#getRestults', function(){
+     describe('#getResults', function(){
        it('initates a call to the searchFactory', function(){
          factory.getResults();
          expect(searchFactoryMock.query).toHaveBeenCalled();
        });
 
        it('returns searchpromises', function(){
-         expect(factory.getResults()).toEqual(factory.searchPromises)
+         var result = {searchTerm: '', result: searchPromise}
+         expect(factory.getResults()).toEqual([result, result, result]);
        });
   });
 });

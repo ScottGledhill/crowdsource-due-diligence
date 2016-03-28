@@ -1,10 +1,10 @@
-describe("persisting search",function(){
+xdescribe("persisting search",function(){
 
   it("submitting a specific searchword",function(){
     browser.get("http://localhost:8000");
     var searchTerm = element(by.model('searchTerm'));
     searchTerm.sendKeys('MacBook');
-    $('#search').click();
+    $('#submit-search').click();
 
     // The search contains the searhterm
     var searchTitle = element(by.css('.search-term'));
@@ -14,8 +14,8 @@ describe("persisting search",function(){
     $('#search').click()
 
     // The searchterm is still visible
-    // var searchTitle = element(by.css('.search-term'));
-    // expect(searchTitle.getText()).toEqual('MacBook');
+    var searchTitle = element(by.css('.search-term'));
+    expect(searchTitle.getText()).toEqual('MacBook');
   });
 
 

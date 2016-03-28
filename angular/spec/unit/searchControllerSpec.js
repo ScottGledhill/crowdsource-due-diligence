@@ -54,25 +54,25 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
    });
 
    it('is called when a user moves from the page', function(){
-     ctrl.changeController();
+     scope.$broadcast("$routeChangeStart");
      expect(localStorageServiceMock.set).toHaveBeenCalled();
    });
  });
 
- describe('#changeController', function(){
-   beforeEach(function(){
-     spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
-     spyOn(localStorageServiceMock,'set');
-     ctrl.changeController();
-   })
-   it('calls on localstorage when a user moves from the page', function(){
-     expect(localStorageServiceMock.set).toHaveBeenCalled();
-   });
-
-   it('calls on setSearch and sentimentTrendsFactory', function(){
-     expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
-   });
- });
+ // describe('#changeController', function(){
+ //   beforeEach(function(){
+ //     spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
+ //     spyOn(localStorageServiceMock,'set');
+ //     ctrl.changeController();
+ //   })
+ //   it('calls on localstorage when a user moves from the page', function(){
+ //     expect(localStorageServiceMock.set).toHaveBeenCalled();
+ //   });
+ //
+ //   it('calls on setSearch and sentimentTrendsFactory', function(){
+ //     expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
+ //   });
+ // });
 
   describe('#passResults', function(){
     it('sends results of a search result to the sentimentTrendsFactory', function(){

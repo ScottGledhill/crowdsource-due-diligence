@@ -3,7 +3,7 @@ xdescribe("detailed search",function(){
   it("a user can get details for the searchterm ",function(){
     browser.get("http://localhost:8000");
     element(by.model('searchTerm')).sendKeys('MacBook');
-    $('#search').click();
+    $('#submit-search').click();
     var searchTitle = element(by.css('.search-term'));
     expect(searchTitle.getText()).toEqual('MacBook');
 

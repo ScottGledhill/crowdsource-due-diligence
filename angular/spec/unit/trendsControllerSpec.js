@@ -1,15 +1,16 @@
 describe('trendsController', function() {
 
-var sentimentTrendsFactoryMock, ctrl, $q, rootScope, scope;
+var sentimentTrendsFactoryMock, ctrl, $q, rootScope, scope, results;
 
   beforeEach(module('DoesItSuck'));
-  beforeEach(inject(function($controller, $rootScope, _$q_) {
+  beforeEach(inject(function($rootScope, _$q_, $controller) {
         scope = $rootScope.$new();
         $q = _$q_;
         var deferred = $q.defer();
-        deferred.resolve({data:'some value'})
+        deferred.resolve({data:'some value'});
         sentimentTrendsFactoryMock = {getResults: function(){} };
-        spyOn(sentimentTrendsFactoryMock,'getResults').and.returnValue([deferred.promise, deferred.promise, deferred.promise] );
+        results = [{searchTerm: 'Test', result: [deferred.promise, deferred.promise, deferred.promise]}];
+        spyOn(sentimentTrendsFactoryMock,'getResults').and.returnValue(results);
         ctrl = $controller('trendsController', {
           $scope: scope,
           sentimentTrendsFactory: sentimentTrendsFactoryMock
@@ -17,10 +18,10 @@ var sentimentTrendsFactoryMock, ctrl, $q, rootScope, scope;
   }));
 
  describe('intialised', function(){
-   it("starts with an empty array", function(){
-     expect(ctrl.results.length).toEqual(0);
+   it("starts with an array with three empty datapoints", function(){
+     console.log(ctrl)
+     expect(ctrl.data.length).toEqual(3);
    });
-
  });
 
  describe('#getResults', function(){

@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.88% </span>
+        <span class="strong">94.12% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/17</span>
+        <span class='fraction'>16/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>2/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/15</span>
+        <span class='fraction'>15/15</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -67,44 +67,44 @@
 22
 23</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">doesItSuck.factory('datesFactory', [<span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">doesItSuck.factory('datesFactory', [function() {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return {</span>
-     getTwitterDates: <span class="fstat-no" title="function not covered" >function(dateRange){</span>
-<span class="cstat-no" title="statement not covered" >      var today = new Date();</span>
-<span class="cstat-no" title="statement not covered" >      var dates = [];</span>
-<span class="cstat-no" title="statement not covered" >      var newDay = new Date();</span>
-<span class="cstat-no" title="statement not covered" >      var dd, mm, yyyy;</span>
-<span class="cstat-no" title="statement not covered" >      for (var i=0; i&lt;dateRange.length; i++){</span>
-<span class="cstat-no" title="statement not covered" >        newDay.setDate(today.getDate() - dateRange[i]);</span>
-<span class="cstat-no" title="statement not covered" >        dd = newDay.getDate();</span>
-<span class="cstat-no" title="statement not covered" >        mm = newDay.getMonth()+1; </span>//January is 0!
-<span class="cstat-no" title="statement not covered" >        yyyy = newDay.getFullYear();</span>
-<span class="cstat-no" title="statement not covered" >        if(dd&lt;10) { <span class="cstat-no" title="statement not covered" >dd='0'+dd;}</span></span>
-<span class="cstat-no" title="statement not covered" >        if(mm&lt;10) {<span class="cstat-no" title="statement not covered" >mm='0'+mm;}</span></span>
-<span class="cstat-no" title="statement not covered" >        dates.push(yyyy+'-'+mm+'-'+dd);</span>
+  return {
+     getTwitterDates: function(dateRange){
+      var today = new Date();
+      var dates = [];
+      var newDay = new Date();
+      var dd, mm, yyyy;
+      for (var i=0; i&lt;dateRange.length; i++){
+        newDay.setDate(today.getDate() - dateRange[i]);
+        dd = newDay.getDate();
+        mm = newDay.getMonth()+1; //January is 0!
+        yyyy = newDay.getFullYear();
+        <span class="missing-if-branch" title="if path not taken" >I</span>if(dd&lt;10) { <span class="cstat-no" title="statement not covered" >dd='0'+dd;}</span>
+        <span class="missing-if-branch" title="else path not taken" >E</span>if(mm&lt;10) {mm='0'+mm;}
+        dates.push(yyyy+'-'+mm+'-'+dd);
       }
-<span class="cstat-no" title="statement not covered" >      return dates;</span>
+      return dates;
     }
   }
 &nbsp;
@@ -115,7 +115,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 28 2016 15:02:08 GMT+0100 (BST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 28 2016 16:24:48 GMT+0100 (BST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

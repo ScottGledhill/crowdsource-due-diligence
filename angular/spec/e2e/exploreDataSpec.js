@@ -3,7 +3,7 @@ xdescribe("Explore data",function(){
   it("a user can explore the data to see the tweets",function(){
     browser.get("http://localhost:8000");
     element(by.model('searchTerm')).sendKeys('iPhone');
-    $('#search').click();
+    $('#submit-search').click();
     $('.data-link').click();
     expect(browser.getCurrentUrl()).toContain('/data');
 

@@ -3,14 +3,13 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
   var self = this;
 
   self.data = [[],[],[]];
+  self.colors = ['#02D606', '#FFC400', '#FF2626'];
+  self.series = ['Positive', 'Neutral', 'Negative'];
+  self.labels = ['7 days ago', '4 days ago', 'Yesterday'];
 
   function resetData() {
     self.data = [[],[],[]];
   }
-
-  self.colors = ['#02D606', '#FFC400', '#FF2626'];
-  self.series = ['Positive', 'Neutral', 'Negative'];
-  self.labels = ['7 days ago', '4 days ago', 'Yesterday'];
 
   function getResults(){
     resetData();
@@ -19,7 +18,8 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
     promiseArr.forEach(function(response){
       if (self.searchTerm === undefined){self.searchTerm = response.searchTerm;}
       var promise = response.result;
-      promise.then(function(response){resultArr.unshift(response.data);})
+      promise.then(function(response){
+        resultArr.unshift(response.data);})
       .finally(function() {
         if( resultArr.length === 3 ) {
           resultArr.sort(function(a,b) {
