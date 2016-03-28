@@ -26,6 +26,19 @@ describe SentimentAlgorithm do
     it 'takes tweets and a search term and returns a sentiment hash' do
       expect(algorithm.compute_total_sentiment(tweets, search_term)).to include sentiment_hash
     end
+
+    it 'outputs keywords for each message' do
+      results = algorithm.compute_total_sentiment(tweets, search_term)
+      msg_sentiment = {
+                        sentiment: :positive,
+                        posWords: ['awesome'],
+                        negWords: [],
+                        positive: 1,
+                        negative: 0,
+                        content: 'iphone is awesome'
+                      }
+      expect(results[:messages]).to include msg_sentiment
+    end
   end
 
   describe '#search_term_match?' do
