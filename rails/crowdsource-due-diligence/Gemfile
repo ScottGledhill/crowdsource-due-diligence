@@ -8,6 +8,7 @@ group :test do
 end
 
 gem 'rack-cors'
+gem 'tumblr_client'
 
 gem 'figaro'
 gem 'twitter'
