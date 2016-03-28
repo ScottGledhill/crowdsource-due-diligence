@@ -13,9 +13,9 @@ var sentimentTrendsFactoryMock, ctrl, MOCK_MESSAGES, MOCK_SEARCH_RESULTS;
 
     MOCK_SEARCH_RESULTS = {
       searchTerm: 'iPhone',
-      totalPositive: '2',
-      totalNegative: '1',
-      totalNeutral: '50',
+      positive: '2',
+      negative: '1',
+      neutral: '50',
       messages: MOCK_MESSAGES}
 
         sentimentTrendsFactoryMock = {getSearchResult: function(){} };
@@ -36,8 +36,8 @@ var sentimentTrendsFactoryMock, ctrl, MOCK_MESSAGES, MOCK_SEARCH_RESULTS;
      expect(ctrl.searchTerm).toEqual(MOCK_SEARCH_RESULTS.searchTerm);
    });
 
-   it('extends the response data: totalPositive', function(){
-     expect(ctrl.totalPositive).toEqual(MOCK_SEARCH_RESULTS.totalPositive);
+   it('extends the response data: positive', function(){
+     expect(ctrl.positive).toEqual(MOCK_SEARCH_RESULTS.positive);
 
    });
 

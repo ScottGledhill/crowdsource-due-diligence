@@ -11,9 +11,9 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
 
   var MOCK_SEARCH_RESULTS = {
     searchTerm: 'iPhone',
-    totalPositive: '2',
-    totalNegative: '1',
-    totalNeutral: '50',
+    positive: '2',
+    negative: '1',
+    neutral: '50',
     messages: MOCK_MESSAGES
   };
 
