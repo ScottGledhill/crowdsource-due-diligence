@@ -113,6 +113,13 @@ hr {
   visibility: visible;
 }
 
+.chart {
+  margin-top: 3%;
+  width: 75%;
+  height: 25%;
+  margin: 0 auto;
+}
+
 .positive-word {
   color: darkgreen;
   font-weight: bold;
@@ -123,7 +130,6 @@ hr {
   color: red;
   font-weight: bold;
   font-size: 110%
-
 }
 
 .Positive-message {

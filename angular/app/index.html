@@ -14,7 +14,7 @@
     <!-- styling -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type='text/css' rel='stylesheet' href='/css/style.css' />
-    <!-- scripts -->
+    <!-- angular -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -30,9 +30,13 @@
     <script src="js/factories/datesFactory.js"></script>
     <script src="js/factories/sentimentTrendsFactory.js"></script>
     <script src="js/routes.js"></script>
+    <!-- angular-loading-bar -->
     <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
-
+    <!-- angular-chart -->
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
   </head>
 
   <body>
@@ -44,6 +48,11 @@
     <h1>Does it Suck?</h1>
     <h4>Not quite sure whether to buy that product? Unsure about voting for that politician? Make informed choices by finding out whether they suck!</h4>
     <a href='#/about'>About</a>
+
+    <span>
+      | <a href='#/' id='search'>Search</a>
+    </span>
+
     <hr />
 
     <div ng-view></div>

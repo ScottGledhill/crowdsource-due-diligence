@@ -7,8 +7,7 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
 
   var MOCK_MESSAGES = [{sentiment: 'Positive', posWords: ['love'], negWords: [], content: 'love my new iPhone! <3'},
     {sentiment: 'Negative', posWords: [], negWords: ['Damn', 'hate', 'annoying'], content:'Damn, my iphone just broke. Hate when it happens. so annoying'},
-    {sentiment: 'Positive', posWords:['Cool', 'awesome'], negWords:['expensive'], content:'iPhone are soooo cool and awesome, but so expensive!' }]
-
+    {sentiment: 'Positive', posWords:['Cool', 'awesome'], negWords:['expensive'], content:'iPhone are soooo cool and awesome, but so expensive!' }];
 
   var MOCK_SEARCH_RESULTS = {
     searchTerm: 'iPhone',
@@ -16,8 +15,7 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
     totalNegative: '1',
     totalNeutral: '50',
     messages: MOCK_MESSAGES
-  }
-
+  };
 
   var results = {
     setSearchTerm: setSearchTerm,
@@ -28,16 +26,20 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
     LASTWEEKDATES: LASTWEEKDATES,
     setSearchResult: setSearchResult,
     getSearchResult: getSearchResult
-  }
+  };
+
   return results;
 
+  function resetPromises(){
+    searchPromises = [];
+  }
 
   function getResults(){
+    resetPromises();
     var listParams = makeParams();
     callFactory(listParams);
     return searchPromises;
-  };
-
+  }
 
   function setSearchTerm(searchInput){
     searchTerm = searchInput;
@@ -55,10 +57,12 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
     return MOCK_SEARCH_RESULTS;
   }
 
-
   function callFactory(listParams){
     listParams.forEach(function(params){
-      searchPromises.unshift(searchFactory.query(params));
+      result = {};
+      result.searchTerm = params.search_term;
+      result.result = searchFactory.query(params);
+      searchPromises.unshift(result);
       });
   }
 
@@ -73,11 +77,6 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
         listParams.push(params);
       }
       return listParams;
-
     }
-
-
-
-
 
 }]);
