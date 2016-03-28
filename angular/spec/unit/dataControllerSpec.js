@@ -9,14 +9,14 @@ var sentimentTrendsFactoryMock, ctrl, MOCK_MESSAGES, MOCK_SEARCH_RESULTS;
 
     MOCK_MESSAGES = [{sentiment: 'Positive', posWords: ['love'], negWords: [], content: 'love my new iPhone! <3'},
       {sentiment: 'Negative', posWords: [], negWords: ['Damn', 'hate', 'annoying'], content:'Damn, my iphone just broke. Hate when it happens. so annoying'},
-      {sentiment: 'Positive', posWords:['Cool', 'awesome'], negWords:['expensive'], content:'iPhone are soooo cool and awesome, but so expensive!' }]
+      {sentiment: 'Positive', posWords:['Cool', 'awesome'], negWords:['expensive'], content:'iPhone are soooo cool and awesome, but so expensive!' }];
 
     MOCK_SEARCH_RESULTS = {
       searchTerm: 'iPhone',
       positive: '2',
       negative: '1',
       neutral: '50',
-      messages: MOCK_MESSAGES}
+      messages: MOCK_MESSAGES};
 
         sentimentTrendsFactoryMock = {getSearchResult: function(){} };
         spyOn(sentimentTrendsFactoryMock,'getSearchResult').and.returnValue(MOCK_SEARCH_RESULTS);
@@ -49,9 +49,9 @@ var sentimentTrendsFactoryMock, ctrl, MOCK_MESSAGES, MOCK_SEARCH_RESULTS;
  describe('innsert html tag', function(){
 
    it('sentimentTrendsFactory is called when initialised', function(){
-     var updatedMsg = "<span class='Positive-message'><span class='positive-word'>love</span> my new iPhone! <3</span>"
+     var updatedMsg = "<span class='Positive-message'><span class='positive-word'>love</span> my new iPhone! <3</span>";
      expect(ctrl.messages[0].content).toEqual(updatedMsg);
    });
 
- })
+ });
 });

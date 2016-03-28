@@ -1,15 +1,11 @@
-<a href='#/' id='search'>Back to search</a>
+<h4><b>Here's what people are saying about</b>: <span class=search-term>{{dataCtrl.search_term}}</span></h4>
+Positive score: <span id='total-positive-score' class='positive-word'>{{dataCtrl.positive}}</span> |
+Negative score: <span id='total-negative-score-score' class='negative-word'>{{dataCtrl.negative}}</span>
 
-<h4>Here is what people are saying about: <span class=search-term>{{dataCtrl.searchTerm}}</span></h4>
-Positive score: <span id='total-positive-score'>{{dataCtrl.positive}} - </span></span>
-Negative score: <span id='total-negative-score-score'>{{dataCtrl.negative}}</span></span>
-
-<section>
-  <marquee behavior="scroll" direction="up" scrollamount="2">
-  <ul>
-    <li class='messages' ng-repeat="msg in dataCtrl.messages">
-      <span ng-bind-html="msg.content"></span><br />
-    </li>
-  </ul>
-  </marquee>
-</section>
+<marquee id='data-scroll' behavior="scroll" direction="up" scrollamount="2">
+<ul>
+  <li class='messages' ng-repeat="msg in dataCtrl.messages">
+    <span ng-bind-html="msg.content"></span><br />
+  </li>
+</ul>
+</marquee>

@@ -1,21 +1,21 @@
 doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', function(searchFactory, datesFactory) {
 
   var searchTerm = '';
-  var searchResult ='';
+  var searchResult;
   var LASTWEEKDATES = [7,6, 4,3, 1,0];
   var searchPromises = [];
 
-  var MOCK_MESSAGES = [{sentiment: 'Positive', posWords: ['love'], negWords: [], content: 'love my new iPhone! <3'},
-    {sentiment: 'Negative', posWords: [], negWords: ['Damn', 'hate', 'annoying'], content:'Damn, my iphone just broke. Hate when it happens. so annoying'},
-    {sentiment: 'Positive', posWords:['Cool', 'awesome'], negWords:['expensive'], content:'iPhone are soooo cool and awesome, but so expensive!' }];
-
-  var MOCK_SEARCH_RESULTS = {
-    searchTerm: 'iPhone',
-    positive: '2',
-    negative: '1',
-    neutral: '50',
-    messages: MOCK_MESSAGES
-  };
+  // var MOCK_MESSAGES = [{sentiment: 'Positive', posWords: ['love'], negWords: [], content: 'love my new iPhone! <3'},
+  //   {sentiment: 'Negative', posWords: [], negWords: ['Damn', 'hate', 'annoying'], content:'Damn, my iphone just broke. Hate when it happens. so annoying'},
+  //   {sentiment: 'Positive', posWords:['Cool', 'awesome'], negWords:['expensive'], content:'iPhone are soooo cool and awesome, but so expensive!' }];
+  //
+  // var MOCK_SEARCH_RESULTS = {
+  //   searchTerm: 'iPhone',
+  //   positive: '2',
+  //   negative: '1',
+  //   neutral: '50',
+  //   messages: MOCK_MESSAGES
+  // };
 
   var results = {
     setSearchTerm: setSearchTerm,
@@ -54,7 +54,7 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
   }
 
   function getSearchResult(){
-    return MOCK_SEARCH_RESULTS;
+    return searchResult;
   }
 
   function callFactory(listParams){
