@@ -119,3 +119,23 @@ hr {
   height: 25%;
   margin: 0 auto;
 }
+
+.positive-word {
+  color: darkgreen;
+  font-weight: bold;
+  font-size: 110%
+}
+
+.negative-word {
+  color: red;
+  font-weight: bold;
+  font-size: 110%
+}
+
+.Positive-message {
+  background-color: rgba(32,255,3,0.1);
+}
+
+.Negative-message {
+  background-color: rgba(245,32,32,0.1);
+}

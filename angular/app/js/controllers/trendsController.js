@@ -30,8 +30,6 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
             self.data[1].push(result.neutral);
             self.data[2].push(result.negative);
           });
-
-          console.log(self.data);
         }
       });
     });
