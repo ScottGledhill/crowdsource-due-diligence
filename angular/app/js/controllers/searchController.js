@@ -1,9 +1,9 @@
-doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactory', 'localStorageService', function(searchFactory, sentimentTrendsFactory, localStorageService){
+
+doesItSuck.controller('searchController',['$route','searchFactory','sentimentTrendsFactory', 'localStorageService', function($route, searchFactory, sentimentTrendsFactory, localStorageService){
   var self = this;
   self.searches = [];
   self.resultReady = false;
   self.bg = '{"background-color": "red"}';
-
 
   var STORAGE_KEY = 'resultHistory';
 
@@ -19,7 +19,6 @@ doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactor
 
   self.getHistory(STORAGE_KEY);
 
-
   self.makeSearch = function(searchTerm){
     searchFactory.query(searchTerm).then(function(response){
       response.data.loaded = true;
@@ -29,7 +28,7 @@ doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactor
 
   self.setSearchTerm = function(searchTerm) {
     sentimentTrendsFactory.setSearchTerm(searchTerm);
-  }
+  };
 
   self.changeController = function(searchTerm){
     self.setSearchTerm(searchTerm);
@@ -38,15 +37,15 @@ doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactor
 
   self.passResults = function(searchResult){
     sentimentTrendsFactory.setSearchResult(searchResult);
-  }
+  };
 
   self.evaluateSearch = function (search) {
     if( search.positive > 1.5 * search.negative) {
-      return RESULT_TERMS['positive'];
-    } else if( search.negative > 1.33 * search.positive) {
-      return RESULT_TERMS['negative'];
+      return RESULT_TERMS.positive;
+    } else if( search.negative > 1.5 * search.positive) {
+      return RESULT_TERMS.negative;
     } else {
-      return RESULT_TERMS['neutral'];
+      return RESULT_TERMS.neutral;
     }
   };
 
@@ -55,11 +54,7 @@ doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactor
     return COLORCHOICE[evaluated];
   };
 
-
-
-  var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'}
-  var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'}
-
-
+  var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
+  var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};
 
 }]);
