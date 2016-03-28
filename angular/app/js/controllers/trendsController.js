@@ -11,12 +11,20 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
     self.data = [[],[],[]];
   }
 
+  function loadData(){
+    if (sentimentTrendsFactory.getSearchTerm() != undefined){
+      getResults();
+    }else{
+      self.searchTerm = 'No search term given';
+    }
+  }
+
   function getResults(){
     resetData();
     var promiseArr = sentimentTrendsFactory.getResults();
     var resultArr = [];
     promiseArr.forEach(function(response){
-      if (self.searchTerm === undefined){self.searchTerm = response.searchTerm;}
+      self.searchTerm = response.searchTerm;
       var promise = response.result;
       promise.then(function(response){
         resultArr.unshift(response.data);})
@@ -35,6 +43,6 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
     });
   }
 
-  getResults();
+  loadData();
 
 }]);

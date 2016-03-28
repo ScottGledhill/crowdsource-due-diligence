@@ -24,7 +24,6 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
   }));
 
  describe('#getHistory', function(){
-
    it('is called when ctrl is loaded', function(){
      expect(ctrl.searches).toEqual(searchResult);
    });
@@ -36,8 +35,6 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
    it('results from local storage is entered into searches', function(){
      expect(ctrl.searches).toEqual(searchResult);
    });
-
-
  });
 
  describe('#setHistory', function(){
@@ -59,20 +56,33 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
    });
  });
 
- // describe('#changeController', function(){
- //   beforeEach(function(){
- //     spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
- //     spyOn(localStorageServiceMock,'set');
- //     ctrl.changeController();
- //   })
- //   it('calls on localstorage when a user moves from the page', function(){
- //     expect(localStorageServiceMock.set).toHaveBeenCalled();
- //   });
- //
- //   it('calls on setSearch and sentimentTrendsFactory', function(){
- //     expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
- //   });
- // });
+ describe('#deleteSearch', function(){
+
+   beforeEach(function(){
+     spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
+     spyOn(localStorageServiceMock,'set');
+     var deferred = $q.defer();
+     deferred.resolve({data:'some value'})
+     spyOn(searchFactoryMock,'query').and.returnValue( deferred.promise );
+     httpBackend.whenGET('partials/main-search.html').respond({data: 'Success'});
+     ctrl.makeSearch(searchTerm)
+    })
+
+   it('a user can delete a search item', function(){
+     ctrl.delete('some value')
+     expect(ctrl.searches.length).toEqual(0)
+
+   });
+
+   it ('updates the local storage', function(){
+     ctrl.delete('some value')
+     expect(localStorageServiceMock.set).toHaveBeenCalled();
+   })
+
+  //  it('calls on setSearch and sentimentTrendsFactory', function(){
+  //    expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
+  //  });
+ });
 
   describe('#passResults', function(){
     it('sends results of a search result to the sentimentTrendsFactory', function(){

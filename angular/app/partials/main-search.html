@@ -16,7 +16,8 @@
        Tweet</a>
       </li>
       <li><a href="#/trends" class='trends-link' ng-click='searchCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
-        <li><a href="#/data" class='data-link' ng-click='searchCtrl.passResults(search)'>Explore messages</a></li>
+      <li><a href="#/data" class='data-link' ng-click='searchCtrl.passResults(search)'>Explore messages</a></li>
+      <li><button ng-click='searchCtrl.delete(search)'>Delete search </button></li>
     </div><!-- end results item -->
   </ul>
 </section>

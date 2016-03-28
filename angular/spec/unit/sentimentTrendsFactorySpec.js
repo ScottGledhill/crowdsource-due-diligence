@@ -27,7 +27,7 @@ beforeEach(function() {
 
    describe('#setSearchTerm', function(){
      it('is set to blank initially', function(){
-       expect(factory.getSearchTerm()).toEqual('');
+       expect(factory.getSearchTerm()).toBe(undefined);
      });
 
      it('can be set to a new searchterm', function(){
@@ -43,7 +43,8 @@ beforeEach(function() {
      });
 
      it('has the format of search params', function(){
-       var params = {search_term: '', date_from:'2016-03-20', date_till: '2016-03-20' }
+       factory.setSearchTerm('Test')
+       var params = {search_term: 'Test', date_from:'2016-03-20', date_till: '2016-03-20' }
        expect(factory.makeParams()).toContain(params);
      });
 
@@ -81,7 +82,8 @@ beforeEach(function() {
        });
 
        it('returns searchpromises', function(){
-         var result = {searchTerm: '', result: searchPromise}
+         factory.setSearchTerm('Test')
+         var result = {searchTerm: 'Test', result: searchPromise}
          expect(factory.getResults()).toEqual([result, result, result]);
        });
   });

@@ -16,7 +16,11 @@ doesItSuck.controller('searchController',['$scope', '$route','searchFactory','se
     localStorageService.set(key, value);
   };
 
-  self.getHistory(STORAGE_KEY);
+  self.delete = function(search){
+    var index = self.searches.indexOf(search)
+    if (index > -1) self.searches.splice(index,1);
+    self.setHistory(STORAGE_KEY,self.searches);
+  }
 
   self.makeSearch = function(searchTerm){
     searchFactory.query(searchTerm).then(function(response){
@@ -47,6 +51,8 @@ doesItSuck.controller('searchController',['$scope', '$route','searchFactory','se
     var evaluated = self.evaluateSearch(search);
     return COLORCHOICE[evaluated];
   };
+
+  self.getHistory(STORAGE_KEY);
 
   $scope.$on('$routeChangeStart', function(event,next,prev){
     self.setHistory(STORAGE_KEY,self.searches);

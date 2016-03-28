@@ -1,6 +1,6 @@
 doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', function(searchFactory, datesFactory) {
 
-  var searchTerm = '';
+  var searchTerm;
   var searchResult ='';
   var LASTWEEKDATES = [7,6, 4,3, 1,0];
   var searchPromises = [];
