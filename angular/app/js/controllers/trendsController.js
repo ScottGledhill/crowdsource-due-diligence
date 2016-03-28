@@ -12,11 +12,9 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
   self.series = ['Positive', 'Neutral', 'Negative'];
   self.labels = ['7 days ago', '4 days ago', 'Yesterday'];
 
-  getResults();
-
   function getResults(){
     resetData();
-    var promiseArr = sentimentTrendsFactory.getRetVal();
+    var promiseArr = sentimentTrendsFactory.getResults();
     var resultArr = [];
     promiseArr.forEach(function(response){
       if (self.searchTerm === undefined){self.searchTerm = response.searchTerm;}
@@ -32,9 +30,13 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
             self.data[1].push(result.neutral);
             self.data[2].push(result.negative);
           });
+
+          console.log(self.data);
         }
       });
     });
   }
+
+  getResults();
 
 }]);
