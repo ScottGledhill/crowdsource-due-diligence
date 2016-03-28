@@ -4,6 +4,8 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory', function(sen
 
   function getResults(){
     var promiseArr = sentimentTrendsFactory.getResults();
+    console.log(promiseArr)
+
     promiseArr.forEach(function(promise){
       promise.then(function(response){
         self.results.unshift(response.data);
