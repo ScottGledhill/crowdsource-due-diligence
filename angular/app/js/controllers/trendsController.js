@@ -1,31 +1,38 @@
-doesItSuck.controller('trendsController',['sentimentTrendsFactory', 'chartFactory',  function(sentimentTrendsFactory, chartFactory){
-  // pass in chartFactory
+doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(sentimentTrendsFactory){
+
   var self = this;
-  self.searchTerm = undefined;
 
   self.data = [[],[],[]];
-
-  this.colors = ['#02D606', '#FFC400', '#FF2626'];
-  this.series = ['Positive', 'Neutral', 'Negative'];
-  this.labels = ['7 days ago', '4 days ago', 'Yesterday'];
-
-
-  getResults();
 
   function resetData() {
     self.data = [[],[],[]];
   }
 
+  self.colors = ['#02D606', '#FFC400', '#FF2626'];
+  self.series = ['Positive', 'Neutral', 'Negative'];
+  self.labels = ['7 days ago', '4 days ago', 'Yesterday'];
+
+  getResults();
+
   function getResults(){
     resetData();
     var promiseArr = sentimentTrendsFactory.getRetVal();
-    promiseArr.forEach(function(promise){
-      promise.then(function(response){
-        if (self.searchTerm === undefined){self.searchTerm = response.data.search_term;}
-        self.data[0].unshift(response.data.positive);
-        self.data[1].unshift(response.data.neutral);
-        self.data[2].unshift(response.data.negative);
-        console.log(self.data);
+    var resultArr = [];
+    promiseArr.forEach(function(response){
+      if (self.searchTerm === undefined){self.searchTerm = response.searchTerm;}
+      var promise = response.result;
+      promise.then(function(response){resultArr.unshift(response.data);})
+      .finally(function() {
+        if( resultArr.length === 3 ) {
+          resultArr.sort(function(a,b) {
+              return new Date(a.date_from) - new Date(b.date_from);
+          });
+          resultArr.forEach(function(result) {
+            self.data[0].push(result.positive);
+            self.data[1].push(result.neutral);
+            self.data[2].push(result.negative);
+          });
+        }
       });
     });
   }

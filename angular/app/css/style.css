@@ -114,7 +114,8 @@ hr {
 }
 
 .chart {
-  width: 70%;
-  height: 20%;
+  margin-top: 3%;
+  width: 75%;
+  height: 25%;
   margin: 0 auto;
 }

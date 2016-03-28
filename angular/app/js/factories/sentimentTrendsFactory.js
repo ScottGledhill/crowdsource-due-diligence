@@ -11,7 +11,12 @@ doesItSuck.factory('sentimentTrendsFactory', ['$http', 'searchFactory', function
   };
   return results;
 
+  function resetRetVal(){
+    retVal = [];
+  }
+
   function getRetVal(){
+    resetRetVal();
     returnResults();
     return retVal;
   }
@@ -27,7 +32,10 @@ doesItSuck.factory('sentimentTrendsFactory', ['$http', 'searchFactory', function
   function returnResults(){
     var listParams = makeParams();
     listParams.forEach(function(params){
-      retVal.unshift(searchFactory.query(params));
+      result = {};
+      result.searchTerm = params.search_term;
+      result.result = searchFactory.query(params);
+      retVal.unshift(result);
       });
   }
 
