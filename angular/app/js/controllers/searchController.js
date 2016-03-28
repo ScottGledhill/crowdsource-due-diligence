@@ -9,7 +9,8 @@ doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactor
 
 
   self.getHistory = function(resultHistory){
-    self.searches = localStorageService.get(resultHistory);
+    var lskeys = localStorageService.keys()
+    self.searches = lskeys.length < 1 ? [] : localStorageService.get(resultHistory);
   }
 
   self.setHistory = function(key, value){

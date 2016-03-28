@@ -1,3 +1,4 @@
 /angular/node_modules/*
 /angular/app/bower_components/*
+/angular/spec/unit/coverage/*
 /rails/crowdsource-due-diligence/config/application.yml

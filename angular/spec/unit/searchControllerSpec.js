@@ -11,7 +11,7 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
     httpBackend = $httpBackend;
     searchFactoryMock = {query: function(){} };
     sentimentTrendsFactoryMock = {setSearchTerm: function(){},setSearchResult: function(){} };
-    localStorageServiceMock = {get: function(){}, set: function (){} };
+    localStorageServiceMock = {get: function(){}, set: function (){}, keys: function(){ return ['test']} };
     searchResult = []
     spyOn(localStorageServiceMock,'get').and.returnValue(searchResult);
     searchTerm = {search_term: 'Test searchTerm'};
