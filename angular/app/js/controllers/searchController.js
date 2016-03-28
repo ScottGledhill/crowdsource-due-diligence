@@ -1,8 +1,22 @@
-doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactory', function(searchFactory, sentimentTrendsFactory){
+doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactory', 'localStorageService', function(searchFactory, sentimentTrendsFactory, localStorageService){
   var self = this;
   self.searches = [];
   self.resultReady = false;
   self.bg = '{"background-color": "red"}';
+
+
+  var STORAGE_KEY = 'resultHistory';
+
+
+  self.getHistory = function(resultHistory){
+    self.searches = localStorageService.get(resultHistory);
+  }
+
+  self.setHistory = function(key, value){
+    localStorageService.set(key, value);
+  };
+
+  self.getHistory(STORAGE_KEY);
 
 
   self.makeSearch = function(searchTerm){
@@ -14,6 +28,11 @@ doesItSuck.controller('searchController',['searchFactory','sentimentTrendsFactor
 
   self.setSearchTerm = function(searchTerm) {
     sentimentTrendsFactory.setSearchTerm(searchTerm);
+  }
+
+  self.changeController = function(searchTerm){
+    self.setSearchTerm(searchTerm);
+    self.setHistory(STORAGE_KEY,self.searches);
   }
 
   self.passResults = function(searchResult){

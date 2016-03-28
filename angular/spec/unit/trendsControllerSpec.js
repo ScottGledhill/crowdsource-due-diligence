@@ -12,10 +12,9 @@ var sentimentTrendsFactoryMock, ctrl, $q, rootScope, scope;
         spyOn(sentimentTrendsFactoryMock,'getResults').and.returnValue([deferred.promise, deferred.promise, deferred.promise] );
         ctrl = $controller('trendsController', {
           $scope: scope,
-          sentimentTrendsFactory: sentimentTrendsFactoryMock});
-
-       })
- );
+          sentimentTrendsFactory: sentimentTrendsFactoryMock
+        });
+  }));
 
  describe('intialised', function(){
    it("starts with an empty array", function(){

@@ -1,33 +1,78 @@
 describe('searchController', function() {
 
-var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootScope, scope, httpBackend;
+var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootScope, scope, httpBackend, localStorageServiceMock, searchResult;
 
 
-  beforeEach(function(){
-    module('DoesItSuck');
-      inject(function($rootScope, _$q_, $controller, $httpBackend){
-        searchFactoryMock = {query: function(){} };
-        sentimentTrendsFactoryMock = {setSearchTerm: function(){},setSearchResult: function(){} };
-        scope = $rootScope.$new();
-        $q = _$q_;
-        httpBackend = $httpBackend;
-        ctrl = $controller('searchController', {
-          $scope: scope,
-          searchFactory: searchFactoryMock,
-          sentimentTrendsFactory: sentimentTrendsFactoryMock});
-       })
+  beforeEach(module('DoesItSuck'));
 
-      searchTerm = {search_term: 'Test searchTerm'};
+  beforeEach(inject(function($rootScope, _$q_, $controller, $httpBackend){
+    scope = $rootScope.$new();
+    $q = _$q_;
+    httpBackend = $httpBackend;
+    searchFactoryMock = {query: function(){} };
+    sentimentTrendsFactoryMock = {setSearchTerm: function(){},setSearchResult: function(){} };
+    localStorageServiceMock = {get: function(){}, set: function (){} };
+    searchResult = []
+    spyOn(localStorageServiceMock,'get').and.returnValue(searchResult);
+    searchTerm = {search_term: 'Test searchTerm'};
+    ctrl = $controller('searchController', {
+      $scope: scope,
+      searchFactory: searchFactoryMock,
+      sentimentTrendsFactory: sentimentTrendsFactoryMock,
+      localStorageService: localStorageServiceMock
+    });
+  }));
+
+ describe('#getHistory', function(){
+
+   it('is called when ctrl is loaded', function(){
+     expect(ctrl.searches).toEqual(searchResult);
+   });
+
+   it('local storage is called to retrieve previous results', function(){
+     expect(localStorageServiceMock.get).toHaveBeenCalled();
+   });
+
+   it('results from local storage is entered into searches', function(){
+     expect(ctrl.searches).toEqual(searchResult);
+   });
+
+
  });
 
+ describe('#setHistory', function(){
+   var key;
 
-  describe('#setSearchTerm', function(){
-    it('sentimentTrendsFactory is called', function(){
-      spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
-      ctrl.setSearchTerm(searchTerm);
-      expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
-    });
-  });
+   beforeEach(function(){
+     spyOn(localStorageServiceMock,'set');
+     key = 'resultHistory'
+   });
+
+   it('local storage is called to retrieve previous results', function(){
+     ctrl.setHistory(key,searchResult)
+     expect(localStorageServiceMock.set).toHaveBeenCalledWith(key, searchResult);
+   });
+
+   it('is called when a user moves from the page', function(){
+     ctrl.changeController();
+     expect(localStorageServiceMock.set).toHaveBeenCalled();
+   });
+ });
+
+ describe('#changeController', function(){
+   beforeEach(function(){
+     spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
+     spyOn(localStorageServiceMock,'set');
+     ctrl.changeController();
+   })
+   it('calls on localstorage when a user moves from the page', function(){
+     expect(localStorageServiceMock.set).toHaveBeenCalled();
+   });
+
+   it('calls on setSearch and sentimentTrendsFactory', function(){
+     expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
+   });
+ });
 
   describe('#passResults', function(){
     it('sends results of a search result to the sentimentTrendsFactory', function(){
