@@ -1,1 +1,1 @@
-var doesItSuck = angular.module('DoesItSuck', ['ngResource', 'ngRoute', 'angular-loading-bar', 'chart.js', 'ngSanitize']);
+var doesItSuck = angular.module('DoesItSuck', ['ngResource', 'ngRoute', 'angular-loading-bar', 'chart.js', 'ngSanitize', 'LocalStorageModule']);

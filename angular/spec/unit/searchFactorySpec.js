@@ -20,7 +20,7 @@ describe('factory: searchFactory', function() {
    describe('calling Rails API to give search term', function(){
 
      it('sends out the searchterm and stores the response', function(){
-       var url = 'http://localhost:3000/search';
+       var url = 'https://does-it-suck-rails.herokuapp.com/search';
        httpBackend.flush();
        httpBackend
          .expectPOST(url,searchTerm)
@@ -35,7 +35,7 @@ describe('factory: searchFactory', function() {
      dateTo = '2014-03-24';
 
      it('can send out a search with a specific date', function(){
-       var url = 'http://localhost:3000/search';
+       var url = 'https://does-it-suck-rails.herokuapp.com/search';
        httpBackend.flush();
        var params = {search_term: searchTerm, date_from: dateFrom, date_to: dateTo}
        factory.query(params);
