@@ -10,7 +10,7 @@ self.results = [];
       searchFactory.query(searchTerm).then(function(response){
         response.data.loaded = true;
         comparison.unshift(response.data);
-      });
+      })
     });
     self.results.unshift(comparison);
   };
@@ -30,15 +30,25 @@ self.results = [];
     return COLORCHOICE[evaluated];
   };
 
+
+
   self.outcome = function(compArray){
     var firstArray = compArray[0].positive / compArray[0].negative;
     var secondArray =  compArray[1].positive / compArray[1].negative;
     if (firstArray > secondArray){
-      return compArray[1].search_term + ' Sucks';
-    } else {
+      compArray[1].outcome = 'DOESN\'T SUCK'
+      compArray[0].outcome = 'SUCKS'
       return compArray[0].search_term + ' Sucks';
+    } else {
+      compArray[1].outcome = 'SUCKS'
+      compArray[0].outcome = 'DOESN\'T SUCK'
+      return compArray[1].search_term + ' Sucks';
     }
   };
+
+  self.calcBgCol2 = function(search){
+    return COLORCHOICE[search.outcome];
+  }
 
 
     var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};

@@ -7,22 +7,26 @@
 </section>
 <section class="search-results">
   <div class='repeat-list' ng-repeat='comparison in compareCtrl.results'>
-    <div class='result-item' >
+
     <div class='comparison-result' ng-repeat='search in comparison'>
-    <ul><li><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
-    <li class='suck-evaluation'>{{compareCtrl.evaluateSearch(search);}}</li>
+    <div class='result-item' ng-class='compareCtrl.calcBgCol2(search)'>
+    <ul><li><span class='suck-evaluation'>{{search.search_term}}</span></li>
+    <!-- <li class='suck-evaluation'>{{compareCtrl.evaluateSearch(search);}}</li> -->
+    <li>
+
+
     <img class='emoji' src='images/happy.png' />{{search.positive}}
     <img class='emoji' src='images/sad.png' />{{search.negative}}
     <img class='emoji' src='images/neutral.png' />{{search.neutral}}
-    <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=According to does it suck? {{search.search_term}} {{compareCtrl.evaluateSearch(search)}}, visit the site at https://does-it-suck.herokuapp.com/ and see what else sucks!">
+    </li>
+    <li> <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=According to does it suck? {{search.search_term}} {{compareCtrl.evaluateSearch(search)}}, visit the site at https://does-it-suck.herokuapp.com/ and see what else sucks!">
       Tweet</a>
     </li>
     <li><a href="#/trends" class='trends-link' ng-click='compareCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
     <li><a href="#/data" class='data-link' ng-click='compareCtrl.passResults(search)'>Explore messages</a></li>
-    <li><button ng-click='compareCtrl.delete(search)'>Delete search </button></li>
   </ul>
     </div>
-    {{compareCtrl.outcome(comparison)}}
   </div>
-  </ul>
+  <span class='suck-evaluation'>{{compareCtrl.outcome(comparison)}}</span>
+</div>
 </section>
