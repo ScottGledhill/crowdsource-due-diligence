@@ -1,0 +1,4 @@
+doesItSuck.controller('compareController',[ function(){
+
+
+}]);
