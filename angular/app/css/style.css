@@ -156,18 +156,24 @@ hr {
   margin-bottom: 5px;
 }
 
-.result-item:hover .delete {
-  visibility: visible;
-}
-
 .delete {
   position: absolute;
-  top: 0;
+  top: 0px;
   right: 5px;
-  visibility: hidden;
 }
 
 .delete img {
   height: 15px;
   width: 15px;
+}
+
+.twitter-share-button {
+  position: absolute;
+  top: -2px;
+  right: 23px;
+}
+
+.twitter-share-button img {
+  height: 26px;
+  width: 26px;
 }
