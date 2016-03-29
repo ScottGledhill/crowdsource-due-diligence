@@ -1,12 +1,15 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'test' ]
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'protractor' ]
 2 info using npm@2.14.12
 3 info using node@v4.3.2
 4 verbose stack Error: ENOENT: no such file or directory, open '/Users/eirikwiig/Projects/Course/Week10/crowdsource-due-diligence/package.json'
 4 verbose stack     at Error (native)
 5 verbose cwd /Users/eirikwiig/Projects/Course/Week10/crowdsource-due-diligence
 6 error Darwin 14.0.0
-7 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "test"
+7 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run" "protractor"
 8 error node v4.3.2
 9 error npm  v2.14.12
 10 error path /Users/eirikwiig/Projects/Course/Week10/crowdsource-due-diligence/package.json

@@ -70,3 +70,72 @@ hr {
 .emoji {
   border-radius: 100%;
 }
+
+#images a{
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  padding: 25px;
+}
+
+.avatar {
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+}
+
+.avatar p {
+  padding-top: 20px;
+  position: relative;
+  z-index: 2;
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  font-size: 3em;
+  visibility: hidden;
+}
+
+.avatar img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+}
+
+.avatar:hover img {
+  opacity: 0.5;
+}
+
+.avatar:hover p {
+  visibility: visible;
+}
+
+.chart {
+  margin-top: 3%;
+  width: 75%;
+  height: 25%;
+  margin: 0 auto;
+}
+
+.positive-word {
+  color: darkgreen;
+  font-weight: bold;
+  font-size: 110%
+}
+
+.negative-word {
+  color: red;
+  font-weight: bold;
+  font-size: 110%
+}
+
+.Positive-message {
+  background-color: rgba(32,255,3,0.1);
+}
+
+.Negative-message {
+  background-color: rgba(245,32,32,0.1);
+}

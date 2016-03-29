@@ -1,10 +1,8 @@
-<a href='#/' id='search'>Back to search</a>
-<section class="search-results">
-  <ul class='result-item' ng-repeat="sentiment in trendsCtrl.results">
-    <li><b>Date:</b> <span class='search-term'>{{sentiment.date_from}}</span> </li>
-    <li><b>Results for:</b> <span class='search-term'>{{sentiment.search_term}}</span> </li>
-    <li><b>Sucks:</b> <span class='negative-result'>{{sentiment.negative}}</span> </li>
-    <li><b>Doesn't suck:</b> <span class='positive-result'>{{sentiment.positive}}</span> </li>
-    <li><b>Don't care:</b> <span class='neutral-result'>{{sentiment.neutral}}</span> </li>
-  </ul>
+<h4><b>Weekly sentiment trends for: </b>{{trendsCtrl.searchTerm}}</h4>
+
+<section class='chart'>
+
+  <canvas id="line" class="chart chart-line" chart-data="trendsCtrl.data"
+  chart-labels="trendsCtrl.labels" chart-legend="true" chart-series="trendsCtrl.series" chart-colours="trendsCtrl.colors"</canvas>
+
 </section>

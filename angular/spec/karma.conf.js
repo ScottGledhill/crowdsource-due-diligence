@@ -16,10 +16,14 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       "./app/bower_components/angular/angular.js",
+      "./app/bower_components/angular-sanitize/angular-sanitize.js",
       "./app/bower_components/angular-mocks/angular-mocks.js",
       './app/bower_components/angular-resource/angular-resource.js',
       './app/bower_components/angular-route/angular-route.js',
+      './app/bower_components/angular-local-storage/dist/angular-local-storage.js',
       './app/bower_components/jquery/dist/jquery.js',
+      './app/bower_components/Chart.js/Chart.min.js',
+      './app/bower_components/angular-chart.js/dist/angular-chart.min.js',
       'http://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js',
       './app/js/**/*.js',
       'spec/unit/*Spec.js'
@@ -34,13 +38,19 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+       './app/js/**/*.js': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter: {
+      type: 'lcov',
+      dir : 'spec/unit/coverage/'
+    },
 
 
     // web server port

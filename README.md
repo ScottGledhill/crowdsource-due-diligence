@@ -7,7 +7,7 @@ Makers Academy final project, made collaboratively by Rufus Raghunath, Eirik Wii
 
 View it on Heroku at https://does-it-suck.herokuapp.com/.
 
-Work in progress.
+Work in progress (end date Friday 01/04/2016).
 
 USER STORIES:
 
