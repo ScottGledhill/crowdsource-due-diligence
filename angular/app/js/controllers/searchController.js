@@ -58,9 +58,6 @@ doesItSuck.controller('searchController',['$scope', '$route','searchFactory','se
     self.setHistory(STORAGE_KEY,self.searches);
   });
 
-
-
-
   var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
   var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};
 

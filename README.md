@@ -1,5 +1,5 @@
 #Does it suck?
-###Crowdsourcing due diligence research via Twitter sentiment analysis
+###A tongue-in-cheek due diligence research engine powered by Twitter sentiment analysis
 
 [![Stories in Ready](https://badge.waffle.io/rufusraghunath/crowdsource-due-diligence.png?label=ready&title=Ready)](http://waffle.io/rufusraghunath/crowdsource-due-diligence)
 
@@ -49,3 +49,5 @@ ACKNOWLEDGEMENTS:
 Thanks to Bing Liu and Minquing Hu for compiling comprehensive libraries of positive and negative valence words in their <a href='https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html#lexicon'>Opinion Lexicon</a>. This was used in processing social media input (e.g. tweets) for sentiment.
 
 Emoticon images from https://www.wpclipart.com/smiley/smiley_outlines/smiley_outline_set/.
+
+Twitter icon by http://www.flaticon.com/authors/icomoon

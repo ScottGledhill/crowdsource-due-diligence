@@ -21,7 +21,7 @@ doesItSuck.controller('dataController',['sentimentTrendsFactory', function(senti
     var re;
     msg.posWords.forEach(function(pos){
       re = new RegExp(pos, "gi");
-      msg.content = msg.content.replace(re,"<span class='positive-word'>"+pos+"</span>");
+      msg.content = msg.content.replace(re,"<span class='positive-word big-font'>"+pos+"</span>");
     });
   }
 
@@ -29,7 +29,7 @@ doesItSuck.controller('dataController',['sentimentTrendsFactory', function(senti
     var re;
     msg.negWords.forEach(function(neg){
       re = new RegExp(neg, "gi");
-      msg.content = msg.content.replace(re,"<span class='negative-word'>"+neg+"</span>");
+      msg.content = msg.content.replace(re,"<span class='negative-word big-font'>"+neg+"</span>");
     });
   }
 
