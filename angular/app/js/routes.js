@@ -27,7 +27,7 @@ doesItSuck.config(['$routeProvider',
       when('/comparison', {
         templateUrl: 'partials/compare.html',
         controller: 'compareController',
-        controllerAs: 'compareCtrl'
+        controllerAs: 'searchCtrl'
       }).
       otherwise({
         redirectTo: '/'

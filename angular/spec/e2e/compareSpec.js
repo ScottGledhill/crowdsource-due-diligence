@@ -1,7 +1,7 @@
 describe("compare two searchterms",function(){
 
 
-  it("submitting a specific searchword",function(){
+  it("submitting comparative searches",function(){
     browser.get("http://localhost:8000");
     $('#compare-link').click();
     expect(browser.getCurrentUrl()).toContain('/compare');
@@ -16,7 +16,4 @@ describe("compare two searchterms",function(){
     expect(searchTitleTwo.getText()).toEqual('Iphone 5');
 
   });
-
-
-
 });
