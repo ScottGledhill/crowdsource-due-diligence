@@ -6,7 +6,7 @@ describe('compareController', function() {
   beforeEach(inject(function($controller) {
 
     searchFactoryMock = {getSearchResult: function(){} };
-      ctrl = $controller('compareController');
+      ctrl = $controller('comparecController');
     }));
 
   describe('#getCompareResults', function(){

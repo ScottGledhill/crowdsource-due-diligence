@@ -4,5 +4,6 @@ var self = this;
 
   self.makeSearch = function(searchTermOne, searchTermTwo){
     self.searchTerms = [searchTermOne, searchTermTwo];
+    self.getResults = searc
   };
 }]);
