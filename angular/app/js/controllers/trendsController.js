@@ -19,6 +19,9 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
     }
   }
 
+  // TODO: //getResults should be refactored, and more of the logic moved elsewhere
+
+
   function getResults(){
     resetData();
     var promiseArr = sentimentTrendsFactory.getResults();

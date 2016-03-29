@@ -61,7 +61,7 @@ beforeEach(function() {
 
    });
 
-   //include once we have integrated with backend
+   // TODO include once we have integrated with backend
    xdescribe('#setSearchResult', function(){
      it('starts out empty', function(){
        expect(factory.getSearchResult()).toEqual('');

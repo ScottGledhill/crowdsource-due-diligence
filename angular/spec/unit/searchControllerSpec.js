@@ -79,9 +79,6 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
      expect(localStorageServiceMock.set).toHaveBeenCalled();
    })
 
-  //  it('calls on setSearch and sentimentTrendsFactory', function(){
-  //    expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
-  //  });
  });
 
   describe('#passResults', function(){
