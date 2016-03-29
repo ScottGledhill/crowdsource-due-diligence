@@ -37,6 +37,7 @@ hr {
 }
 
 .result-item {
+  position: relative;
   border: 3px solid grey;
   border-radius: 3px;
   padding-top: 10px;
@@ -137,7 +138,7 @@ hr {
 }
 
 .big-font {
-  font-size: 150%;
+  font-size: 1.5em;
 }
 
 .positive-message {
@@ -146,4 +147,27 @@ hr {
 
 .negative-message {
   background-color: rgba(245,32,32,0.1);
+}
+
+.message-hr {
+  width: 100%;
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.result-item:hover .delete {
+  visibility: visible;
+}
+
+.delete {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  visibility: hidden;
+}
+
+.delete img {
+  height: 15px;
+  width: 15px;
 }
