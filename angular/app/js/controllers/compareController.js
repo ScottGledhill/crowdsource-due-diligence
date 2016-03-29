@@ -7,6 +7,7 @@ self.results = [];
     self.searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
     self.searchTerms.forEach(function(searchTerm){
       searchFactory.query(searchTerm).then(function(response){
+        response.data.loaded = true;
         self.results.unshift(response.data);
       });
     })

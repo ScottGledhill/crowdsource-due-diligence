@@ -1,24 +1,24 @@
 <section id="search-bar" >
   <form>
-    <input type="text" ng-model="comparison-one" placeholder="Enter search term">
-    <input type="text" ng-model="comparison-two" placeholder="Enter search term">
-    <input type="submit" id="submit-search" value="Well, Which one sucks?" ng-click="searchCtrl.makeSearch(searchTermOne, searchTermTwo); searchTermOne = ''; searchTermTwo = ''">
+    <input type="text" ng-model="searchTermOne" placeholder="Enter search term">
+    <input type="text" ng-model="searchTermTwo" placeholder="Enter search term">
+    <input type="submit" id="submit-search" value="Well, Which one sucks?" ng-click="compareCtrl.makeSearch(searchTermOne, searchTermTwo); searchTermOne = ''; searchTermTwo = ''">
   </form>
 </section>
 <section class="search-results">
-  <ul class='repeat-list' ng-repeat='search in searchCtrl.searches'>
-    <div class='result-item' ng-class='searchCtrl.calcBgCol(search)' ng-show="search.loaded" >
+  <ul class='repeat-list' ng-repeat='search in compareCtrl.results'>
+    <div class='result-item' ng-class='compareCtrl.calcBgCol(search)' ng-show="search.loaded" >
       <li ><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
-      <li class='suck-evaluation'>{{searchCtrl.evaluateSearch(search);}}</li>
+      <li class='suck-evaluation'>{{compareCtrl.evaluateSearch(search);}}</li>
         <img class='emoji' src='images/happy.png' />{{search.positive}}
         <img class='emoji' src='images/sad.png' />{{search.negative}}
         <img class='emoji' src='images/neutral.png' />{{search.neutral}}
-        <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=According to does it suck? {{search.search_term}} {{searchCtrl.evaluateSearch(search)}}, visit the site at https://does-it-suck.herokuapp.com/ and see what else sucks!">
+        <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=According to does it suck? {{search.search_term}} {{compareCtrl.evaluateSearch(search)}}, visit the site at https://does-it-suck.herokuapp.com/ and see what else sucks!">
        Tweet</a>
       </li>
-      <li><a href="#/trends" class='trends-link' ng-click='searchCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
-      <li><a href="#/data" class='data-link' ng-click='searchCtrl.passResults(search)'>Explore messages</a></li>
-      <li><button ng-click='searchCtrl.delete(search)'>Delete search </button></li>
+      <li><a href="#/trends" class='trends-link' ng-click='compareCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
+      <li><a href="#/data" class='data-link' ng-click='compareCtrl.passResults(search)'>Explore messages</a></li>
+      <li><button ng-click='compareCtrl.delete(search)'>Delete search </button></li>
     </div><!-- end results item -->
   </ul>
 </section>
