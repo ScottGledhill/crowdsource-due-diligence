@@ -86,18 +86,3 @@ class SentimentAlgorithm
     results
   end
 end
-
-RESULT = {
-  searchTerm: '',
-  positive: 0,
-  negative: 0,
-  neutral: 0,
-  messages: [
-            {
-              sentiment: :overallSymbol,
-              posWords: [],
-              negWords: [],
-              content: ''
-            }
-          ]
-};

@@ -12,15 +12,14 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
   }
 
   function loadData(){
-    if (sentimentTrendsFactory.getSearchTerm() != undefined){
+    if (sentimentTrendsFactory.getSearchTerm() !== undefined){
       getResults();
     }else{
       self.searchTerm = 'No search term given';
     }
   }
-
+  
   // TODO: //getResults should be refactored, and more of the logic moved elsewhere
-
 
   function getResults(){
     resetData();
