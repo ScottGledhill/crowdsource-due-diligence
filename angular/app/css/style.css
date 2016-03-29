@@ -169,11 +169,11 @@ hr {
 
 .twitter-share-button {
   position: absolute;
-  top: -2px;
+  top: 0px;
   right: 23px;
 }
 
 .twitter-share-button img {
-  height: 26px;
-  width: 26px;
+  height: 18px;
+  width: 18px;
 }
