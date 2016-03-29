@@ -4,13 +4,15 @@ var self = this;
 self.results = [];
 
   self.makeSearch = function(searchTermOne, searchTermTwo){
+    var comparison = [];
     self.searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
     self.searchTerms.forEach(function(searchTerm){
       searchFactory.query(searchTerm).then(function(response){
         response.data.loaded = true;
-        self.results.unshift(response.data);
+        comparison.unshift(response.data);
       });
-    })
+    });
+    self.results.unshift(comparison);
   };
 
   self.evaluateSearch = function (search) {
