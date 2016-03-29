@@ -1,5 +1,5 @@
 describe('compareController', function() {
-  var searchFactoryMock, ctrl, $q, searchResult, searchTerm, httpBackend;
+  var searchFactoryMock, ctrl, $q, searchResultMock, searchTerm, httpBackend;
 
   beforeEach(module('DoesItSuck'));
 
@@ -7,12 +7,12 @@ describe('compareController', function() {
     scope = $rootScope.$new();
     $q = _$q_;
     httpBackend = $httpBackend;
+    searchResultMock = {search_term:'Test1', positive: 10, negative: 20};
     var deferred = $q.defer();
-    deferred.resolve({data:'some value'});
+    deferred.resolve({data:searchResultMock});
     searchFactoryMock = {query: function(){} };
     spyOn(searchFactoryMock,'query').and.returnValue( deferred.promise );
-    searchResult = []
-    searchTerm = {search_term: 'Test searchTerm'};
+
 
     ctrl = $controller('compareController', {
         searchFactory: searchFactoryMock
@@ -29,7 +29,7 @@ describe('compareController', function() {
       ctrl.makeSearch(searchTermOne, searchTermTwo);
       httpBackend.whenGET('partials/main-search.html').respond({data: 'Success'});
 
-    })
+    });
 
     it('converts the searchterms into the right format', function(){
       expect(ctrl.searchTerms).toContain(convertedSearchTerm);
@@ -37,13 +37,27 @@ describe('compareController', function() {
 
     it('calls the searchfactory with each of the searchterms',function(){
       expect(searchFactoryMock.query).toHaveBeenCalled();
-    })
+    });
 
     it('the return data is stored in results', function(){
-      console.log(ctrl.results)
+      console.log(ctrl.results);
       scope.$apply();
-      expect(ctrl.results).toContain('some value')
-    })
+      expect(ctrl.results).toContain([searchResultMock, searchResultMock]);
+    });
+
+    describe('#outcome', function(){
+
+      it('can declare a winner', function(){
+        var searchResultMock = {search_term:'Test1', positive: 10, negative: 20};
+        var searchResultMockTwo = {search_term:'Test2', positive: 20, negative: 20};
+        var array = [searchResultMock, searchResultMockTwo];
+        console.log(ctrl)
+        expect(ctrl.outcome(array)).toEqual('Test1 Sucks');
+
+
+      });
+    });
+
 
   });
 });

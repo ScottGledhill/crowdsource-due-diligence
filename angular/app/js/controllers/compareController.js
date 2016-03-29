@@ -30,6 +30,16 @@ self.results = [];
     return COLORCHOICE[evaluated];
   };
 
+  self.outcome = function(compArray){
+    var firstArray = compArray[0].positive / compArray[0].negative;
+    var secondArray =  compArray[1].positive / compArray[1].negative;
+    if (firstArray > secondArray){
+      return compArray[1].search_term + ' Sucks';
+    } else {
+      return compArray[0].search_term + ' Sucks';
+    }
+  };
+
 
     var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
     var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};

@@ -21,7 +21,8 @@
     <li><a href="#/data" class='data-link' ng-click='compareCtrl.passResults(search)'>Explore messages</a></li>
     <li><button ng-click='compareCtrl.delete(search)'>Delete search </button></li>
   </ul>
-    </div><!-- end results item -->
+    </div>
+    {{compareCtrl.outcome(comparison)}}
   </div>
   </ul>
 </section>
