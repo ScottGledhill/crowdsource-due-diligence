@@ -1,7 +1,7 @@
 <section id="search-bar" >
   <form>
     <input type="text" ng-model="searchTerm" placeholder="Enter search term">
-    <input type="submit" id="search" value="Well, DOES it suck?" ng-click="searchCtrl.makeSearch({search_term: searchTerm}); searchTerm = ''">
+    <input type="submit" id="submit-search" value="Well, DOES it suck?" ng-click="searchCtrl.makeSearch({search_term: searchTerm}); searchTerm = ''">
   </form>
 </section>
 <section class="search-results">
@@ -16,7 +16,8 @@
        Tweet</a>
       </li>
       <li><a href="#/trends" class='trends-link' ng-click='searchCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
-        <li><a href="#/data" class='data-link' ng-click='searchCtrl.passResults(search)'>Explore messages</a></li>
+      <li><a href="#/data" class='data-link' ng-click='searchCtrl.passResults(search)'>Explore messages</a></li>
+      <li><button ng-click='searchCtrl.delete(search)'>Delete search </button></li>
     </div><!-- end results item -->
   </ul>
 </section>

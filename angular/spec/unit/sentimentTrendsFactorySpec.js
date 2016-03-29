@@ -27,7 +27,7 @@ beforeEach(function() {
 
    describe('#setSearchTerm', function(){
      it('is set to blank initially', function(){
-       expect(factory.getSearchTerm()).toEqual('');
+       expect(factory.getSearchTerm()).toBe(undefined);
      });
 
      it('can be set to a new searchterm', function(){
@@ -43,7 +43,8 @@ beforeEach(function() {
      });
 
      it('has the format of search params', function(){
-       var params = {search_term: '', date_from:'2016-03-20', date_till: '2016-03-20' }
+       factory.setSearchTerm('Test')
+       var params = {search_term: 'Test', date_from:'2016-03-20', date_till: '2016-03-20' }
        expect(factory.makeParams()).toContain(params);
      });
 
@@ -58,13 +59,9 @@ beforeEach(function() {
        expect(factory.searchPromises.length).toEqual(0);
      });
 
-     it('contains a promise for each request', function(){
-       factory.getResults();
-       expect(factory.searchPromises).toContain(searchPromise);
-     });
    });
 
-   //include once we have integrated with backend
+   // TODO include once we have integrated with backend
    xdescribe('#setSearchResult', function(){
      it('starts out empty', function(){
        expect(factory.getSearchResult()).toEqual('');
@@ -78,14 +75,16 @@ beforeEach(function() {
    });
 
 
-     describe('#getRestults', function(){
+     describe('#getResults', function(){
        it('initates a call to the searchFactory', function(){
          factory.getResults();
          expect(searchFactoryMock.query).toHaveBeenCalled();
        });
 
        it('returns searchpromises', function(){
-         expect(factory.getResults()).toEqual(factory.searchPromises)
+         factory.setSearchTerm('Test')
+         var result = {searchTerm: 'Test', result: searchPromise}
+         expect(factory.getResults()).toEqual([result, result, result]);
        });
   });
 });

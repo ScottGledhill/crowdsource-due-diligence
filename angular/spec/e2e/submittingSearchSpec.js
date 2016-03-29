@@ -24,7 +24,7 @@ xdescribe("searchTerm",function(){
     browser.get("http://localhost:8000");
     var searchTerm = element(by.model('searchTerm'));
     searchTerm.sendKeys('MacBook');
-    $('#search').click();
+    $('#submit-search').click();
 
     // The searchbar is cleared after searching
     expect(searchTerm.getAttribute('value')).toEqual('')
