@@ -1,5 +1,5 @@
 #Does it suck?
-###Crowdsourcing due diligence research via Twitter sentiment analysis
+###A tongue-in-cheek due diligence research engine powered by Twitter sentiment analysis
 
 [![Stories in Ready](https://badge.waffle.io/rufusraghunath/crowdsource-due-diligence.png?label=ready&title=Ready)](http://waffle.io/rufusraghunath/crowdsource-due-diligence)
 

@@ -120,22 +120,30 @@ hr {
   margin: 0 auto;
 }
 
+#data-scroll {
+  margin-top: 10px;
+  height: 300px;
+  overflow: hidden;
+}
+
 .positive-word {
-  color: darkgreen;
+  color: #02D606;
   font-weight: bold;
-  font-size: 110%
 }
 
 .negative-word {
-  color: red;
+  color: #FF2626;
   font-weight: bold;
-  font-size: 110%
 }
 
-.Positive-message {
+.big-font {
+  font-size: 150%;
+}
+
+.positive-message {
   background-color: rgba(32,255,3,0.1);
 }
 
-.Negative-message {
+.negative-message {
   background-color: rgba(245,32,32,0.1);
 }
