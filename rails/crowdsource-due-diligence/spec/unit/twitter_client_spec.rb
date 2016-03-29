@@ -9,11 +9,11 @@ describe TwitterClient do
 
   describe '#search' do
     it 'searches twitter for the params' do
+      search_params = {search_term: 'Nokia', date_from: 2014-03-20, date_to: 2014-03-22}
       search = VCR.use_cassette("twitter_call") do
-        params = {"search_term": 'Nokia', "date_from": "2014-03-20", "date_till": "2014-03-22"}
-        twitter_client.search(params)
+        twitter_client.search(search_params)
       end
-      expect(search).to be_an_instance_of(Array)
+      expect(search).to include(include(:username=>"BEDEALz"))
     end
   end
 

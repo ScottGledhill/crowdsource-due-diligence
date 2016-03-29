@@ -1,54 +1,92 @@
 describe('searchController', function() {
 
-var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootScope, scope, httpBackend;
-  //
-  // beforeEach(function() {
-  //   // searchFactoryMock = {query: function(){} };
-  //   // sentimentTrendsFactoryMock = {setSearchTerm: function(){} };
-  //   // spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
-  //
-  //    {
-  //     // searchFactory: searchFactoryMock,
-  //     // sentimentTrendsFactory : sentimentTrendsFactoryMock
-  //   });
-  // });
-  // var ;
+var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootScope, scope, httpBackend, localStorageServiceMock, searchResult;
 
 
-  beforeEach(function(){
-    module('DoesItSuck');
-      inject(function($rootScope, _$q_, $controller, $httpBackend){
-        searchFactoryMock = {query: function(){return {data:'this is a value'}} };
-        sentimentTrendsFactoryMock = {setSearchTerm: function(){} };
-        spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
-        scope = $rootScope.$new();
-        $q = _$q_;
-        httpBackend = $httpBackend;
-        ctrl = $controller('searchController', {
-          $scope: scope,
-          searchFactory: searchFactoryMock,
-          sentimentTrendsFactory : sentimentTrendsFactoryMock});
-       })
+  beforeEach(module('DoesItSuck'));
+
+  beforeEach(inject(function($rootScope, _$q_, $controller, $httpBackend){
+    scope = $rootScope.$new();
+    $q = _$q_;
+    httpBackend = $httpBackend;
+    searchFactoryMock = {query: function(){} };
+    sentimentTrendsFactoryMock = {setSearchTerm: function(){},setSearchResult: function(){} };
+    localStorageServiceMock = {get: function(){}, set: function (){}, keys: function(){ return ['test']} };
+    searchResult = []
+    spyOn(localStorageServiceMock,'get').and.returnValue(searchResult);
+    searchTerm = {search_term: 'Test searchTerm'};
+    ctrl = $controller('searchController', {
+      $scope: scope,
+      searchFactory: searchFactoryMock,
+      sentimentTrendsFactory: sentimentTrendsFactoryMock,
+      localStorageService: localStorageServiceMock
+    });
+  }));
+
+ describe('#getHistory', function(){
+   it('is called when ctrl is loaded', function(){
+     expect(ctrl.searches).toEqual(searchResult);
+   });
+
+   it('local storage is called to retrieve previous results', function(){
+     expect(localStorageServiceMock.get).toHaveBeenCalled();
+   });
+
+   it('results from local storage is entered into searches', function(){
+     expect(ctrl.searches).toEqual(searchResult);
+   });
  });
 
+ describe('#setHistory', function(){
+   var key;
 
-  describe('#setResultStatus', function() {
+   beforeEach(function(){
+     spyOn(localStorageServiceMock,'set');
+     key = 'resultHistory'
+   });
 
-    it('starts with not showing the page', function() {
-      expect(ctrl.isResultReady()).toEqual(false);
-    });
+   it('local storage is called to retrieve previous results', function(){
+     ctrl.setHistory(key,searchResult)
+     expect(localStorageServiceMock.set).toHaveBeenCalledWith(key, searchResult);
+   });
 
-    it('changes resultReady boolean', function() {
-      ctrl.setResultStatus();
-      expect(ctrl.isResultReady()).toEqual(true);
-    });
-  });
+   it('is called when a user moves from the page', function(){
+     scope.$broadcast("$routeChangeStart");
+     expect(localStorageServiceMock.set).toHaveBeenCalled();
+   });
+ });
 
-  describe('#setSearchTerm', function(){
-    it('sentimentTrendsFactory is called', function(){
-      var search = {search_term: 'Nokia'};
-      ctrl.setSearchTerm(search);
-      expect(sentimentTrendsFactoryMock.setSearchTerm).toHaveBeenCalled();
+ describe('#deleteSearch', function(){
+
+   beforeEach(function(){
+     spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
+     spyOn(localStorageServiceMock,'set');
+     var deferred = $q.defer();
+     deferred.resolve({data:'some value'})
+     spyOn(searchFactoryMock,'query').and.returnValue( deferred.promise );
+     httpBackend.whenGET('partials/main-search.html').respond({data: 'Success'});
+     ctrl.makeSearch(searchTerm)
+    })
+
+   it('a user can delete a search item', function(){
+     ctrl.delete('some value')
+     expect(ctrl.searches.length).toEqual(0)
+
+   });
+
+   it ('updates the local storage', function(){
+     ctrl.delete('some value')
+     expect(localStorageServiceMock.set).toHaveBeenCalled();
+   })
+
+ });
+
+  describe('#passResults', function(){
+    it('sends results of a search result to the sentimentTrendsFactory', function(){
+      var search= {search_term:'SearchTerm', positive: '60', negative: '50',neutral: '50', message:{first: 'Many messages'}};
+      spyOn(sentimentTrendsFactoryMock,'setSearchResult');
+      ctrl.passResults(search);
+      expect(sentimentTrendsFactoryMock.setSearchResult).toHaveBeenCalledWith(search);
     });
   });
 
@@ -56,85 +94,62 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
     beforeEach(function(){
       var deferred = $q.defer();
       deferred.resolve({data:'some value'})
-      spyOn(searchFactoryMock,'query').and.returnValue(deferred.promise);
+      spyOn(searchFactoryMock,'query').and.returnValue( deferred.promise );
+      httpBackend.whenGET('partials/main-search.html').respond({data: 'Success'});
     })
 
     it('searchFactory is called', function(){
-      var search = {search_term: 'Nokia'};
-      ctrl.makeSearch(search);
+      ctrl.makeSearch(searchTerm);
       expect(searchFactoryMock.query).toHaveBeenCalled();
     });
 
     it('returns the response data', function(){
-      httpBackend.expectGET('partials/main-search.html').respond({data: 'Success'});
-      // spyOn(searchFactoryMock,'query').and.returnValue(deferred.promise);
-      // console.log(deferred.promise)
-      console.log(searchFactoryMock.query('searchterm'))
+      ctrl.makeSearch(searchTerm);
       scope.$apply();
-      var search = {search_term: 'Nokia'};
-      ctrl.makeSearch(search);
       expect(ctrl.searches.length).toEqual(1);
     });
   });
 
+  describe("presentation methods", function(){
+    var searchMockNeg, searchMockPos, searchMockNeut, searchMockEq;
 
+    beforeEach(function() {
+      searchMockNeg = {positive: 1, negative: 5, neutral: 3};
+      searchMockPos = {positive: 12, negative: 5, neutral: 3};
+      searchMockNeut = {positive: 6, negative: 5, neutral: 10};
+      searchMockEq = {positive: 5, negative: 5, neutral: 5};
+    })
+    describe('#evaluateSearch', function() {
 
-
-
-  // describe('#weekSearch', function(){
-  //   it('inserts the current search findings into the weekSearch array', function(){
-  //     var search = {search_term: 'Nokia'};
-  //     ctrl.weekSearch(search);
-  //     expect(ctrl.weekResults).toContain(search);
-  //   });
-  //
-  //   it('starts the multiDaySearches', function(){
-  //     var search = {search_term: 'Nokia'};
-  //     ctrl.weekSearch(search);
-  //     expect(searchFactoryMock).toHaveBeenCalled();
-  //   });
-  // })
-
-
-
-
-
-
-  describe('#evaluateSearch', function() {
-    var searchMockNeg = {positive: 1, negative: 5, neutral: 3};
-    var searchMockPos = {positive: 12, negative: 5, neutral: 3};
-    var searchMockNeut = {positive: 6, negative: 5, neutral: 10};
-    var searchMockEq = {positive: 5, negative: 5, neutral: 5};
-    it('returns SUCKS if negative is greatest', function() {
-      expect(ctrl.evaluateSearch(searchMockNeg)).toEqual('SUCKS');
+      it('returns SUCKS if negative is greatest', function() {
+        expect(ctrl.evaluateSearch(searchMockNeg)).toEqual('SUCKS');
+      });
+      it('returns DOESN\'T SUCK if positive is greatest', function() {
+        expect(ctrl.evaluateSearch(searchMockPos)).toEqual('DOESN\'T SUCK');
+      });
+      it('returns MEH if neutral is greatest', function() {
+        expect(ctrl.evaluateSearch(searchMockNeut)).toEqual('MEH');
+      });
+      it('returns MEH if all are equal', function() {
+        expect(ctrl.evaluateSearch(searchMockEq)).toEqual('MEH');
+      });
     });
-    it('returns DOESN\'T SUCK if positive is greatest', function() {
-      expect(ctrl.evaluateSearch(searchMockPos)).toEqual('DOESN\'T SUCK');
+
+    describe('calcBgCol', function() {
+      it('sets col to red if SUCKS', function() {
+        expect(ctrl.calcBgCol(searchMockNeg)).toEqual('red');
+      });
+
+      it('sets col to yellow if MEH', function() {
+        expect(ctrl.calcBgCol(searchMockNeut)).toEqual('yellow');
+      });
+
+      it('sets col to green', function() {
+        expect(ctrl.calcBgCol(searchMockPos)).toEqual('green');
+      });
     });
-    it('returns MEH if neutral is greatest', function() {
-      expect(ctrl.evaluateSearch(searchMockNeut)).toEqual('MEH');
-    });
-    it('returns MEH if all are equal', function() {
-      expect(ctrl.evaluateSearch(searchMockEq)).toEqual('MEH');
-    });
+
   });
 
-  describe('calcBgCol', function() {
-    var searchMockNeg = {positive: 1, negative: 5, neutral: 3};
-    var searchMockPos = {positive: 12, negative: 5, neutral: 3};
-    var searchMockNeut = {positive: 6, negative: 5, neutral: 10};
-    var searchMockEq = {positive: 5, negative: 5, neutral: 5};
-    it('sets col to red if SUCKS', function() {
-      expect(ctrl.calcBgCol(searchMockNeg)).toEqual('red');
-    });
-
-    it('sets col to yellow if MEH', function() {
-      expect(ctrl.calcBgCol(searchMockNeut)).toEqual('yellow');
-    });
-
-    it('sets col to green', function() {
-      expect(ctrl.calcBgCol(searchMockPos)).toEqual('green');
-    });
-  });
 
 });

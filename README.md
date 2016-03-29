@@ -1,5 +1,5 @@
 #Does it suck?
-###Crowdsourcing due diligence research via Twitter sentiment analysis
+###A tongue-in-cheek due diligence research engine powered by Twitter sentiment analysis
 
 [![Stories in Ready](https://badge.waffle.io/rufusraghunath/crowdsource-due-diligence.png?label=ready&title=Ready)](http://waffle.io/rufusraghunath/crowdsource-due-diligence)
 
@@ -7,7 +7,7 @@ Makers Academy final project, made collaboratively by Rufus Raghunath, Eirik Wii
 
 View it on Heroku at https://does-it-suck.herokuapp.com/.
 
-Work in progress (end data Friday 01/04/2016).
+Work in progress (end date Friday 01/04/2016).
 
 USER STORIES:
 

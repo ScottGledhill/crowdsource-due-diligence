@@ -1,0 +1,11 @@
+<h4><b>Here's what people are saying about</b>: <span class=search-term>{{dataCtrl.search_term}}</span></h4>
+Positive score: <span id='total-positive-score' class='positive-word'>{{dataCtrl.positive}}</span> |
+Negative score: <span id='total-negative-score-score' class='negative-word'>{{dataCtrl.negative}}</span>
+
+<marquee id='data-scroll' behavior="scroll" direction="up" scrollamount="2">
+<ul>
+  <li class='messages' ng-repeat="msg in dataCtrl.messages">
+    <span ng-bind-html="msg.content"></span><br />
+  </li>
+</ul>
+</marquee>
