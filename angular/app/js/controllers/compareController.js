@@ -42,25 +42,21 @@ self.ready = false;
   self.outcome = function(compObject, compObjectTwo){
     compObject.score = compObject.positive / compObject.negative;
     compObjectTwo.score = compObjectTwo.positive / compObjectTwo.negative;
-    if (compObject > compObjectTwo){
-      compObject.winner = true;
-    } else {
-      compObjectTwo.winner = true;
-    }
+    compObject > compObjectTwo ? compObject.winner = true : compObjectTwo.winner = true;
   };
 
-  self.winnerName = function(comparison){
+
+  self.loserName = function(comparison){
       if (comparison[0].winner){
-         return comparison[0].search_term;
+         return comparison[1].search_term;
      }else{
-       return comparison[1].search_term;
+       return comparison[0].search_term;
      }
    };
 
   self.calcBgCol2 = function(search){
      return (search.winner) ? COLORCHOICE['DOESN\'T SUCK'] : COLORCHOICE['SUCKS'];
      };
-
 
     var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
     var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};
