@@ -3,8 +3,8 @@ doesItSuck.controller('searchController',['$scope', '$route','searchFactory','se
   var self = this;
   self.searches = [];
   self.resultReady = false;
-  self.bg = '{"background-color": "red"}';
   self.presentationFactory = presentationFactory;
+  self.sentimentTrendsFactory = sentimentTrendsFactory;
 
   var STORAGE_KEY = 'resultHistory';
 
@@ -30,13 +30,6 @@ doesItSuck.controller('searchController',['$scope', '$route','searchFactory','se
     });
   };
 
-  self.setSearchTerm = function(searchTerm) {
-    sentimentTrendsFactory.setSearchTerm(searchTerm);
-  };
-
-  self.passResults = function(searchResult){
-    sentimentTrendsFactory.setSearchResult(searchResult);
-  };
 
   self.getHistory(STORAGE_KEY);
 
