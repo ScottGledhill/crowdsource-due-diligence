@@ -19,7 +19,7 @@ doesItSuck.controller('searchController',['$scope', '$route','searchFactory','se
 
   self.delete = function(search){
     var index = self.searches.indexOf(search);
-    if (index > -1) self.searches.splice(index,1);
+    if (index > -1) {self.searches.splice(index,1);}
     self.setHistory(STORAGE_KEY,self.searches);
   };
 

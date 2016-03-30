@@ -8,15 +8,11 @@
 </section>
 <section class="search-results">
   <div ng-show="compareCtrl.ready" class='repeat-list result-item' ng-repeat='result in compareCtrl.results'>
-    <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=Does It Suck? has this to say on the subject of {{search.search_term}}:  {{compareCtrl.evaluateSearch(search)}}. Visit https://does-it-suck.herokuapp.com and see what else sucks!"><img src='images/twitter.svg' /></a>
-    <a class='delete' href="" ng-click=""><img  src='images/delete.png' /></a>
-
+    <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=According to Does It Suck?, {{result.verbalOutcome}}. Visit https://does-it-suck.herokuapp.com and see what else sucks!"><img src='images/twitter.svg' /></a>
+    <a class='delete' href="" ng-click="compareCtrl.deleteResult(result);"><img  src='images/delete.png' /></a>
     <div class="comparison-wrapper">
       <ul class='comparison-result' ng-repeat-start='search in result.comparison'>
         <li><span class='suck-evaluation'>{{search.search_term}}</span></li>
-        <!-- <li>
-          <a href="#/trends" class='trends-link' ng-click='compareCtrl.setSearchTerm(search.search_term)'>Trends</a> | <a href="#/data" class='data-link' ng-click='compareCtrl.passResults(search)'>Explore</a>
-        </li> -->
         <li ><span class="score" ng-class="compareCtrl.presentationFactory.getFontColor(search.score);">{{search.score}}</span></li>
       </ul>
       <span class="comparison-operator" ng-if="$index === 0" ng-repeat-end>

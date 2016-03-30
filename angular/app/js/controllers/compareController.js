@@ -17,16 +17,13 @@ self.makeSearch = function(searchTermOne, searchTermTwo){
     self.ready = true;
     self.outcome(comparison[0],comparison[1]);
     var result = {};
-    var verbalOutcome = self.presentationFactory.getOutcome(comparison);
-    var comment = self.presentationFactory.snarkyComment();
-    var message = verbalOutcome + "... " + comment + ".";
+    result.verbalOutcome = self.presentationFactory.getOutcome(comparison);
+    result.message = result.verbalOutcome + "... " + self.presentationFactory.snarkyComment() + ".";
     result.comparison = comparison;
-    result.message = message;
     result.operator = self.presentationFactory.operator(comparison);
     self.results.unshift(result);
   });
 };
-
 
 self.outcome = function(compObject, compObjectTwo){
   compObject.score = compObject.positive - compObject.negative;
@@ -40,6 +37,11 @@ self.loserName = function(comparison){
    } else {
      return comparison[0].search_term;
    }
+ };
+
+ self.deleteResult = function(result) {
+   var index = self.results.indexOf(result);
+   if (index > -1) {self.results.splice(index,1);}
  };
 
 }]);

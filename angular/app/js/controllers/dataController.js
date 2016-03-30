@@ -4,7 +4,8 @@ doesItSuck.controller('dataController',['sentimentTrendsFactory', 'presentationF
   getSearchResult();
 
   function getSearchResult(){
-    var results = sentimentTrendsFactory.getSearchResult();
+    var resultObj = sentimentTrendsFactory.getSearchResult();
+    var results = resultObj;
     angular.extend(self, results);
     presentationFactory.insertHTML(self.messages);
   }
