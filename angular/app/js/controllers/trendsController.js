@@ -1,14 +1,11 @@
-doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(sentimentTrendsFactory){
+doesItSuck.controller('trendsController',['sentimentTrendsFactory', 'presentationFactory',  function(sentimentTrendsFactory, presentationFactory){
 
   var self = this;
-
-  self.data = [[],[],[]];
-  self.colors = ['#02D606', '#FFC400', '#FF2626'];
-  self.series = ['Positive', 'Neutral', 'Negative'];
-  self.labels = ['7 days ago', '4 days ago', 'Yesterday'];
+  self.chart = presentationFactory.getChart();
+  self.chart.data = [[],[],[]];
 
   function resetData() {
-    self.data = [[],[],[]];
+    self.chart.data = [[],[],[]];
   }
 
   function loadData(){
@@ -18,7 +15,7 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
       self.searchTerm = 'No search term given';
     }
   }
-  
+
   // TODO: //getResults should be refactored, and more of the logic moved elsewhere
 
   function getResults(){
@@ -36,9 +33,9 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory',  function(se
               return new Date(a.date_from) - new Date(b.date_from);
           });
           resultArr.forEach(function(result) {
-            self.data[0].push(result.positive);
-            self.data[1].push(result.neutral);
-            self.data[2].push(result.negative);
+            self.chart.data[0].push(result.positive);
+            self.chart.data[1].push(result.neutral);
+            self.chart.data[2].push(result.negative);
           });
         }
       });

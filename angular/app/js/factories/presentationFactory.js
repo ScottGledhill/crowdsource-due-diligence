@@ -2,14 +2,23 @@ doesItSuck.factory('presentationFactory', [ function() {
   var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
   var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};
 
+  var chart =  {colors: ['#02D606', '#FFC400', '#FF2626'],
+               series:  ['Positive', 'Neutral', 'Negative'],
+               labels:  ['7 days ago', '4 days ago', 'Yesterday']};
+
   var methods = {
     evaluateSearch:evaluateSearch,
     getFullColorScheme: getFullColorScheme,
     getColorScheme: getColorScheme,
-    insertHTML: insertHTML
+    insertHTML: insertHTML,
+    getChart: getChart
   };
 
   return methods;
+
+  function getChart() {
+    return chart;
+  }
 
   function evaluateSearch(search) {
     if( search.positive > 1.5 * search.negative) {
