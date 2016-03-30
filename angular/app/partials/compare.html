@@ -9,9 +9,8 @@
   <div class='repeat-list' ng-repeat='comparison in compareCtrl.results'>
 
     <div class='comparison-result' ng-repeat='search in comparison'>
-    <div class='result-item' ng-class='compareCtrl.calcBgCol2(search)'>
+    <div class='result-item' ng-class='compareCtrl.calcBgCol2(search)' ng-show="compareCtrl.ready" >
     <ul><li><span class='suck-evaluation'>{{search.search_term}}</span></li>
-    <!-- <li class='suck-evaluation'>{{compareCtrl.evaluateSearch(search);}}</li> -->
     <li>
 
 
@@ -27,6 +26,6 @@
   </ul>
     </div>
   </div>
-  <span class='suck-evaluation'>{{compareCtrl.outcome(comparison)}}</span>
+  <span class='suck-evaluation' ng-show="compareCtrl.ready">{{compareCtrl.outcome(comparison)}}</span>
 </div>
 </section>
