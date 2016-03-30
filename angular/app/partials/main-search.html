@@ -6,7 +6,7 @@
 </section>
 <section class="search-results">
   <ul class="repeat-list" ng-repeat="search in searchCtrl.searches">
-    <div class='result-item' ng-class='searchCtrl.calcBgCol(search)' ng-show="search.loaded" >
+    <div class='result-item' ng-class='searchCtrl.getFullColorScheme(search)' ng-show="search.loaded" >
       <li ><b>Results for:</b> <span class='search-term'>{{search.search_term}}</span> </li>
       <li class='suck-evaluation'>{{searchCtrl.evaluateSearch(search);}}</li>
         <img class='emoji' src='images/happy.png' />{{search.positive}}

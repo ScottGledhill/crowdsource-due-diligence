@@ -1,4 +1,4 @@
-doesItSuck.controller('compareController', ['searchFactory', '$q', function(searchFactory, $q){
+doesItSuck.controller('compareController', ['searchFactory', 'presentationFactory', '$q', function(searchFactory, presentationFactory, $q){
 
 var self = this;
 self.results = [];
@@ -17,34 +17,17 @@ self.ready = false;
     self.outcome(comparison[0],comparison[1]);
     self.results.unshift(comparison);
   });
-
-
-
 };
 
-  self.evaluateSearch = function (search) {
-    if( search.positive > 1.5 * search.negative) {
-      return RESULT_TERMS.positive;
-    } else if( search.negative > 1.5 * search.positive) {
-      return RESULT_TERMS.negative;
-    } else {
-      return RESULT_TERMS.neutral;
-    }
+  self.getColorScheme = function(search){
+    return presentationFactory.getColorScheme(search);
   };
-
-  self.calcBgCol = function (search) {
-    var evaluated = self.evaluateSearch(search);
-    return COLORCHOICE[evaluated];
-  };
-
-
 
   self.outcome = function(compObject, compObjectTwo){
     compObject.score = compObject.positive / compObject.negative;
     compObjectTwo.score = compObjectTwo.positive / compObjectTwo.negative;
     compObject > compObjectTwo ? compObject.winner = true : compObjectTwo.winner = true;
   };
-
 
   self.loserName = function(comparison){
       if (comparison[0].winner){
@@ -53,12 +36,5 @@ self.ready = false;
        return comparison[0].search_term;
      }
    };
-
-  self.calcBgCol2 = function(search){
-     return (search.winner) ? COLORCHOICE['DOESN\'T SUCK'] : COLORCHOICE['SUCKS'];
-     };
-
-    var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
-    var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};
 
 }]);

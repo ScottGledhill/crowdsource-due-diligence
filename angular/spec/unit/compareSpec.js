@@ -1,5 +1,5 @@
 describe('compareController', function() {
-  var searchFactoryMock, ctrl, $q, searchResultMock, searchTerm, httpBackend;
+  var searchFactoryMock, ctrl, $q, searchResultMock, searchTerm, httpBackend, presentationFactoryMock;
 
   beforeEach(module('DoesItSuck'));
 
@@ -7,6 +7,7 @@ describe('compareController', function() {
     scope = $rootScope.$new();
     $q = _$q_;
     httpBackend = $httpBackend;
+    presentationFactoryMock = {getColorScheme: function(){}};
     searchResultMock = {search_term:'Test1', positive: 10, negative: 20};
     var deferred = $q.defer();
     deferred.resolve({data:searchResultMock});
@@ -15,6 +16,7 @@ describe('compareController', function() {
 
     ctrl = $controller('compareController', {
         searchFactory: searchFactoryMock,
+        presentationFactory: presentationFactoryMock,
         $q: $q
       });
     }));
@@ -42,14 +44,21 @@ describe('compareController', function() {
     });
 
     describe('#outcome', function(){
-
       it('can declare a winner', function(){
         var searchResultMock = {search_term:'Test1', positive: 10, negative: 20};
         var searchResultMockTwo = {search_term:'Test2', positive: 20, negative: 20};
         var array = [searchResultMock, searchResultMockTwo];
         ctrl.outcome(array[0], array[1]);
-        console.log(array[1]);
         expect(array[1].winner).toEqual(true);
+      });
+    });
+
+    describe('#getColorScheme', function(){
+      it('calls the presentationFactory to receive the color class', function(){
+        spyOn(presentationFactoryMock, 'getColorScheme');
+        var obj = {};
+        ctrl.getColorScheme(obj);
+        expect(presentationFactoryMock.getColorScheme).toHaveBeenCalled();
       });
     });
 
