@@ -12,7 +12,7 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
     searchFactoryMock = {query: function(){} };
     sentimentTrendsFactoryMock = {setSearchTerm: function(){},setSearchResult: function(){} };
     localStorageServiceMock = {get: function(){}, set: function (){}, keys: function(){ return ['test']} };
-    searchResult = []
+    searchResult = [];
     spyOn(localStorageServiceMock,'get').and.returnValue(searchResult);
     searchTerm = {search_term: 'Test searchTerm'};
     presentationFactoryMock = {evaluateSearch: function(){}, getFullColorScheme: function(){}};
@@ -44,11 +44,11 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
 
    beforeEach(function(){
      spyOn(localStorageServiceMock,'set');
-     key = 'resultHistory'
+     key = 'resultHistory';
    });
 
    it('local storage is called to retrieve previous results', function(){
-     ctrl.setHistory(key,searchResult)
+     ctrl.setHistory(key,searchResult);
      expect(localStorageServiceMock.set).toHaveBeenCalledWith(key, searchResult);
    });
 
@@ -64,41 +64,30 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
      spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
      spyOn(localStorageServiceMock,'set');
      var deferred = $q.defer();
-     deferred.resolve({data:'some value'})
+     deferred.resolve({data:'some value'});
      spyOn(searchFactoryMock,'query').and.returnValue( deferred.promise );
      httpBackend.whenGET('partials/main-search.html').respond({data: 'Success'});
-     ctrl.makeSearch(searchTerm)
-    })
+     ctrl.makeSearch(searchTerm);
+   });
 
    it('a user can delete a search item', function(){
-     ctrl.delete('some value')
-     expect(ctrl.searches.length).toEqual(0)
-
+     ctrl.delete('some value');
+     expect(ctrl.searches.length).toEqual(0);
    });
 
    it ('updates the local storage', function(){
-     ctrl.delete('some value')
+     ctrl.delete('some value');
      expect(localStorageServiceMock.set).toHaveBeenCalled();
-   })
-
+   });
  });
-
-  describe('#passResults', function(){
-    it('sends results of a search result to the sentimentTrendsFactory', function(){
-      var search= {search_term:'SearchTerm', positive: '60', negative: '50',neutral: '50', message:{first: 'Many messages'}};
-      spyOn(sentimentTrendsFactoryMock,'setSearchResult');
-      ctrl.passResults(search);
-      expect(sentimentTrendsFactoryMock.setSearchResult).toHaveBeenCalledWith(search);
-    });
-  });
 
   describe('#makeSearch', function(){
     beforeEach(function(){
       var deferred = $q.defer();
-      deferred.resolve({data:'some value'})
+      deferred.resolve({data:'some value'});
       spyOn(searchFactoryMock,'query').and.returnValue( deferred.promise );
       httpBackend.whenGET('partials/main-search.html').respond({data: 'Success'});
-    })
+    });
 
     it('searchFactory is called', function(){
       ctrl.makeSearch(searchTerm);

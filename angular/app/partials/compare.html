@@ -9,7 +9,7 @@
   <div class='repeat-list' ng-repeat='comparison in compareCtrl.results'>
 
     <div class='comparison-result' ng-repeat='search in comparison'>
-    <div class='result-item' ng-class='compareCtrl.presentationFactory.getColorScheme(search)' ng-show="compareCtrl.ready" >
+    <div class='result-item' ng-class='compareCtrl.presentationFactory.getColorScheme(search)' ng-show="compareCtrl.sentimentTrendsFactory.isReady()" >
     <ul><li><span class='suck-evaluation'>{{search.search_term}}</span></li>
     <li>
 

@@ -1,11 +1,13 @@
-doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', function(searchFactory, datesFactory) {
+doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', 'resultsFactory', '$q', function(searchFactory, datesFactory, resultsFactory, $q) {
 
   var searchTerm;
   var searchResult;
   var LASTWEEKDATES = [7,6, 4,3, 1,0];
   var searchPromises = [];
+  var ready = false;
 
   var results = {
+    isReady: isReady,
     setSearchTerm: setSearchTerm,
     getSearchTerm: getSearchTerm,
     getResults: getResults,
@@ -13,14 +15,35 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
     searchPromises: searchPromises,
     LASTWEEKDATES: LASTWEEKDATES,
     setSearchResult: setSearchResult,
-    getSearchResult: getSearchResult
+    getSearchResult: getSearchResult,
+    makeSearch: makeSearch
   };
-
   return results;
 
   function resetPromises(){
     searchPromises = [];
   }
+
+  function isReady(){
+    return ready;
+  }
+
+  function makeSearch(searchTermOne, searchTermTwo){
+    var resultArray =  []
+    var comparison = [];
+    var searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
+    var promiseArray = searchTerms.map(function(searchTerm){
+      return searchFactory.query(searchTerm).then(function(response){
+        comparison.unshift(response.data);
+      });}
+    );
+    $q.all(promiseArray).then(function(){
+      ready = true;
+      resultsFactory.outcome(comparison[0],comparison[1]);
+      resultArray.unshift(comparison);
+    });
+    return resultArray;
+  };
 
   function getResults(){
     resetPromises();

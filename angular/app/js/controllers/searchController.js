@@ -30,7 +30,6 @@ doesItSuck.controller('searchController',['$scope', '$route','searchFactory','se
     });
   };
 
-
   self.getHistory(STORAGE_KEY);
 
   $scope.$on('$routeChangeStart', function(event,next,prev){
