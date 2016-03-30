@@ -6,14 +6,14 @@ self.ready = false;
 
   self.makeSearch = function(searchTermOne, searchTermTwo){
   var comparison = [];
-  var thing = [];
+  var promiseArray = [];
   self.searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
   self.searchTerms.forEach(function(searchTerm){
     thing.push(searchFactory.query(searchTerm).then(function(response){
       comparison.unshift(response.data);
     }));
   });
-  $q.all(thing).then(function(){
+  $q.all(promiseArray).then(function(){
     self.ready = true;
     self.results.unshift(comparison);
   });
