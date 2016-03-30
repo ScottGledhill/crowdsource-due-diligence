@@ -7,8 +7,8 @@ self.ready = false;
   self.makeSearch = function(searchTermOne, searchTermTwo){
   var comparison = [];
   var promiseArray = [];
-  self.searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
-  self.searchTerms.forEach(function(searchTerm){
+  var searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
+  searchTerms.forEach(function(searchTerm){
     promiseArray.push(searchFactory.query(searchTerm).then(function(response){
       comparison.unshift(response.data);
     }));
