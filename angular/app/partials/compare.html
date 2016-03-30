@@ -1,0 +1,31 @@
+<section id="search-bar" >
+  <form>
+    <input type="text" ng-model="searchTermOne" placeholder="Enter search term">
+    <input type="text" ng-model="searchTermTwo" placeholder="Enter search term">
+    <input type="submit" id="submit-search" value="Well, Which one sucks?" ng-click="compareCtrl.makeSearch(searchTermOne, searchTermTwo); searchTermOne = ''; searchTermTwo = ''">
+  </form>
+</section>
+<section class="search-results">
+  <div class='repeat-list' ng-repeat='comparison in compareCtrl.results'>
+
+    <div class='comparison-result' ng-repeat='search in comparison'>
+    <div class='result-item' ng-class='compareCtrl.calcBgCol2(search)' ng-show="compareCtrl.ready" >
+    <ul><li><span class='suck-evaluation'>{{search.search_term}}</span></li>
+    <li>
+
+
+    <img class='emoji' src='images/happy.png' />{{search.positive}}
+    <img class='emoji' src='images/sad.png' />{{search.negative}}
+    <img class='emoji' src='images/neutral.png' />{{search.neutral}}
+    </li>
+    <li> <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=According to does it suck? {{search.search_term}} {{compareCtrl.evaluateSearch(search)}}, visit the site at https://does-it-suck.herokuapp.com/ and see what else sucks!">
+      Tweet</a>
+    </li>
+    <li><a href="#/trends" class='trends-link' ng-click='compareCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
+    <li><a href="#/data" class='data-link' ng-click='compareCtrl.passResults(search)'>Explore messages</a></li>
+  </ul>
+    </div>
+  </div>
+  <span class='suck-evaluation' ng-show="compareCtrl.ready">{{compareCtrl.outcome(comparison)}}</span>
+</div>
+</section>
