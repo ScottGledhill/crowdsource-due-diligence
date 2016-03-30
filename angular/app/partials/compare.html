@@ -8,22 +8,20 @@
 </section>
 <section class="search-results">
   <div class='repeat-list' ng-repeat='comparison in compareCtrl.results'>
-    <div class='comparison-result' ng-repeat='search in comparison'>
+    <ul class='comparison-result' ng-repeat='search in comparison'>
       <div class='result-item' ng-class='compareCtrl.calcBgCol2(search)' ng-show="compareCtrl.ready" >
-        <ul>
-          <li><span class='suck-evaluation'>{{search.search_term}}</span></li>
-          <li>
-            <img class='emoji' src='images/happy.png' />{{search.positive}}
-            <img class='emoji' src='images/sad.png' />{{search.negative}}
-            <img class='emoji' src='images/neutral.png' />{{search.neutral}}
-          </li>
-          <li>
-            <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=Does It Suck? has this to say on the subject of {{search.search_term}}:  {{compareCtrl.evaluateSearch(search)}}. Visit https://does-it-suck.herokuapp.com and see what else sucks!"><img src='images/twitter.svg' /></a>
-          </li>
-          <li>
-            <a href="#/trends" class='trends-link' ng-click='compareCtrl.setSearchTerm(search.search_term)'>Trends</a> | <a href="#/data" class='data-link' ng-click='compareCtrl.passResults(search)'>Explore</a>
-          </li>
-        </ul>
+        <li><span class='suck-evaluation'>{{search.search_term}}</span></li>
+        <li>
+          <img class='emoji' src='images/happy.png' />{{search.positive}}
+          <img class='emoji' src='images/sad.png' />{{search.negative}}
+          <img class='emoji' src='images/neutral.png' />{{search.neutral}}
+        </li>
+        <li>
+          <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=Does It Suck? has this to say on the subject of {{search.search_term}}:  {{compareCtrl.evaluateSearch(search)}}. Visit https://does-it-suck.herokuapp.com and see what else sucks!"><img src='images/twitter.svg' /></a>
+        </li>
+        <li>
+          <a href="#/trends" class='trends-link' ng-click='compareCtrl.setSearchTerm(search.search_term)'>Trends</a> | <a href="#/data" class='data-link' ng-click='compareCtrl.passResults(search)'>Explore</a>
+        </li>
       </div><!-- end result-item -->
     </div><!-- end individual result repeat -->
   </div><!-- end comparison repeat -->
