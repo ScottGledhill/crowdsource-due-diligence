@@ -32,13 +32,14 @@ hr {
   font-weight: bold;
 }
 
-.repeat-list {
-  padding-left: 0;
-}
-
 .comparison-result {
   display: inline-block;
   width: 50%
+}
+
+.repeat-list {
+  padding-left: 0;
+  /*overflow: hidden;*/
 }
 
 .result-item {
@@ -51,6 +52,26 @@ hr {
   overflow: hidden;
   width: 80%;
   margin: 5px auto;
+}
+
+.repeat-list.ng-enter.ng-enter-active {
+    opacity: 1;
+    transition: opacity 300ms linear;
+}
+
+.repeat-list.ng-enter {
+    opacity: 0;
+    transition: opacity 300ms linear;
+}
+
+.repeat-list.ng-leave {
+  height: 117px;
+  transition: height 500ms linear;
+}
+
+.repeat-list.ng-leave.ng-leave-active {
+  height: 0;
+  visibility: hidden;
 }
 
 .result-item img {
