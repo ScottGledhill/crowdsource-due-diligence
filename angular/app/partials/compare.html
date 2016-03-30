@@ -1,8 +1,9 @@
 <section id="search-bar" >
+  <h4>Sometimes you gotta choose the lesser of two evils.</h4>
   <form>
-    <input type="text" ng-model="searchTermOne" placeholder="Enter search term">
-    <input type="text" ng-model="searchTermTwo" placeholder="Enter search term">
-    <input type="submit" id="submit-search" value="Well, Which one sucks?" ng-click="compareCtrl.makeSearch(searchTermOne, searchTermTwo); searchTermOne = ''; searchTermTwo = ''">
+    <input type="text" ng-model="searchTermOne" placeholder="Greater evil?">
+    <input type="text" ng-model="searchTermTwo" placeholder="Lesser evil?">
+    <input type="submit" id="submit-search" value="Well, which one sucks more?" ng-click="compareCtrl.makeSearch(searchTermOne, searchTermTwo); searchTermOne = ''; searchTermTwo = ''">
   </form>
 </section>
 <section class="search-results">
