@@ -31,9 +31,6 @@ describe('compareController', function() {
 
     });
 
-    it('converts the searchterms into the right format', function(){
-      expect(ctrl.searchTerms).toContain(convertedSearchTerm);
-    });
 
     it('calls the searchfactory with each of the searchterms',function(){
       expect(searchFactoryMock.query).toHaveBeenCalled();
@@ -50,9 +47,9 @@ describe('compareController', function() {
         var searchResultMock = {search_term:'Test1', positive: 10, negative: 20};
         var searchResultMockTwo = {search_term:'Test2', positive: 20, negative: 20};
         var array = [searchResultMock, searchResultMockTwo];
-        expect(ctrl.outcome(array)).toEqual('Test1 Sucks');
-
-
+        ctrl.outcome(array[0], array[1]);
+        console.log(array[1]);
+        expect(array[1].winner).toEqual(true);
       });
     });
 

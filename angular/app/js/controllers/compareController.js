@@ -6,15 +6,15 @@ self.ready = false;
 
   self.makeSearch = function(searchTermOne, searchTermTwo){
   var comparison = [];
-  var promiseArray = [];
   var searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
-  searchTerms.forEach(function(searchTerm){
-    promiseArray.push(searchFactory.query(searchTerm).then(function(response){
+  var promiseArray = searchTerms.map(function(searchTerm){
+    return searchFactory.query(searchTerm).then(function(response){
       comparison.unshift(response.data);
-    }));
-  });
+    });}
+  );
   $q.all(promiseArray).then(function(){
     self.ready = true;
+    self.outcome(comparison[0],comparison[1]);
     self.results.unshift(comparison);
   });
 
@@ -39,23 +39,27 @@ self.ready = false;
 
 
 
-  self.outcome = function(compArray){
-    var firstArray = compArray[0].positive / compArray[0].negative;
-    var secondArray =  compArray[1].positive / compArray[1].negative;
-    if (firstArray > secondArray){
-      compArray[0].outcome = 'DOESN\'T SUCK';
-      compArray[1].outcome = 'SUCKS';
-      return compArray[1].search_term + ' Sucks';
+  self.outcome = function(compObject, compObjectTwo){
+    compObject.score = compObject.positive / compObject.negative;
+    compObjectTwo.score = compObjectTwo.positive / compObjectTwo.negative;
+    if (compObject > compObjectTwo){
+      compObject.winner = true;
     } else {
-      compArray[0].outcome = 'SUCKS';
-      compArray[1].outcome = 'DOESN\'T SUCK';
-      return compArray[0].search_term + ' Sucks';
+      compObjectTwo.winner = true;
     }
   };
 
+  self.winnerName = function(comparison){
+      if (comparison[0].winner){
+         return comparison[0].search_term;
+     }else{
+       return comparison[1].search_term;
+     }
+   };
+
   self.calcBgCol2 = function(search){
-    return COLORCHOICE[search.outcome];
-  };
+     return (search.winner) ? COLORCHOICE['DOESN\'T SUCK'] : COLORCHOICE['SUCKS'];
+     };
 
 
     var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
