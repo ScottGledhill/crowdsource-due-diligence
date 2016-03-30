@@ -9,7 +9,6 @@ self.sentimentTrendsFactory = sentimentTrendsFactory;
 
   self.makeSearch = function(searchTermOne, searchTermTwo){
     self.results = sentimentTrendsFactory.makeSearch(searchTermOne, searchTermTwo);
-    console.log(sentimentTrendsFactory.ready);
 };
 
 }]);
