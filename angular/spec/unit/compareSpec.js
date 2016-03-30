@@ -13,9 +13,9 @@ describe('compareController', function() {
     searchFactoryMock = {query: function(){} };
     spyOn(searchFactoryMock,'query').and.returnValue( deferred.promise );
 
-
     ctrl = $controller('compareController', {
-        searchFactory: searchFactoryMock
+        searchFactory: searchFactoryMock,
+        $q: $q
       });
     }));
 
@@ -40,7 +40,6 @@ describe('compareController', function() {
     });
 
     it('the return data is stored in results', function(){
-      console.log(ctrl.results);
       scope.$apply();
       expect(ctrl.results).toContain([searchResultMock, searchResultMock]);
     });
@@ -51,7 +50,6 @@ describe('compareController', function() {
         var searchResultMock = {search_term:'Test1', positive: 10, negative: 20};
         var searchResultMockTwo = {search_term:'Test2', positive: 20, negative: 20};
         var array = [searchResultMock, searchResultMockTwo];
-        console.log(ctrl)
         expect(ctrl.outcome(array)).toEqual('Test1 Sucks');
 
 

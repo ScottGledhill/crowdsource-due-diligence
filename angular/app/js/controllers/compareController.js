@@ -1,25 +1,26 @@
-doesItSuck.controller('compareController', ['searchFactory', function(searchFactory){
+doesItSuck.controller('compareController', ['searchFactory', '$q', function(searchFactory, $q){
 
 var self = this;
 self.results = [];
 self.ready = false;
 
   self.makeSearch = function(searchTermOne, searchTermTwo){
-    var comparison = [];
-    self.searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
-
-    var promises = self.searchTerms.map(function(searchTerm){
-      return searchFactory.query(searchTerm);
-    });
-    promises.forEach(function(promise){
-      promise.then(function(response){
-      comparison.unshift(response.data);})
-      .finally(function(){
-        self.ready = true;
-      });
-    });
+  var comparison = [];
+  var thing = [];
+  self.searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
+  self.searchTerms.forEach(function(searchTerm){
+    thing.push(searchFactory.query(searchTerm).then(function(response){
+      comparison.unshift(response.data);
+    }));
+  });
+  $q.all(thing).then(function(){
+    self.ready = true;
     self.results.unshift(comparison);
-  };
+  })
+
+
+
+};
 
   self.evaluateSearch = function (search) {
     if( search.positive > 1.5 * search.negative) {
