@@ -9,7 +9,7 @@ self.ready = false;
   var promiseArray = [];
   self.searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
   self.searchTerms.forEach(function(searchTerm){
-    thing.push(searchFactory.query(searchTerm).then(function(response){
+    promiseArray.push(searchFactory.query(searchTerm).then(function(response){
       comparison.unshift(response.data);
     }));
   });
