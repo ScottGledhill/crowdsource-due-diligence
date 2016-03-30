@@ -49,7 +49,7 @@ var sentimentTrendsFactoryMock, ctrl, MOCK_MESSAGES, MOCK_SEARCH_RESULTS;
  describe('innsert html tag', function(){
 
    it('sentimentTrendsFactory is called when initialised', function(){
-     var updatedMsg = "<span class='Positive-message'><span class='positive-word'>love</span> my new iPhone! <3</span>";
+     var updatedMsg = "<span class='Positive-message'><span class='positive-word big-font'>love</span> my new iPhone! <3</span>";
      expect(ctrl.messages[0].content).toEqual(updatedMsg);
    });
 

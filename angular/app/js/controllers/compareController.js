@@ -16,7 +16,7 @@ self.ready = false;
   $q.all(thing).then(function(){
     self.ready = true;
     self.results.unshift(comparison);
-  })
+  });
 
 
 
@@ -43,13 +43,13 @@ self.ready = false;
     var firstArray = compArray[0].positive / compArray[0].negative;
     var secondArray =  compArray[1].positive / compArray[1].negative;
     if (firstArray > secondArray){
-      compArray[1].outcome = 'DOESN\'T SUCK';
-      compArray[0].outcome = 'SUCKS';
-      return compArray[0].search_term + ' Sucks';
-    } else {
-      compArray[1].outcome = 'SUCKS';
       compArray[0].outcome = 'DOESN\'T SUCK';
+      compArray[1].outcome = 'SUCKS';
       return compArray[1].search_term + ' Sucks';
+    } else {
+      compArray[0].outcome = 'SUCKS';
+      compArray[1].outcome = 'DOESN\'T SUCK';
+      return compArray[0].search_term + ' Sucks';
     }
   };
 
