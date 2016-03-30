@@ -34,26 +34,17 @@ doesItSuck.factory('presentationFactory', [ function() {
   function insertHTML(messages){
     messages.forEach(function(msg){
       insertSentimentClass(msg);
-      insertKeyWordClass(msg);
+      insertKeyWordClass(msg, 'posWords', 'positive');
+      insertKeyWordClass(msg, 'negWords', 'negative');
     });
   }
 
-  function insertPositiveWordClass(msg){
-    var re;
-    msg.posWords.forEach(function(pos){
-      re = new RegExp(pos, "gi");
-      msg.content = msg.content.replace(re,"<span class='positive-word big-font'>"+pos+"</span>");
-    });
-  }
 
-  function insertKeyWordClass(msg){
+  function insertKeyWordClass(msg, keyWords, sentiment){
     var re;
-
-  function insertNegativeWordClass(msg){
-    var re;
-    msg.negWords.forEach(function(neg){
-      re = new RegExp(neg, "gi");
-      msg.content = msg.content.replace(re,"<span class='negative-word big-font'>"+neg+"</span>");
+    msg[keyWords].forEach(function(word){
+      re = new RegExp(word, "gi");
+      msg.content = msg.content.replace(re,"<span class='" + sentiment + "-word big-font'>" + word + "</span>");
     });
   }
 
