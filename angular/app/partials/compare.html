@@ -9,7 +9,7 @@
 <section class="search-results">
   <div class='repeat-list' ng-repeat='comparison in compareCtrl.results'>
     <ul class='comparison-result' ng-repeat='search in comparison'>
-      <div class='result-item' ng-class='compareCtrl.calcBgCol2(search)' ng-show="compareCtrl.ready" >
+      <div class='result-item' ng-class='compareCtrl.presentationFactory.getColorScheme(search)' ng-show="compareCtrl.ready" >
         <li><span class='suck-evaluation'>{{search.search_term}}</span></li>
         <li>
           <img class='emoji' src='images/happy.png' />{{search.positive}}
