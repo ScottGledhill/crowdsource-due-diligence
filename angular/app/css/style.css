@@ -46,6 +46,8 @@ hr {
 }
 
 .comparison-result {
+  position: relative;
+  padding-left: 0px;
   display: inline-block;
   width: 50%
 }
