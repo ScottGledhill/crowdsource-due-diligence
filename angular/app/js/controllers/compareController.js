@@ -20,6 +20,7 @@ self.makeSearch = function(searchTermOne, searchTermTwo){
   });
 };
 
+
 self.outcome = function(compObject, compObjectTwo){
   compObject.score = compObject.positive - compObject.negative;
   compObjectTwo.score = compObjectTwo.positive - compObjectTwo.negative;
@@ -29,7 +30,7 @@ self.outcome = function(compObject, compObjectTwo){
 self.loserName = function(comparison){
     if (comparison[0].winner){
        return comparison[1].search_term;
-   }else{
+   } else {
      return comparison[0].search_term;
    }
  };

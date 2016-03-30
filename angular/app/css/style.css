@@ -49,7 +49,24 @@ hr {
   position: relative;
   padding-left: 0px;
   display: inline-block;
-  width: 50%
+}
+
+.comparison-wapper {
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.score {
+  font-size: 2em;
+}
+
+.comparison-operator {
+  top: -10px;
+  font-size: 6em;
+  position: relative;
+  display: inline-block;
+  padding: 0 30px;
 }
 
 .repeat-list {
@@ -175,6 +192,11 @@ hr {
 
 .negative-word {
   color: #FF2626;
+  font-weight: bold;
+}
+
+.neutral-word {
+  color: #FFC400;
   font-weight: bold;
 }
 

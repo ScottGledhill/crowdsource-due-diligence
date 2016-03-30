@@ -1,12 +1,25 @@
 doesItSuck.factory('presentationFactory', [ function() {
   var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
   var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};
+  var SNARKY = [
+                "Big fucking deal",
+                "No shit",
+                "Fuck-a-doodle-doo",
+                "Who would have thought",
+                "Amazing",
+                "Who cares",
+                "How surprising"
+              ];
 
   var methods = {
-    evaluateSearch:evaluateSearch,
+    evaluateSearch: evaluateSearch,
     getFullColorScheme: getFullColorScheme,
     getColorScheme: getColorScheme,
-    insertHTML: insertHTML
+    insertHTML: insertHTML,
+    getFontColor: getFontColor,
+    operator: operator,
+    getOutcome: getOutcome,
+    snarkyComment: snarkyComment
   };
 
   return methods;
@@ -21,6 +34,37 @@ doesItSuck.factory('presentationFactory', [ function() {
     }
   }
 
+  function operator(comparison) {
+    if (comparison[0].score > comparison[1].score) {
+      return ">";
+    } else if (comparison[0].score < comparison[1].score) {
+      return "<";
+    } else {
+      return "=";
+    }
+  }
+
+  function snarkyComment() {
+    var index = Math.floor(Math.random()*SNARKY.length);
+    return SNARKY[index];
+  }
+
+  function getOutcome(comparison) {
+    var winner;
+    var loser;
+    if (comparison[0].score > comparison[1].score) {
+      winner = comparison[0].search_term;
+      loser = comparison[1].search_term;
+    } else if (comparison[0].score < comparison[1].score) {
+      winner = comparison[1].search_term;
+      loser = comparison[0].search_term;
+    } else {
+      return comparison[0] + " and " + comparison[1] + " both suck equally hard.";
+    }
+    loser = loser.charAt(0).toUpperCase() + loser.slice(1);
+    return loser + " sucks worse than " + winner;
+  }
+
   function getFullColorScheme(search) {
     var evaluated = evaluateSearch(search);
     return COLORCHOICE[evaluated];
@@ -28,6 +72,12 @@ doesItSuck.factory('presentationFactory', [ function() {
 
   function getColorScheme(search){
     return (search.winner) ? COLORCHOICE['DOESN\'T SUCK'] : COLORCHOICE['SUCKS'];
+  }
+
+  function getFontColor(score) {
+    if(score > 0){return "positive-word";}
+    if(score === 0){return "neutral-word";}
+    if(score < 0){return "negative-word";}
   }
 
 
