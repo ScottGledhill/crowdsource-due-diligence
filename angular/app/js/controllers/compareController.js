@@ -1,64 +1,47 @@
-doesItSuck.controller('compareController', ['searchFactory', '$q', function(searchFactory, $q){
+doesItSuck.controller('compareController', ['searchFactory', 'presentationFactory', '$q', function(searchFactory, presentationFactory, $q){
 
 var self = this;
 self.results = [];
 self.ready = false;
+self.presentationFactory = presentationFactory;
 
-  self.makeSearch = function(searchTermOne, searchTermTwo){
+self.makeSearch = function(searchTermOne, searchTermTwo){
   var comparison = [];
-  var promiseArray = [];
-  self.searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
-  self.searchTerms.forEach(function(searchTerm){
-    promiseArray.push(searchFactory.query(searchTerm).then(function(response){
+  var searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
+  var promiseArray = searchTerms.map(function(searchTerm){
+    return searchFactory.query(searchTerm).then(function(response){
       comparison.unshift(response.data);
-    }));
-  });
+    });}
+  );
   $q.all(promiseArray).then(function(){
     self.ready = true;
-    self.results.unshift(comparison);
+    self.outcome(comparison[0],comparison[1]);
+    var result = {};
+    result.verbalOutcome = self.presentationFactory.getOutcome(comparison);
+    result.message = result.verbalOutcome + "... " + self.presentationFactory.snarkyComment() + ".";
+    result.comparison = comparison;
+    result.operator = self.presentationFactory.operator(comparison);
+    self.results.unshift(result);
   });
-
-
-
 };
 
-  self.evaluateSearch = function (search) {
-    if( search.positive > 1.5 * search.negative) {
-      return RESULT_TERMS.positive;
-    } else if( search.negative > 1.5 * search.positive) {
-      return RESULT_TERMS.negative;
-    } else {
-      return RESULT_TERMS.neutral;
-    }
-  };
+self.outcome = function(compObject, compObjectTwo){
+  compObject.score = compObject.positive - compObject.negative;
+  compObjectTwo.score = compObjectTwo.positive - compObjectTwo.negative;
+  compObject.score > compObjectTwo.score ? compObject.winner = true : compObjectTwo.winner = true;
+};
 
-  self.calcBgCol = function (search) {
-    var evaluated = self.evaluateSearch(search);
-    return COLORCHOICE[evaluated];
-  };
+self.loserName = function(comparison){
+    if (comparison[0].winner){
+       return comparison[1].search_term;
+   } else {
+     return comparison[0].search_term;
+   }
+ };
 
-
-
-  self.outcome = function(compArray){
-    var firstArray = compArray[0].positive / compArray[0].negative;
-    var secondArray =  compArray[1].positive / compArray[1].negative;
-    if (firstArray > secondArray){
-      compArray[0].outcome = 'DOESN\'T SUCK';
-      compArray[1].outcome = 'SUCKS';
-      return compArray[1].search_term + ' Sucks';
-    } else {
-      compArray[0].outcome = 'SUCKS';
-      compArray[1].outcome = 'DOESN\'T SUCK';
-      return compArray[0].search_term + ' Sucks';
-    }
-  };
-
-  self.calcBgCol2 = function(search){
-    return COLORCHOICE[search.outcome];
-  };
-
-
-    var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
-    var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};
+ self.deleteResult = function(result) {
+   var index = self.results.indexOf(result);
+   if (index > -1) {self.results.splice(index,1);}
+ };
 
 }]);

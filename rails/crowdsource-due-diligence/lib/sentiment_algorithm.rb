@@ -6,7 +6,7 @@ class SentimentAlgorithm
 
   attr_reader :current_message
 
-  NEGATORS = ['not', 'isnt', 'arent', 'aint', 'hardly', 'un']
+  NEGATORS = ['not', 'isnt', 'arent', 'aint', 'hardly', 'un', 'dont', 'no']
 
   def words msg
     msg.gsub("'", "").split(/[_\W]+/)

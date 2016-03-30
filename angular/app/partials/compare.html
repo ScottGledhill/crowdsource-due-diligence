@@ -1,31 +1,24 @@
 <section id="search-bar" >
+  <h4>Sometimes you gotta choose the lesser of two evils.</h4>
   <form>
-    <input type="text" ng-model="searchTermOne" placeholder="Enter search term">
-    <input type="text" ng-model="searchTermTwo" placeholder="Enter search term">
-    <input type="submit" id="submit-search" value="Well, Which one sucks?" ng-click="compareCtrl.makeSearch(searchTermOne, searchTermTwo); searchTermOne = ''; searchTermTwo = ''">
+    <input type="text" ng-model="searchTermOne" placeholder="Greater evil?">
+    <input type="text" ng-model="searchTermTwo" placeholder="Lesser evil?">
+    <input type="submit" id="submit-search" value="Well, which one sucks more?" ng-click="compareCtrl.makeSearch(searchTermOne, searchTermTwo); searchTermOne = ''; searchTermTwo = ''">
   </form>
 </section>
 <section class="search-results">
-  <div class='repeat-list' ng-repeat='comparison in compareCtrl.results'>
-
-    <div class='comparison-result' ng-repeat='search in comparison'>
-    <div class='result-item' ng-class='compareCtrl.calcBgCol2(search)' ng-show="compareCtrl.ready" >
-    <ul><li><span class='suck-evaluation'>{{search.search_term}}</span></li>
-    <li>
-
-
-    <img class='emoji' src='images/happy.png' />{{search.positive}}
-    <img class='emoji' src='images/sad.png' />{{search.negative}}
-    <img class='emoji' src='images/neutral.png' />{{search.neutral}}
-    </li>
-    <li> <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=According to does it suck? {{search.search_term}} {{compareCtrl.evaluateSearch(search)}}, visit the site at https://does-it-suck.herokuapp.com/ and see what else sucks!">
-      Tweet</a>
-    </li>
-    <li><a href="#/trends" class='trends-link' ng-click='compareCtrl.setSearchTerm(search.search_term)'>See sentiment trends</a></li>
-    <li><a href="#/data" class='data-link' ng-click='compareCtrl.passResults(search)'>Explore messages</a></li>
-  </ul>
-    </div>
-  </div>
-  <span class='suck-evaluation' ng-show="compareCtrl.ready">{{compareCtrl.outcome(comparison)}}</span>
-</div>
+  <div ng-show="compareCtrl.ready" class='repeat-list result-item' ng-repeat='result in compareCtrl.results'>
+    <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=According to Does It Suck?, {{result.verbalOutcome}}. Visit https://does-it-suck.herokuapp.com and see what else sucks!"><img src='images/twitter.svg' /></a>
+    <a class='delete' href="" ng-click="compareCtrl.deleteResult(result);"><img  src='images/delete.png' /></a>
+    <div class="comparison-wrapper">
+      <ul class='comparison-result' ng-repeat-start='search in result.comparison'>
+        <li><span class='suck-evaluation'>{{search.search_term}}</span></li>
+        <li ><span class="score" ng-class="compareCtrl.presentationFactory.getFontColor(search.score);">{{search.score}}</span></li>
+      </ul>
+      <span class="comparison-operator" ng-if="$index === 0" ng-repeat-end>
+        {{result.operator}}
+      </span>
+    </div><!-- end comparison-wapper -->
+    <span class="comparison-message">{{result.message}}</span>
+  </div><!-- end comparison repeat -->
 </section>

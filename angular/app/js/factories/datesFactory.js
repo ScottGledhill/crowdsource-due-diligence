@@ -17,6 +17,6 @@ doesItSuck.factory('datesFactory', [function() {
       }
       return dates;
     }
-  }
+  };
 
 }]);
