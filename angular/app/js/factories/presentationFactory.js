@@ -2,13 +2,13 @@ doesItSuck.factory('presentationFactory', [ function() {
   var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
   var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};
   var SNARKY = [
-                "Big fucking deal",
-                "No shit",
-                "Fuck-a-doodle-doo",
+                "Oh well",
                 "Who would have thought",
                 "Amazing",
                 "Who cares",
-                "How surprising"
+                "How surprising",
+                "Fantastic",
+                "How boring"
               ];
 
   var methods = {

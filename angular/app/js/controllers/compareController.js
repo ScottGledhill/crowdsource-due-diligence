@@ -16,7 +16,14 @@ self.makeSearch = function(searchTermOne, searchTermTwo){
   $q.all(promiseArray).then(function(){
     self.ready = true;
     self.outcome(comparison[0],comparison[1]);
-    self.results.unshift(comparison);
+    var result = {};
+    var verbalOutcome = self.presentationFactory.getOutcome(comparison);
+    var comment = self.presentationFactory.snarkyComment();
+    var message = verbalOutcome + "... " + comment + ".";
+    result.comparison = comparison;
+    result.message = message;
+    result.operator = self.presentationFactory.operator(comparison);
+    self.results.unshift(result);
   });
 };
 

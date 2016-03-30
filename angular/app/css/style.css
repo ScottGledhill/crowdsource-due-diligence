@@ -62,11 +62,15 @@ hr {
 }
 
 .comparison-operator {
-  top: -10px;
+  top: -5px;
   font-size: 6em;
   position: relative;
   display: inline-block;
   padding: 0 30px;
+}
+
+.comparison-message {
+  padding-bottom: 10px;
 }
 
 .repeat-list {
