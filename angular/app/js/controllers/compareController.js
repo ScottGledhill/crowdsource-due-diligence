@@ -3,6 +3,7 @@ doesItSuck.controller('compareController', ['searchFactory', 'presentationFactor
 var self = this;
 self.results = [];
 self.ready = false;
+self.presentationFactory = presentationFactory;
 
   self.makeSearch = function(searchTermOne, searchTermTwo){
   var comparison = [];
@@ -18,10 +19,6 @@ self.ready = false;
     self.results.unshift(comparison);
   });
 };
-
-  self.getColorScheme = function(search){
-    return presentationFactory.getColorScheme(search);
-  };
 
   self.outcome = function(compObject, compObjectTwo){
     compObject.score = compObject.positive / compObject.negative;

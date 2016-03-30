@@ -52,16 +52,5 @@ describe('compareController', function() {
         expect(array[1].winner).toEqual(true);
       });
     });
-
-    describe('#getColorScheme', function(){
-      it('calls the presentationFactory to receive the color class', function(){
-        spyOn(presentationFactoryMock, 'getColorScheme');
-        var obj = {};
-        ctrl.getColorScheme(obj);
-        expect(presentationFactoryMock.getColorScheme).toHaveBeenCalled();
-      });
-    });
-
-
   });
 });

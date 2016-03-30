@@ -1,7 +1,7 @@
 describe('dataController', function() {
 
 var sentimentTrendsFactoryMock, ctrl, MOCK_MESSAGES, MOCK_SEARCH_RESULTS;
-
+var presentationFactoryMock;
 
   beforeEach(module('DoesItSuck'));
 
@@ -18,10 +18,13 @@ var sentimentTrendsFactoryMock, ctrl, MOCK_MESSAGES, MOCK_SEARCH_RESULTS;
       neutral: '50',
       messages: MOCK_MESSAGES};
 
+        presentationFactoryMock = {insertHTML: function(){} };
+        spyOn(presentationFactoryMock, 'insertHTML');
         sentimentTrendsFactoryMock = {getSearchResult: function(){} };
         spyOn(sentimentTrendsFactoryMock,'getSearchResult').and.returnValue(MOCK_SEARCH_RESULTS);
         ctrl = $controller('dataController', {
-          sentimentTrendsFactory: sentimentTrendsFactoryMock});
+          sentimentTrendsFactory: sentimentTrendsFactoryMock,
+          presentationFactory: presentationFactoryMock});
        })
  );
 
@@ -44,14 +47,5 @@ var sentimentTrendsFactoryMock, ctrl, MOCK_MESSAGES, MOCK_SEARCH_RESULTS;
    it('extends the response data: messages', function(){
      expect(ctrl.messages).toEqual(MOCK_SEARCH_RESULTS.messages);
    });
- });
-
- describe('innsert html tag', function(){
-
-   it('sentimentTrendsFactory is called when initialised', function(){
-     var updatedMsg = "<span class='Positive-message'><span class='positive-word big-font'>love</span> my new iPhone! <3</span>";
-     expect(ctrl.messages[0].content).toEqual(updatedMsg);
-   });
-
  });
 });

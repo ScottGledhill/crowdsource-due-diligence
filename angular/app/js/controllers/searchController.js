@@ -4,6 +4,7 @@ doesItSuck.controller('searchController',['$scope', '$route','searchFactory','se
   self.searches = [];
   self.resultReady = false;
   self.bg = '{"background-color": "red"}';
+  self.presentationFactory = presentationFactory;
 
   var STORAGE_KEY = 'resultHistory';
 
@@ -35,14 +36,6 @@ doesItSuck.controller('searchController',['$scope', '$route','searchFactory','se
 
   self.passResults = function(searchResult){
     sentimentTrendsFactory.setSearchResult(searchResult);
-  };
-
-  self.evaluateSearch = function (search) {
-    return presentationFactory.evaluateSearch(search);
-  };
-
-  self.getFullColorScheme = function (search) {
-    return presentationFactory.getFullColorScheme(search);
   };
 
   self.getHistory(STORAGE_KEY);
