@@ -51,7 +51,7 @@ beforeEach(module('DoesItSuck'));
     describe('insert html tag', function(){
 
       it('changes the message for a positive message', function(){
-        var message = {sentiment: 'Positive', posWords: ['love'], negWords: [], content: 'love my new iPhone! <3'}
+        var message = {sentiment: 'Positive', posWords: ['love'], negWords: [], content: 'love my new iPhone! <3'};
         var updatedMsg = "<span class='Positive-message'><span class='positive-word big-font'>love</span> my new iPhone! <3</span>";
         factory.insertHTML([message]);
         expect(message.content).toEqual(updatedMsg);

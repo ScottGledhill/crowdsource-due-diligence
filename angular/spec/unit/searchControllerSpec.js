@@ -1,6 +1,6 @@
 describe('searchController', function() {
 
-var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootScope, scope, httpBackend, localStorageServiceMock, presentationFactoryMock, searchResult;
+var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootScope, scope, httpBackend, storageFactoryMock, presentationFactoryMock, searchResult;
 
 
   beforeEach(module('DoesItSuck'));
@@ -11,16 +11,16 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
     httpBackend = $httpBackend;
     searchFactoryMock = {query: function(){} };
     sentimentTrendsFactoryMock = {setSearchTerm: function(){},setSearchResult: function(){} };
-    localStorageServiceMock = {get: function(){}, set: function (){}, keys: function(){ return ['test']} };
+    storageFactoryMock = {getHistory: function(){}, setHistory: function (){} };
     searchResult = [];
-    spyOn(localStorageServiceMock,'get').and.returnValue(searchResult);
+    spyOn(storageFactoryMock,'getHistory').and.returnValue(searchResult);
     searchTerm = {search_term: 'Test searchTerm'};
     presentationFactoryMock = {evaluateSearch: function(){}, getFullColorScheme: function(){}};
     ctrl = $controller('searchController', {
       $scope: scope,
       searchFactory: searchFactoryMock,
       sentimentTrendsFactory: sentimentTrendsFactoryMock,
-      localStorageService: localStorageServiceMock,
+      storageFactory: storageFactoryMock,
       presentationFactory: presentationFactoryMock
     });
   }));
@@ -31,7 +31,7 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
    });
 
    it('local storage is called to retrieve previous results', function(){
-     expect(localStorageServiceMock.get).toHaveBeenCalled();
+     expect(storageFactoryMock.getHistory).toHaveBeenCalled();
    });
 
    it('results from local storage is entered into searches', function(){
@@ -43,18 +43,18 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
    var key;
 
    beforeEach(function(){
-     spyOn(localStorageServiceMock,'set');
+     spyOn(storageFactoryMock,'setHistory');
      key = 'resultHistory';
    });
 
-   it('local storage is called to retrieve previous results', function(){
-     ctrl.setHistory(key,searchResult);
-     expect(localStorageServiceMock.set).toHaveBeenCalledWith(key, searchResult);
-   });
+  //  it('local storage is called to retrieve previous results', function(){
+  //    storageFactoryMock.setHistory(key,searchResult);
+  //    expect(storageFactoryMock.setHistory).toHaveBeenCalledWith(key, searchResult);
+  //  });
 
    it('is called when a user moves from the page', function(){
      scope.$broadcast("$routeChangeStart");
-     expect(localStorageServiceMock.set).toHaveBeenCalled();
+     expect(storageFactoryMock.setHistory).toHaveBeenCalledWith(key,searchResult);
    });
  });
 
@@ -62,7 +62,7 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
 
    beforeEach(function(){
      spyOn(sentimentTrendsFactoryMock,'setSearchTerm');
-     spyOn(localStorageServiceMock,'set');
+     spyOn(storageFactoryMock,'setHistory');
      var deferred = $q.defer();
      deferred.resolve({data:'some value'});
      spyOn(searchFactoryMock,'query').and.returnValue( deferred.promise );
@@ -77,7 +77,7 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
 
    it ('updates the local storage', function(){
      ctrl.delete('some value');
-     expect(localStorageServiceMock.set).toHaveBeenCalled();
+     expect(storageFactoryMock.setHistory).toHaveBeenCalled();
    });
  });
 

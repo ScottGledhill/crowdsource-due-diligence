@@ -5,7 +5,7 @@ describe('Factory: sentimentTrendsFactory', function() {
   beforeEach(module('DoesItSuck'));
 
   beforeEach(function() {
-    var dates = ['2016-03-20','2016-03-20','2016-03-20','2016-03-20','2016-03-20','2016-03-20']
+    var dates = ['2016-03-20','2016-03-20','2016-03-20','2016-03-20','2016-03-20','2016-03-20'];
     resultsFactoryMock = {outcome: function(){} };
     datesFactoryMock = {getTwitterDates: function(){} };
     spyOn(datesFactoryMock,'getTwitterDates').and.returnValue(dates);
@@ -35,10 +35,10 @@ describe('Factory: sentimentTrendsFactory', function() {
 
      it('can be set to a new searchterm', function(){
        var searchTerm = 'test';
-       factory.setSearchTerm(searchTerm)
+       factory.setSearchTerm(searchTerm);
        expect(factory.getSearchTerm()).toEqual(searchTerm);
      });
-   })
+   });
 
    describe('#makeParams', function(){
      it('returns a set of params for each date pair', function(){
@@ -46,35 +46,22 @@ describe('Factory: sentimentTrendsFactory', function() {
      });
 
      it('has the format of search params', function(){
-       factory.setSearchTerm('Test')
-       var params = {search_term: 'Test', date_from:'2016-03-20', date_till: '2016-03-20' }
+       factory.setSearchTerm('Test');
+       var params = {search_term: 'Test', date_from:'2016-03-20', date_till: '2016-03-20' };
        expect(factory.makeParams()).toContain(params);
      });
 
      it('initates a call to the datesfactory', function(){
-       factory.makeParams()
+       factory.makeParams();
        expect(datesFactoryMock.getTwitterDates).toHaveBeenCalled();
      });
-   })
+   });
 
    describe('searchPromises', function(){
      it('starts out empty', function(){
        expect(factory.searchPromises.length).toEqual(0);
      });
    });
-
-   describe('#setSearchResult', function(){
-     it('starts out empty', function(){
-       expect(factory.getSearchResult()).toBe(undefined);
-     });
-
-     it('is set to the searchResult', function(){
-       var searchResult = {contains: 'multiple items'};
-       factory.setSearchResult(searchResult);
-       expect(factory.getSearchResult()).toEqual(searchResult);
-     });
-   });
-
 
    describe('#getResults', function(){
      beforeEach(function(){
@@ -87,14 +74,13 @@ describe('Factory: sentimentTrendsFactory', function() {
      });
 
      it('returns searchpromises', function(){
-       factory.setSearchTerm('Test')
-       var result = {searchTerm: 'Test', result: searchPromise}
-       expect(factory.getResults()).toEqual([result, result, result]);
+       factory.setSearchTerm('Test');
+       expect(factory.getResults()).toEqual([searchPromise, searchPromise, searchPromise]);
      });
    });
 
    describe('#makeSearch', function(){
-     var convertedSearchTerm, searchTermOne, searchTermTwo
+     var convertedSearchTerm, searchTermOne, searchTermTwo;
 
      beforeEach(function(){
        searchResultMock = {search_term:'Test1', positive: 10, negative: 20};
@@ -113,9 +99,9 @@ describe('Factory: sentimentTrendsFactory', function() {
      });
 
      it('the return data is stored in results', function(){
+       var retVal = factory.makeSearch(searchTermOne, searchTermTwo)
        scope.$apply();
-       expect(factory.makeSearch(searchTermOne, searchTermTwo)).toContain([searchResultMock, searchResultMock]);
-
+       expect(retVal).toContain([searchResultMock, searchResultMock]);
      });
     });
 });

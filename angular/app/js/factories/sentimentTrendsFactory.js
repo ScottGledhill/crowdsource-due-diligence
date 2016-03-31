@@ -1,7 +1,6 @@
 doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', 'resultsFactory', '$q', function(searchFactory, datesFactory, resultsFactory, $q) {
 
   var searchTerm;
-  var searchResult;
   var LASTWEEKDATES = [7,6, 4,3, 1,0];
   var searchPromises = [];
   var ready = false;
@@ -14,8 +13,6 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', '
     makeParams: makeParams,
     searchPromises: searchPromises,
     LASTWEEKDATES: LASTWEEKDATES,
-    setSearchResult: setSearchResult,
-    getSearchResult: getSearchResult,
     makeSearch: makeSearch
   };
   return results;
@@ -29,7 +26,7 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', '
   }
 
   function makeSearch(searchTermOne, searchTermTwo){
-    var resultArray =  []
+    var resultArray =  [];
     var comparison = [];
     var searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
     var promiseArray = searchTerms.map(function(searchTerm){
@@ -43,7 +40,7 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', '
       resultArray.unshift(comparison);
     });
     return resultArray;
-  };
+  }
 
   function getResults(){
     resetPromises();
@@ -58,14 +55,6 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', '
 
   function getSearchTerm(){
     return searchTerm;
-  }
-
-  function setSearchResult(input){
-    searchResult = input;
-  }
-
-  function getSearchResult(){
-    return searchResult;
   }
 
   function callFactory(listParams){
