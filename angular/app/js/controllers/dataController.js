@@ -1,11 +1,10 @@
-doesItSuck.controller('dataController',['sentimentTrendsFactory', 'presentationFactory', function(sentimentTrendsFactory, presentationFactory){
+doesItSuck.controller('dataController',['storageFactory', 'presentationFactory', function(storageFactory, presentationFactory){
   var self = this;
 
   getSearchResult();
 
   function getSearchResult(){
-    var resultObj = sentimentTrendsFactory.getSearchResult();
-    var results = resultObj;
+    var results = storageFactory.getSearchResult();
     angular.extend(self, results);
     presentationFactory.insertHTML(self.messages);
   }

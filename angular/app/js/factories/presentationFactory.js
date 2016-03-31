@@ -11,11 +11,16 @@ doesItSuck.factory('presentationFactory', [ function() {
                 "How boring"
               ];
 
+  var chart =  {colors: ['#02D606', '#FFC400', '#FF2626'],
+               series:  ['Positive', 'Neutral', 'Negative'],
+               labels:  ['7 days ago', '4 days ago', 'Yesterday']};
+
   var methods = {
     evaluateSearch: evaluateSearch,
     getFullColorScheme: getFullColorScheme,
     getColorScheme: getColorScheme,
     insertHTML: insertHTML,
+    getChart: getChart,
     getFontColor: getFontColor,
     operator: operator,
     getOutcome: getOutcome,
@@ -23,6 +28,10 @@ doesItSuck.factory('presentationFactory', [ function() {
   };
 
   return methods;
+
+  function getChart() {
+    return chart;
+  }
 
   function evaluateSearch(search) {
     if( search.positive > 1.5 * search.negative) {

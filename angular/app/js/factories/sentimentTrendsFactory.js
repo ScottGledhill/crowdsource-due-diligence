@@ -1,25 +1,50 @@
-doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', function(searchFactory, datesFactory) {
+doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', 'resultsFactory', 'presentationFactory', '$q', function(searchFactory, datesFactory, resultsFactory, presentationFactory, $q) {
 
   var searchTerm;
-  var searchResult;
   var LASTWEEKDATES = [7,6, 4,3, 1,0];
   var searchPromises = [];
+  var ready = false;
 
   var results = {
+    isReady: isReady,
     setSearchTerm: setSearchTerm,
     getSearchTerm: getSearchTerm,
     getResults: getResults,
     makeParams: makeParams,
     searchPromises: searchPromises,
     LASTWEEKDATES: LASTWEEKDATES,
-    setSearchResult: setSearchResult,
-    getSearchResult: getSearchResult
+    makeSearch: makeSearch
   };
-
   return results;
 
   function resetPromises(){
     searchPromises = [];
+  }
+
+  function isReady(){
+    return ready;
+  }
+
+  function makeSearch(searchTermOne, searchTermTwo){
+    var resultArray =  [];
+    var comparison = [];
+    var searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
+    var promiseArray = searchTerms.map(function(searchTerm){
+      return searchFactory.query(searchTerm).then(function(response){
+        comparison.unshift(response.data);
+      });}
+    );
+    $q.all(promiseArray).then(function(){
+      ready = true;
+      resultsFactory.outcome(comparison[0],comparison[1]);
+      var result = {};
+      result.verbalOutcome = presentationFactory.getOutcome(comparison);
+      result.message = result.verbalOutcome + "... " + presentationFactory.snarkyComment() + ".";
+      result.comparison = comparison;
+      result.operator = presentationFactory.operator(comparison);
+      resultArray.unshift(result);
+    });
+    return resultArray;
   }
 
   function getResults(){
@@ -37,26 +62,15 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', f
     return searchTerm;
   }
 
-  function setSearchResult(input){
-    searchResult = input;
-  }
-
-  function getSearchResult(){
-    return searchResult;
-  }
-
   function callFactory(listParams){
     listParams.forEach(function(params){
-      var result = {};
-      result.searchTerm = params.search_term;
-      result.result = searchFactory.query(params);
-      searchPromises.unshift(result);
-      });
+      searchPromises.push(searchFactory.query(params));
+    });
   }
 
     function makeParams(){
       var listParams = [];
-      var params = '';
+      var params;
       var dates = datesFactory.getTwitterDates(LASTWEEKDATES);
       for (var i= 0; i<(dates.length); i += 2){
         params = {search_term: getSearchTerm()};

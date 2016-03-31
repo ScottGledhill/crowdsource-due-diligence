@@ -1,6 +1,6 @@
 describe('dataController', function() {
 
-var sentimentTrendsFactoryMock, ctrl, MOCK_MESSAGES, MOCK_SEARCH_RESULTS;
+var storageFactoryMock, ctrl, MOCK_MESSAGES, MOCK_SEARCH_RESULTS;
 var presentationFactoryMock;
 
   beforeEach(module('DoesItSuck'));
@@ -20,18 +20,18 @@ var presentationFactoryMock;
 
         presentationFactoryMock = {insertHTML: function(){} };
         spyOn(presentationFactoryMock, 'insertHTML');
-        sentimentTrendsFactoryMock = {getSearchResult: function(){} };
-        spyOn(sentimentTrendsFactoryMock,'getSearchResult').and.returnValue(MOCK_SEARCH_RESULTS);
+        storageFactoryMock = {getSearchResult: function(){} };
+        spyOn(storageFactoryMock,'getSearchResult').and.returnValue(MOCK_SEARCH_RESULTS);
         ctrl = $controller('dataController', {
-          sentimentTrendsFactory: sentimentTrendsFactoryMock,
+          storageFactory: storageFactoryMock,
           presentationFactory: presentationFactoryMock});
        })
  );
 
  describe('#getSearchResults', function(){
 
-   it('sentimentTrendsFactory is called when initialised', function(){
-     expect(sentimentTrendsFactoryMock.getSearchResult).toHaveBeenCalled();
+   it('storageFactory is called when initialised', function(){
+     expect(storageFactoryMock.getSearchResult).toHaveBeenCalled();
      ctrl.messages ="";
    });
 

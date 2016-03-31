@@ -12,8 +12,6 @@ var sentimentTrendsFactoryMock, ctrl, $q, rootScope, scope, httpBackend;
         ctrl = $controller('trendsController', {
           $scope: scope,
           sentimentTrendsFactory: sentimentTrendsFactoryMock});
-          console.log(ctrl);
-
        })
  });
 
