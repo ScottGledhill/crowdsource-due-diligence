@@ -57,7 +57,6 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', '
   }
 
   function getSearchTerm(){
-    // console.log('sent searchterm')
     return searchTerm;
   }
 
@@ -71,10 +70,6 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', '
 
   function callFactory(listParams){
     listParams.forEach(function(params){
-      // var result = {};
-      // result.searchTerm = params.search_term;
-      // result.result = searchFactory.query(params);
-      // searchPromises.unshift(result);
       searchPromises.unshift(searchFactory.query(params));
       });
   }

@@ -1,5 +1,5 @@
 doesItSuck.factory('resultsFactory', ['$q', function($q) {
-  var data = [[],[],[]]
+  var data = [[],[],[]];
   var methods = {
     outcome:outcome,
     loserName: loserName,
@@ -26,38 +26,26 @@ doesItSuck.factory('resultsFactory', ['$q', function($q) {
    }
 
    function addChartData(resultArr){
-    //  console.log('called add chart data')
-    //  console.log(resultArr);
      resultArr.forEach(function(result) {
        data[0].push(result.positive);
        data[1].push(result.neutral);
        data[2].push(result.negative);
      });
-   };
+   }
 
    function extractResults(promiseArr){
      var resultArr = [];
-     var score = [];
-    //  console.log(promiseArr);
-     resultArr = promiseArr.map(function(promise){
-      //  console.log(promise);
-       return promise.then(function(response){
-        //  console.log(response)
-         score.unshift(response.data);
-       })
-     });
-     return $q.all(promiseArr).then(function(){
-      //  console.log(score);
-       addChartData(score);
-       console.log(data);
-       return data;
-     });
+     return $q.all(promiseArr).then(function(result){
+      result.forEach(function(response){
+          resultArr.unshift(response.data);
+        });
+      addChartData(resultArr);
+      return data;
+      });
    }
 
    function getResults(promiseArr){
      resetData();
-     var test = extractResults(promiseArr);
-     console.log(test)
-     return test;
+     return extractResults(promiseArr);
    }
 }]);

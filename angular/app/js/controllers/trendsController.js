@@ -2,14 +2,15 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory', 'presentatio
 
   var self = this;
   self.chart = presentationFactory.getChart();
-  // self.chart.data = [[],[],[]];
 
   function loadData(){
     if (sentimentTrendsFactory.getSearchTerm() !== undefined){
+      self.searchTerm = sentimentTrendsFactory.getSearchTerm();
       var promiseArr = sentimentTrendsFactory.getResults();
-      self.chart.data = resultsFactory.getResults(promiseArr);
-      console.log(self.chart);
-      console.log(self.chart.data);
+      var promise = resultsFactory.getResults(promiseArr);
+      promise.then(function(response){
+        self.chart.data = response;
+      });
     }else{
       self.searchTerm = 'No search term given';
     }
