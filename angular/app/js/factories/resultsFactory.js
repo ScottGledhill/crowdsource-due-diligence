@@ -8,8 +8,8 @@ doesItSuck.factory('resultsFactory', ['$q', function($q) {
   return methods;
 
   function outcome(compObject, compObjectTwo){
-    compObject.score = compObject.positive / compObject.negative;
-    compObjectTwo.score = compObjectTwo.positive / compObjectTwo.negative;
+    compObject.score = compObject.positive - compObject.negative;
+    compObjectTwo.score = compObjectTwo.positive - compObjectTwo.negative;
     compObject.score > compObjectTwo.score ? compObject.winner = true : compObjectTwo.winner = true;
   }
 
