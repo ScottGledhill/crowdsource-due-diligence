@@ -3,7 +3,7 @@ describe('trendsController', function() {
 var sentimentTrendsFactoryMock, ctrl, $q, response, rootScope, scope, httpBackend;
 
   beforeEach(function(){
-    response = {data:{test: 'tester'}}
+    response = {data:{test: 'tester'}};
     sentimentTrendsFactoryMock = jasmine.createSpyObj(
       'sentimentTrendsFactoryMock',
       ['getResults']);
@@ -30,24 +30,18 @@ var sentimentTrendsFactoryMock, ctrl, $q, response, rootScope, scope, httpBacken
 
  describe('#getResults', function(){
    it('sentimentTrendsFactory is called when initialised', function(){
-     console.log(ctrl);
-     console.log(sentimentTrendsFactoryMock);
      scope.$digest();
-    // console.log(sentimentTrendsFactoryMock);
      expect(sentimentTrendsFactoryMock.getResults).toHaveBeenCalled();
    });
 
    it('sentimentTrendsFactory is called', function(){
      scope.$digest();
-    //  ctrl.getResults();
      expect(sentimentTrendsFactoryMock.getResults).toHaveBeenCalled();
    });
 
    it('returns the response data', function(){
-    //  ctrl.getResults();
-    //  scope.$apply();
      expect(ctrl.results.length).toEqual(3);
-     expect(ctrl.results).toContain('some value')
+     expect(ctrl.results).toContain('some value');
    });
  });
 

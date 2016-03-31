@@ -13,7 +13,7 @@
         <img class='emoji' src='images/sad.png' />{{search.negative}}
         <img class='emoji' src='images/neutral.png' />{{search.neutral}}
       </li>
-      <li><b><a href="#/trends" class='trends-link' ng-click='searchCtrl.storageFactory.setSearchTerm(search.search_term)'>Trends</a> | <a href="#/data" class='data-link' ng-click='searchCtrl.sentimentTrendsFactory.passResults(search)'>Explore</a></b></li>
+      <li><b><a href="#/trends" class='trends-link' ng-click='searchCtrl.sentimentTrendsFactory.setSearchTerm(search.search_term)'>Trends</a> | <a href="#/data" class='data-link' ng-click='searchCtrl.storageFactory.setSearchResult(search)'>Explore</a></b></li>
       <a class="twitter-share-button" ng-href="https://twitter.com/intent/tweet?text=Does It Suck? has this to say on the subject of {{search.search_term}}:  {{searchCtrl.evaluateSearch(search)}}. Visit https://does-it-suck.herokuapp.com and see what else sucks!"><img src='images/twitter.svg' /></a>
       <li><a class='delete' href="" ng-click="searchCtrl.delete(search)"><img  src='images/delete.png' /></a></li>
     </div><!-- end results item -->
