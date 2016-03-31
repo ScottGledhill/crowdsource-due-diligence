@@ -1,6 +1,6 @@
 doesItSuck.controller('dataController',dataController);
 
-dataController.$inject = ['storageFactory', 'presentationFactory']
+dataController.$inject = ['storageFactory', 'presentationFactory'];
 
 function dataController(storageFactory, presentationFactory){
   var self = this;

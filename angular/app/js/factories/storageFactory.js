@@ -4,12 +4,12 @@ doesItSuck.factory('storageFactory', storageFactory);
 
   var STORAGE_KEY = 'resultHistory';
   var searchResult;
-  var methods = { getHistory: getHistory,
+  var service = { getHistory: getHistory,
                   setHistory: setHistory,
                   setSearchResult: setSearchResult,
                   getSearchResult: getSearchResult
   };
-  return methods;
+  return service;
 
   function getHistory(resultHistory){
     var lskeys = localStorageService.keys();

@@ -10,7 +10,7 @@ doesItSuck.factory('sentimentTrendsFactory', sentimentTrendsFactory);
     var ready = false;
     var resultArray =  [];
 
-    var results = {
+    var service = {
       setSearchTerm: setSearchTerm,
       getSearchTerm: getSearchTerm,
       getResults: getResults,
@@ -19,7 +19,7 @@ doesItSuck.factory('sentimentTrendsFactory', sentimentTrendsFactory);
       LASTWEEKDATES: LASTWEEKDATES,
       makeSearch: makeSearch
     };
-    return results;
+    return service;
 
     function resetPromises(){
       searchPromises = [];

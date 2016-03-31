@@ -5,12 +5,12 @@ doesItSuck.factory('resultsFactory', resultsFactory);
   function resultsFactory($q) {
 
     var data = [[],[],[]];
-    var methods = {
+    var service = {
       outcome:outcome,
       loserName: loserName,
       getResults: getResults,
     };
-    return methods;
+    return service;
 
     function outcome(compObject, compObjectTwo){
       compObject.score = compObject.positive - compObject.negative;

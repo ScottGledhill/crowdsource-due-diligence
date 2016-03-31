@@ -18,7 +18,7 @@ doesItSuck.factory('presentationFactory', presentationFactory);
                series:  ['Positive', 'Neutral', 'Negative'],
                labels:  ['7 days ago', '4 days ago', 'Yesterday']};
 
-  var methods = {
+  var service = {
     evaluateSearch: evaluateSearch,
     getFullColorScheme: getFullColorScheme,
     getColorScheme: getColorScheme,
@@ -30,7 +30,7 @@ doesItSuck.factory('presentationFactory', presentationFactory);
     snarkyComment: snarkyComment
   };
 
-  return methods;
+  return service;
 
   function getChart() {
     return chart;
