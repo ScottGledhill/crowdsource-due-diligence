@@ -1,4 +1,4 @@
-doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', 'resultsFactory', '$q', function(searchFactory, datesFactory, resultsFactory, $q) {
+doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', 'resultsFactory', 'presentationFactory', '$q', function(searchFactory, datesFactory, resultsFactory, presentationFactory, $q) {
 
   var searchTerm;
   var LASTWEEKDATES = [7,6, 4,3, 1,0];
@@ -37,7 +37,12 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', '
     $q.all(promiseArray).then(function(){
       ready = true;
       resultsFactory.outcome(comparison[0],comparison[1]);
-      resultArray.unshift(comparison);
+      var result = {};
+      result.verbalOutcome = presentationFactory.getOutcome(comparison);
+      result.message = result.verbalOutcome + "... " + presentationFactory.snarkyComment() + ".";
+      result.comparison = comparison;
+      result.operator = presentationFactory.operator(comparison);
+      resultArray.unshift(result);
     });
     return resultArray;
   }
