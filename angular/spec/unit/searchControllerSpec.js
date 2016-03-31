@@ -71,12 +71,12 @@ var searchFactoryMock, sentimentTrendsFactoryMock, ctrl, searchTerm, $q, rootSco
    });
 
    it('a user can delete a search item', function(){
-     ctrl.delete('some value');
+     ctrl.deleteResult('some value');
      expect(ctrl.searches.length).toEqual(0);
    });
 
    it ('updates the local storage', function(){
-     ctrl.delete('some value');
+     ctrl.deleteResult('some value');
      expect(storageFactoryMock.setHistory).toHaveBeenCalled();
    });
  });

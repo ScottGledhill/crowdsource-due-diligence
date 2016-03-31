@@ -1,4 +1,6 @@
-doesItSuck.factory('storageFactory', ['localStorageService', function(localStorageService) {
+doesItSuck.factory('storageFactory', storageFactory);
+  storageFactory.$inject = ['localStorageService'];
+  function storageFactory(localStorageService) {
 
   var STORAGE_KEY = 'resultHistory';
   var searchResult;
@@ -7,7 +9,6 @@ doesItSuck.factory('storageFactory', ['localStorageService', function(localStora
                   setSearchResult: setSearchResult,
                   getSearchResult: getSearchResult
   };
-
   return methods;
 
   function getHistory(resultHistory){
@@ -26,5 +27,4 @@ doesItSuck.factory('storageFactory', ['localStorageService', function(localStora
   function getSearchResult(){
     return searchResult;
   }
-
-}]);
+}

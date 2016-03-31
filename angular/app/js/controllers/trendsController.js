@@ -1,4 +1,8 @@
-doesItSuck.controller('trendsController',['sentimentTrendsFactory', 'presentationFactory', 'resultsFactory',  function(sentimentTrendsFactory, presentationFactory, resultsFactory){
+doesItSuck.controller('trendsController', trendsController);
+
+trendsController.$inject = ['sentimentTrendsFactory', 'presentationFactory', 'resultsFactory'];
+
+function trendsController(sentimentTrendsFactory, presentationFactory, resultsFactory){
 
   var self = this;
   self.chart = presentationFactory.getChart();
@@ -17,4 +21,4 @@ doesItSuck.controller('trendsController',['sentimentTrendsFactory', 'presentatio
   }
   loadData();
 
-}]);
+}

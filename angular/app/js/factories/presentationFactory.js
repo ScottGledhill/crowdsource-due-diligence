@@ -1,4 +1,7 @@
-doesItSuck.factory('presentationFactory', [ function() {
+doesItSuck.factory('presentationFactory', presentationFactory);
+
+  function presentationFactory() {
+
   var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
   var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};
   var SNARKY = [
@@ -112,4 +115,4 @@ doesItSuck.factory('presentationFactory', [ function() {
     msg.content = "<span class='" + sentiment +"-message'>" + msg.content +"</span>";
   }
 
-}]);
+}

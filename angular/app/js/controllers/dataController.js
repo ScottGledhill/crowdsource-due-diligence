@@ -1,4 +1,8 @@
-doesItSuck.controller('dataController',['storageFactory', 'presentationFactory', function(storageFactory, presentationFactory){
+doesItSuck.controller('dataController',dataController);
+
+dataController.$inject = ['storageFactory', 'presentationFactory']
+
+function dataController(storageFactory, presentationFactory){
   var self = this;
 
   getSearchResult();
@@ -9,4 +13,4 @@ doesItSuck.controller('dataController',['storageFactory', 'presentationFactory',
     presentationFactory.insertHTML(self.messages);
   }
 
-}]);
+}

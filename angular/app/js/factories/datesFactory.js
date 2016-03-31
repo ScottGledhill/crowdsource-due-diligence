@@ -1,4 +1,6 @@
-doesItSuck.factory('datesFactory', [function() {
+doesItSuck.factory('datesFactory', datesFactory)
+
+function datesFactory() {
 
   return {
      getTwitterDates: function(dateRange){
@@ -18,5 +20,4 @@ doesItSuck.factory('datesFactory', [function() {
       return dates;
     }
   };
-
-}]);
+}
