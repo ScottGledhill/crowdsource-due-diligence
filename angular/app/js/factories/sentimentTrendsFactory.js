@@ -4,6 +4,7 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', '
   var LASTWEEKDATES = [7,6, 4,3, 1,0];
   var searchPromises = [];
   var ready = false;
+  var resultArray =  [];
 
   var results = {
     isReady: isReady,
@@ -26,7 +27,6 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', '
   }
 
   function makeSearch(searchTermOne, searchTermTwo){
-    var resultArray =  [];
     var comparison = [];
     var searchTerms = [{search_term: searchTermOne}, {search_term: searchTermTwo}];
     var promiseArray = searchTerms.map(function(searchTerm){
@@ -68,17 +68,17 @@ doesItSuck.factory('sentimentTrendsFactory', ['searchFactory', 'datesFactory', '
     });
   }
 
-    function makeParams(){
-      var listParams = [];
-      var params;
-      var dates = datesFactory.getTwitterDates(LASTWEEKDATES);
-      for (var i= 0; i<(dates.length); i += 2){
-        params = {search_term: getSearchTerm()};
-        params.date_from = dates[i];
-        params.date_till = dates[i+1];
-        listParams.push(params);
-      }
-      return listParams;
+  function makeParams(){
+    var listParams = [];
+    var params;
+    var dates = datesFactory.getTwitterDates(LASTWEEKDATES);
+    for (var i= 0; i<(dates.length); i += 2){
+      params = {search_term: getSearchTerm()};
+      params.date_from = dates[i];
+      params.date_till = dates[i+1];
+      listParams.push(params);
     }
+    return listParams;
+  }
 
 }]);
