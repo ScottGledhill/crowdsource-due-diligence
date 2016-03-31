@@ -19,11 +19,6 @@ doesItSuck.config(['$routeProvider',
         controller: 'trendsController',
         controllerAs: 'trendsCtrl'
       }).
-      when('/search-dates', {
-        templateUrl: 'partials/specific-dates.html',
-        controller: 'specificSearchController',
-        controllerAs: 'searchCtrl'
-      }).
       when('/compare', {
         templateUrl: 'partials/compare.html',
         controller: 'compareController',
