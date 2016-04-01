@@ -25,11 +25,7 @@ I want to enter what I'm interested in.
 As a Does It Suck? user,
 So I can easily understand my search results,
 I want to see a very simple breakdown of overall sentiment with % good, bad, and neutral.
-```
-```
-As a Does It Suck? user,
-So I can have access to more advanced features,
-I want to make a user account.
+
 ```
 ```
 As an advanced Does It Suck? user,
