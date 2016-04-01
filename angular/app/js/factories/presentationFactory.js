@@ -1,4 +1,7 @@
-doesItSuck.factory('presentationFactory', [ function() {
+doesItSuck.factory('presentationFactory', presentationFactory);
+
+  function presentationFactory() {
+
   var COLORCHOICE = {'SUCKS': 'red', 'DOESN\'T SUCK': 'green', 'MEH': 'yellow'};
   var RESULT_TERMS = {'positive': 'DOESN\'T SUCK', 'negative': 'SUCKS', 'neutral': 'MEH'};
   var SNARKY = [
@@ -15,7 +18,7 @@ doesItSuck.factory('presentationFactory', [ function() {
                series:  ['Positive', 'Neutral', 'Negative'],
                labels:  ['7 days ago', '4 days ago', 'Yesterday']};
 
-  var methods = {
+  var service = {
     evaluateSearch: evaluateSearch,
     getFullColorScheme: getFullColorScheme,
     getColorScheme: getColorScheme,
@@ -27,7 +30,7 @@ doesItSuck.factory('presentationFactory', [ function() {
     snarkyComment: snarkyComment
   };
 
-  return methods;
+  return service;
 
   function getChart() {
     return chart;
@@ -112,4 +115,4 @@ doesItSuck.factory('presentationFactory', [ function() {
     msg.content = "<span class='" + sentiment +"-message'>" + msg.content +"</span>";
   }
 
-}]);
+}
