@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" ng-app="DoesItSuck">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Does It Suck?</title>
+    <!-- Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+    <!-- styling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type='text/css' rel='stylesheet' href='/css/style.css' />
+    <!-- angular -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/searchController.js"></script>
+    <script src="js/controllers/trendsController.js"></script>
+    <script src="js/controllers/dataController.js"></script>
+    <script src="js/controllers/compareController.js"></script>
+    <script src="js/factories/searchFactory.js"></script>
+    <script src="js/factories/datesFactory.js"></script>
+    <script src="js/factories/presentationFactory.js"></script>
+    <script src="js/factories/resultsFactory.js"></script>
+    <script src="js/factories/storageFactory.js"></script>
+    <script src="js/factories/sentimentTrendsFactory.js"></script>
+    <script src="js/routes.js"></script>
+    <!-- angular-loading-bar -->
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
+    <!-- angular-chart -->
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+    <!-- angular-animate -->
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <!-- angulike -->
+    <script src="bower_components/angulike/angulike.js"></script>
+  </head>
+
+  <body>
+  <section id='content-wrapper'>
+    <div class='row container-fluid'>
+    <div class='col-md-2'></div>
+    <div class='col-md-8 text-center'>
+
+    <h1><a href="#/">Does it Suck?</a></h1>
+
+    <a href='#/'>Search</a>
+    | <a href='#/compare'>Compare</a>
+    | <a href='#/about'>About</a>
+
+    <hr />
+
+    <div ng-view></div>
+
+    </div><!-- end middle col -->
+
+    <div class='col-md-2'></div>
+    </div><!-- end row -->
+  </section><!-- end content wrapper -->
+
+  <div class="navbar navbar-default navbar-fixed-bottom" class="container-fluid" style="text-align:center;">
+    <div style="margin:auto;">
+      <div style="display:inline-block;padding:10px;">
+        Made by
+        <a href='https://github.com/rufusraghunath'>Rufus Raghunath</a>,
+        <a href='https://github.com/eilw'>Eirik Wiig</a>,
+        <a href='https://github.com/ScottGledhill'>Scott Gledhill</a> &amp;
+        <a href='https://github.com/JonnyPickard'>Jonny Pickard</a>
+        at <a href='http://makersacademy.com'>Makers Academy</a>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

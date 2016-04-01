@@ -1,0 +1,246 @@
+body {
+  font-family: 'Inconsolata', sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#content-wrapper {
+  padding-bottom: 80px;
+}
+
+h1 {
+  font-family: 'Amatic SC', serif;
+  font-size: 3em;
+}
+
+h1 a {
+  color: black;
+}
+
+h1 a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+h4 {
+  margin-bottom: 3%;
+}
+
+#search-bar {
+  margin-top: 3%;
+  margin-bottom: 5%;
+}
+
+hr {
+  width: 10%;
+}
+
+.search-results li {
+  list-style: none;
+}
+
+.suck-evaluation {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.comparison-result {
+  position: relative;
+  padding-left: 0px;
+  display: inline-block;
+}
+
+.comparison-wapper {
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.score {
+  font-size: 2em;
+}
+
+.comparison-operator {
+  top: -5px;
+  font-size: 6em;
+  position: relative;
+  display: inline-block;
+  padding: 0 30px;
+}
+
+.comparison-message {
+  padding-bottom: 10px;
+}
+
+.repeat-list {
+  padding-left: 0;
+  /*overflow: hidden;*/
+}
+
+.result-item {
+  position: relative;
+  border: 3px solid grey;
+  border-radius: 3px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0;
+  overflow: hidden;
+  width: 80%;
+  margin: 5px auto;
+}
+
+.repeat-list.ng-enter.ng-enter-active {
+  opacity: 1;
+  transition: opacity 300ms linear;
+}
+
+.repeat-list.ng-enter {
+  opacity: 0;
+  transition: opacity 300ms linear;
+}
+
+.repeat-list.ng-leave {
+  height: 126px;
+  transition: height 500ms linear;
+}
+
+.repeat-list.ng-leave.ng-leave-active {
+  height: 0;
+  visibility: hidden;
+}
+
+.result-item img {
+  height: 15px;
+  width: 15px;
+}
+
+.red {
+  background-color: rgba(245,32,32,0.6);
+  border-color: #FF2626;
+}
+
+.green {
+  background-color: rgba(32,255,3,0.5);
+  border-color: #02D606;
+}
+
+.yellow {
+  background-color: rgba(255,247,3,0.5);
+  border-color: #FFC400;
+}
+
+.emoji {
+  border-radius: 100%;
+}
+
+#images a{
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  padding: 25px;
+}
+
+.avatar {
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+}
+
+.avatar p {
+  padding-top: 20px;
+  position: relative;
+  z-index: 2;
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  font-size: 3em;
+  visibility: hidden;
+}
+
+.avatar img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+}
+
+.avatar:hover img {
+  opacity: 0.5;
+}
+
+.avatar:hover p {
+  visibility: visible;
+}
+
+.chart {
+  margin-top: 3%;
+  width: 75%;
+  height: 25%;
+  margin: 0 auto;
+}
+
+#data-scroll {
+  margin-top: 10px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.positive-word {
+  color: #02D606;
+  font-weight: bold;
+}
+
+.negative-word {
+  color: #FF2626;
+  font-weight: bold;
+}
+
+.neutral-word {
+  color: #FFC400;
+  font-weight: bold;
+}
+
+.big-font {
+  font-size: 1.5em;
+}
+
+.positive-message {
+  background-color: rgba(32,255,3,0.1);
+}
+
+.negative-message {
+  background-color: rgba(245,32,32,0.1);
+}
+
+.message-hr {
+  width: 100%;
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.delete {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
+
+.delete img {
+  height: 15px;
+  width: 15px;
+}
+
+.twitter-share-button {
+  position: absolute;
+  top: 0px;
+  right: 23px;
+}
+
+.twitter-share-button img {
+  height: 18px;
+  width: 18px;
+}

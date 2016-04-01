@@ -1,0 +1,37 @@
+Finished
+- A seperate search button and field initialises a weekly search
+- The search loops over the dates given and returns the results
+- Put inplace routing for the 'normal' search and the weekly search
+- When clicked weekly search, user can only see the weekly search
+- The search by defaults returns back the first day of the week and the last day of the week
+- refactor searchFactory into a service
+- refactor search controller
+- add unit tests
+- The user can click a link to see tweets that are related to the search in a seperate tab
+  - A user can click one link and be passed to a new view with all the tweets (positive / negative, and with the sentiment words)
+- Each of the tweets have the 'sentiment term' shown before the tweet
+- The tweets are coloured differentenly based on their sentiment result
+- The user can only see the first ten tweets
+- The tweets move upwards across the page
+- The sentiment terms are highlighted in a strong colour (of the sentiment) and in CAPS
+- There is a link for each of the search terms
+
+Search data
+- Backend stores the tweets and passes them to angular
+- The sentiment algorithm, places each tweet in a hash: content, sentiment: positive / negative, and sentiment word (only positive and negative)
+
+Local storage
+- 
+
+Weekly search
+- The user can add extra dates by checking a checkbox
+- There is a checkbox that toggles each one
+- The days are updated automatically based on the actual day (user sees)
+
+
+A new api
+- The search terms also searchs BestBuy api to get results
+- The user can click if they want to include BestBuy
+- Etc
+
+test to see if it takes out the search term in the view
